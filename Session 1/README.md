@@ -143,9 +143,9 @@ That should pop up a console window with _"Hello world!"_ in it.
 
 > The following section is aimed at Windows machines. If you use a Mac or Linux, this will be different for you.
 
-Now the project is created, we will need to display something to the screen to see the physics in motion.
+Now the project is created, we will need to display 3D objects to the screen.
 
-> For this, I will use a legacy version of OpenGL which will most likely differ from what you are taught in 212CR. The graphics implemented as part of this tutorial series are **not enough to pass in the 212CR module.**
+> For this, I will use a legacy version of OpenGL which is for testing purpose only. The graphics implemented as part of this tutorial series are **not enough to pass in the 212CR module.**
 
 The libraries we will be using are:
 
@@ -153,15 +153,14 @@ The libraries we will be using are:
 * FreeGLUT
 * GLM
 
-These are the same versions as the ones from 212CR so they should not cause any issues overall.
 
-> You can download the library files I use through-out this tutorial series by downloading and extracting the _"Library Files"_ .zip file on the module Moodle page.
+> You can download the library files I use through-out this tutorial series by downloading and extracting the _"Library"_ .zip file on the Aula Week 1 page.
 
 These libraries are created for a certain build of project which can be a mix of Debug or Release and Win32 (x86) or Win64 (x64). For our case, these are for both Debug or Release and Win64 (x64).
 
 We can change these in Visual Studio via the two dropdowns next to _"Local Windows Debugger"_. Make sure your project shows _"Debug"_ and _"x64"_.
 
-![project build picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Debug%20x64.PNG)
+![project build picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Debug%20x64.PNG)
 
 We now need to place these library files in a place where Visual Studio (and your code) can see and use them. Download (and extract) the files with the link above now if you have not already.
 
@@ -183,11 +182,11 @@ For moving the library files, we shall place them where the project files are. T
 
 > Don't know where your project files are? Right click the project name in "Solution Explorer" and select _"Open Folder in File Explorer"_. 
 
-![open folder picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/open%20folder.PNG)
+![open folder picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/open%20folder.PNG)
 
 Your project files should now look something like this. (Of course, your project name will be different to mine!)
 
-![project files picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Added%20library%20files.PNG)
+![project files picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Added%20library%20files.PNG)
 
 Moving the files is not enough. We now need to tell Visual Studio where these files are by 'linking' them.
 
