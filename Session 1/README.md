@@ -182,7 +182,7 @@ For moving the library files, we shall place them where the project files are. T
 
 > Don't know where your project files are? Right click the project name in "Solution Explorer" and select _"Open Folder in File Explorer"_. 
 
-![open folder picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/open%20folder.PNG)
+![open folder picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/OpenFolder.PNG)
 
 Your project files should now look something like this. (Of course, your project name will be different to mine!)
 
