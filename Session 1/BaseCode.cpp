@@ -22,6 +22,9 @@ void drawScene(void)
 	glColor3f(0.0, 0.0, 0.0);
 	glLoadIdentity();
 
+	// Modeling transformations.
+	glTranslatef(xx, 0.0, -5.0);
+
 	glTranslatef(0.0, 0.0, -5.0);
 	glRotatef(25, 1, 0, 0);
 	glRotatef(45, 0, 1, 0);
