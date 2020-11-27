@@ -41,11 +41,11 @@ Click on + button to add new repository under your username. You are also welcom
  
  By doing all of this, it means that the markers will be able to see it, that other students cannot and that you can clone it straight away to your PC.
  
-![Create a repository picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Create%20Repository.png)
+![Create a repository picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/CreateRepos.JPG)
  
  Finally, add the module staff to your repository so they have access to it. (Our information can be found on the 217CR moodle page under _Module Essentials_.)
  
- Go into your repository from the website, click "Settings", then "Collaborators", and then search for, and add, both members of module staff (Ian and Will) to the page. 
+ Go into your repository from the website, click "Settings", then "Collaborators", and then search for, and add, both members of module staff (YingLiang Ma (ac7020) and Ian) to the page. 
  
  ![Add collaborators picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Add%20Collabs.png)
  
