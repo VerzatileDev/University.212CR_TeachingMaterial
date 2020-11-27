@@ -1,3 +1,4 @@
 # 212CR_TeachingMaterial
 
-Test is a test
+This repository contains the weekly tutorial tasks for the 212CR module.
+
