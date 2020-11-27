@@ -186,7 +186,7 @@ For moving the library files, we shall place them where the project files are. T
 
 Your project files should now look something like this. (Of course, your project name will be different to mine!)
 
-![project files picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Added%20library%20files.PNG)
+![project files picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/LibFiles.PNG)
 
 Moving the files is not enough. We now need to tell Visual Studio where these files are by 'linking' them.
 
@@ -201,7 +201,7 @@ When the "Property Page" window has opened, make sure it says "Active(Debug)" an
 * Select "C/C++" and type include into the _"Additional Include Directories"_ textbox.
 * Select "Linker" and type include into the _"Additional Library Directories"_ textbox.
 
-![linking picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Linking.png)
+![linking picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Linking.png)
 
 ## Base Code
 
@@ -211,7 +211,7 @@ Copy all the code from the _"BaseCode.cpp"_ which is on the Week 1 GitHub page a
 
 Run the code to get the following scene.
 
-![scene picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Basic%20Scene.PNG)
+![scene picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Scene.PNG)
 
 > If you do not get the following scene, something is wrong. Look over the above tutorial again and see if you missed anything. The error messages shown in Visual Studio should give you a loose guide. If you get stuck, ask for help from the module staff.
 
