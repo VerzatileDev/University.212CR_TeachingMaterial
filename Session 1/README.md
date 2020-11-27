@@ -213,6 +213,11 @@ Run the code to get the following scene.
 
 ![scene picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Scene.PNG)
 
+If you uncomment the line in main function, you can enable animation.
+```C++
+//glutIdleFunc(animate);
+```
+
 > If you do not get the following scene, something is wrong. Look over the above tutorial again and see if you missed anything. The error messages shown in Visual Studio should give you a loose guide. If you get stuck, ask for help from the module staff.
 
 ## Pushing the changes to the repository
