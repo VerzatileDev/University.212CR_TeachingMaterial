@@ -268,15 +268,10 @@ This should now allow you to add, commit and push future changes with visual stu
 
 > Make sure to _git pull_ when you are on the other machine when you do changes so you have the latest files as your local copy!
 
-Although graphics will not be marked as part of 217CR, you will still need to understand how OpenGL works.
+You need to understand how OpenGL works.
 
 * Can you tell which part is responsible for drawing what? 
 * Can you tell what each glut function is for? If you are unsure, look them up on OpenGL deocumentation or ask for help.
-* The FreeGLUT functions use callbacks.  What is a callback?
 * Why does idle() makes a call to glutPostRedisplay()?
+* How to enable and disable animation using keyboard input
 
-* The callbacks currently use functions, such as glutIdleFunc(idle). <br/> Some of these functions are very small (~3 lines). Defining a separate function for this seems like a lot of effort and it can also confuse you as a programmer. It might be worthwhile to not have to specify a function. 
-
-> Fortunately you can actually do this using lambda functions (since C++ 11). http://en.cppreference.com/w/cpp/language/lambda
-
-* Try to re-write some of the glut function calls via lambdas. For example re-write glutKeyboardFunc(keyInput) to not use the _keyInput_ function, but still close when ESC is pressed.
