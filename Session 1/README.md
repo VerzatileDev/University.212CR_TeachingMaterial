@@ -25,7 +25,7 @@ Go onto the Coventry GitHub server via https://github.coventry.ac.uk and sign in
 
 > **If you cannot sign into the server, please contact Ian to be sorted out.**
 
-![Sign in picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%201/Readme%20Pictures/Sign%20in.PNG)
+![Sign in picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Sign%20in.PNG)
  
 Once you have logged into the server, 
 
