@@ -8,7 +8,7 @@
 5. [Base Code](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#base-code)
 6. [Pushing the changes to the repository](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#pushing-the-changes-to-the-repository)
 7. [The power of the .gitignore file](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#the-power-of-the-gitignore-file)
-
+8. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#Homework)
 
 Welcome to this 212CR tutorial series! 
 
