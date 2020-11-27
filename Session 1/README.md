@@ -13,13 +13,13 @@
 
 Welcome to this 212CR tutorial series! 
 
-> By following these sessions, we will create the underlying areas needed for a physics engine. As always, if you have any questions (or spot any typos), feel free to talk to course staff or email me at ab8809@coventry.ac.uk.
+> By following these sessions, we will create the underlying areas needed for a 3D OpenGL game. 
 
 For this week's session, we will be setting up GitHub and starting the base C++ project. This will get us ready for the later weeks and become a start for your coursework.
 
 ## Setting up in GitHub
 
-As you will know by reading the assessment brief, your coursework has to be on the Coventry GitHub server and be in a certain organization. **(If it is not, it may receive a 0 mark!)**
+As you will know by reading the assessment brief, your coursework has to be on the Coventry GitHub server. 
 
 Go onto the Coventry GitHub server via https://github.coventry.ac.uk and sign in via the top right. _This will be your normal username and password you use to log into university PCs._
 
