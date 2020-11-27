@@ -19,7 +19,7 @@ For this week's session, we will be setting up GitHub and starting the base C++ 
 
 ## Setting up in GitHub
 
-As you will know by reading the assessment brief, your coursework has to be on the Coventry GitHub server. 
+As you will know by reading the assessment brief, your coursework can be on the Coventry GitHub server. 
 
 Go onto the Coventry GitHub server via https://github.coventry.ac.uk and sign in via the top right. _This will be your normal username and password you use to log into university PCs._
 
@@ -29,11 +29,9 @@ Go onto the Coventry GitHub server via https://github.coventry.ac.uk and sign in
  
 Once you have logged into the server, 
 
-* On the main screen, clicking the dropdown list on the left side and selecting 217CR-1920JANMAY and then _"View organization"_.
-* On the main screen, clicking your profile picture in the top right, then _"Your Profile"_, then selecting 217CR-1920JANMAY via the icon on the left side.
-* Using the direct link - https://github.coventry.ac.uk/217CR-1920JANMAY
+Click on + button to add new repository under your username. You are also welcome to use 217CR organization. 
 
-![Organizations picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Organizations.png)
+![Organizations picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/AddRepos.JPG)
  
  Once there, create a new repository via the green _"New button"_.
  
