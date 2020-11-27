@@ -43,11 +43,11 @@ Click on + button to add new repository under your username. You are also welcom
  
 ![Create a repository picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/CreateRepos.PNG)
  
- Finally, add the module staff to your repository so they have access to it. (Our information can be found on the 217CR moodle page under _Module Essentials_.)
+ Finally, add the module staff to your repository so they have access to it. (Our information can be found on the 212CR Aula page under _Module Essentials_.)
  
  Go into your repository from the website, click "Settings", then "Collaborators", and then search for, and add, both members of module staff (YingLiang Ma (ac7020) and Ian) to the page. 
  
- ![Add collaborators picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Add%20Collabs.png)
+ ![Add collaborators picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Add%20Collabs.png)
  
   ## Cloning the repository
   
@@ -59,7 +59,7 @@ The next step is to clone this repository to your PC so you have a local copy to
 
 To clone a respository you will need the URL of it. Copy this from the address bar of your browser or use the green _"Clone or download"_ button and copy the URL from the pop up box.
 
-![Cloning a repository picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Clone%20or%20Download.PNG)
+![Cloning a repository picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Clone%20or%20Download.PNG)
   
   Open command line by typing cmd into Windows search. 
   
