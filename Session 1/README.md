@@ -88,7 +88,7 @@ When you have submitted them, the repository (and it's files) should now be on y
 
 At the moment, it should only be the README file.
   
-![cloned picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Cloned.PNG)
+![cloned picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Cloned.PNG)
 
 It is here that we will create a C++ project so it is in the GitHub repository, meaning we can push and pull changes to it.
 
@@ -113,9 +113,9 @@ It is here that we will create a C++ project so it is in the GitHub repository, 
 
 Once this has been done, click _"Create"_.
 
-![empty project picture](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Empty%20Project.PNG)
+![empty project picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Empty%20Project.PNG)
 
-![empty project picture 2](https://github.coventry.ac.uk/217CR-1920JANMAY/Teaching-Material/blob/master/Session%201/Readme%20Pictures/Creating%20Project.PNG)
+![empty project picture 2](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Creating%20Project.PNG)
 
 We need to create the _.cpp_ file that will hold the _main()_ function. Remember, every C++ program needs a _main()_ function to run.
 
