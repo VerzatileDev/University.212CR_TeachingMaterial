@@ -223,6 +223,10 @@ with following codes for binding first object
    glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
    /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
    glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
+   
+   /// MODERN OPENGL - (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, - VERTEX ARRAY - AND - COLOR ARRAY -
+   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
+   glEnableClientState(GL_COLOR_ARRAY);
 ```
 
 Then add codes for binding second second
@@ -236,6 +240,9 @@ Then add codes for binding second second
    glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices1), sizeof(colours1), colours1); // Copy vertex color data into second half of vertex buffer.							
    glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
    glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices1)));
+   
+   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
+   glEnableClientState(GL_COLOR_ARRAY);
 ```
 
 ---- Add drawing codes  ----
