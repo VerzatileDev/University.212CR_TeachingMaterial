@@ -70,6 +70,9 @@ BIND THE BUFFER OBJECT NAME
 In the void setup(void) function, add following lines after  glEnableClientState(GL_COLOR_ARRAY);
 
 ```C++
+   /// MODERN OPENGL - GENERATE A(1) BUFFER OBJECT NAME
+   glGenBuffers(1, buffer); // Generate buffer ids.
+   
    /// MODERN OPENGL - BIND THE BUFFER OBJECT NAME - IT TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON
    glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);   // Bind vertex buffer 
    /// MODERN OPENGL - CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)	
