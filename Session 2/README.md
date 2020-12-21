@@ -65,7 +65,7 @@ add following declare line just before void drawScene(void) function in square.c
 /// MODERN OPENGL - WILL HOLD 1 BUFFER OBJECT NAME
 unsigned int buffer[1];
 ```
-BIND THE BUFFER OBJECT NAME
+BIND THE BUFFER OBJECT
 
 In the void setup(void) function, add following lines after  glEnableClientState(GL_COLOR_ARRAY);
 
@@ -95,7 +95,9 @@ In the void setup(void) function, add following lines after  glEnableClientState
    /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 4 VERTICES IN THE VBO
    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 ```
-
+---- Test and change codes  ----
+Now, you can run the code. You will see a black square in the middle of the window. You can change color data to change to your preferred color.
+Or, you can change the coordinates of four corners of the square.
  
 ## Cloning the repository
   
