@@ -30,20 +30,20 @@ BUT WE WANT TO EASE YOU INTO MODERN OPENGL WITH THIS WEEKS LAB TASKS.
 FLOWCHART FOR VBO USAGE IN THIS EXAMPLE:
 
 ---- SETUP FUNCTION ----
-> GENERATE A (1) BUFFER OBJECT NAME																	(https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glGenBuffers.xml)
+GENERATE A (1) BUFFER OBJECT NAME																	(https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glGenBuffers.xml)
 > (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, -VERTEX ARRAY- AND -COLOR ARRAY-	(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glEnableClientState.xml)
-> THESE ALLOW US TO USE GLDRAWARRAYS LATER
+THESE ALLOW US TO USE GLDRAWARRAYS LATER
 
-> BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON	(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBindBuffer.xhtml)
+BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON	(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBindBuffer.xhtml)
 > CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)		(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml)
-> (IN THIS CASE) NO DATA GOES IN STRAIGHT AWAY BECAUSE OF THE BELOW SPLITTING OF DATA HENCE THE null
+IN THIS CASE) NO DATA GOES IN STRAIGHT AWAY BECAUSE OF THE BELOW SPLITTING OF DATA HENCE THE null
 
-> (IN THIS CASE) TELL OPENGL THAT PART (FIRST HALF) OF THE BUFFER (BUFFERSUBDATA) IS FOR VERTICES		(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml)
+(IN THIS CASE) TELL OPENGL THAT PART (FIRST HALF) OF THE BUFFER (BUFFERSUBDATA) IS FOR VERTICES		(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml)
 	AND PLACE THE VERTEX DATA IN THAT HALF
 > (IN THIS CASE) TELL OPENGL THAT PART (SECOND HALF) OF THE BUFFER (BUFFERSUBDATA) IS FOR COLOURS		(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml)
 	AND PLACE THE COLOUR DATA IN THAT HALF
 
-> (IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS			(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glVertexPointer.xml)
+(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS			(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glVertexPointer.xml)
 > (IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS			(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glColorPointer.xml)
 	TAKING INTO ACCOUNT THAT COLOURS ARE IN THE SECOND HALF OF THE BUFFER
 
