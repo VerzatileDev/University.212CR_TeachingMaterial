@@ -297,6 +297,18 @@ WE WILL NEED TO ALWAYS DEFINE AT LEAST 2 SHADERS
 
   A SHADER IS A MINI PROGRAM DEFINING A STYLE OF RENDERING ON THE GPU AND IS HIGHLY PARALLELISED.
 
+* STep 1: Add header files
+
+```C++
+# include <fstream> ///FOR SHADER READING
+# include <glm.hpp> ///FOR MAT4 USAGE
+# include <gtc/type_ptr.hpp> ///FOR MAT4 VALUE PTR USAGE
+# include <vector> ///FOR SHADER COMPILE TEST
+# include <iostream> ///FOR SHADER COMPILE TEST
+```
+
+* STep 1: Set up gobal variable
+
 
 		
 ```C++
