@@ -31,7 +31,7 @@ BUT WE WANT TO EASE YOU INTO MODERN OPENGL WITH THIS WEEKS LAB TASKS.
 > Please download ModernOpenGLSimple.zip and unzip it. The OpenGL library has been sep up so it can be compiled.
 
 ---- Set up Data ----
-Add following data codes just before void drawScene(void) function in square.cpp file
+> Add following data codes just before void drawScene(void) function in square.cpp file
 
 ```C++
 float vertices[] = 
@@ -50,6 +50,10 @@ float colours[] =
 	0.0, 0.0, 0.0
 };
 ```
+
+This will set up vertex data for the square. The vertices array is the coordinates of four corners of the square. 
+The colours array is the colour of four corners. The colour is in the format of RGB (red, green, blue). 
+The current value is black (0.0,0.0,0.0).
 
 ---- SETUP FUNCTION ----
 
