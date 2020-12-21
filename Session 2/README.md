@@ -87,7 +87,7 @@ In the void setup(void) function, add following lines after  glEnableClientState
    glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
 ```
 ---- Add drawing codes  ----
-In the void drawScene(void) function, add following lines after  glClear(GL_COLOR_BUFFER_BIT);
+> In the void drawScene(void) function, add following lines after  glClear(GL_COLOR_BUFFER_BIT);
 ```C++
    /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 4 VERTICES IN THE VBO
    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
