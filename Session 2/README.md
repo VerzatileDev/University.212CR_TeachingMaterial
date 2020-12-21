@@ -1,7 +1,7 @@
 # Session 2 - VBO, VAO and Shaders
 
 #### Table of Contents
-1. [Create VBO](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#Create-VBO)
+1. [Create VBO](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#create-vbo)
 2. [Cloning the repository](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#cloning-the-repository)
 3. [Creating a C++ Project using Visual Studio](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#creating-a-c-project-using-visual-studio)
 4. [Using OpenGL with the project](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#using-opengl-with-the-project)
