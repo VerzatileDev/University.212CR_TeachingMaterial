@@ -161,6 +161,27 @@ Add VAO array after buffer[2] definition.
 unsigned int vao[2]; // Array of VAO ids.
 ```
 
+BIND THE BUFFER OBJECT
+
+In the void setup(void) function, REPLACE
+
+```C++
+   /// MODERN OPENGL - GENERATE A(1) BUFFER OBJECT NAME
+   glGenBuffers(1, buffer); // Generate buffer ids.
+```
+
+with (we have two objects. So, both vao and buffer has two objects)
+
+```C++
+   /// MODERN OPENGL -GENERATE VERTEX BUFFER OBJECT NAMES FOR EACH OBJECT(2 OVERALL - 1 FOR EACH)
+   glGenVertexArrays(2, vao); // Generate VAO ids
+   
+   /// MODERN OPENGL -GENERATE BUFFER OBJECT NAMES FOR EACH OBJECT(2 OVERALL - 1 FOR EACH)
+   glGenBuffers(2, buffer); // Generate buffer ids.
+```
+
+
+
 ## Creating a C++ Project using Visual Studio
  
 > If you are not using Visual Studio 2019
