@@ -30,6 +30,7 @@ BUT WE WANT TO EASE YOU INTO MODERN OPENGL WITH THIS WEEKS LAB TASKS.
 FLOWCHART FOR VBO USAGE IN THIS EXAMPLE:
 
 ---- SETUP FUNCTION ----
+
 GENERATE A (1) BUFFER OBJECT NAME																	(https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glGenBuffers.xml)
 > (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, -VERTEX ARRAY- AND -COLOR ARRAY-	(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glEnableClientState.xml)
 THESE ALLOW US TO USE GLDRAWARRAYS LATER
