@@ -99,7 +99,7 @@ Or, you can change the coordinates of four corners of the square.
  
 ## Create VAO
 
-The main purpose of VAO is used for identify each data object if more than one objects will be drawn in the scene.
+The main purpose of VAO is used for identifying each data object if more than one objects will be drawn in the scene.
   
 FOR THIS EXERCISE AS WE HAVE 2 OBJECTS (THE SQUARE FROM EXECRISE 1 AND A TRIANGLE),
 WE NEED TO USE VERTEX ARRAY OBJECTS (VAOs) FOR THIS.
@@ -136,6 +136,28 @@ float colours1[] =
 	1.0, 0.0, 1.0,
 	1.0, 0.0, 1.0
 };
+```
+
+---- Set up drawing routine  ----
+Replace (we now have two objects instead one object)
+
+```C++
+/// MODERN OPENGL - WILL HOLD 1 BUFFER OBJECT NAME
+unsigned int buffer[1];
+```
+
+with
+
+```C++
+/// MODERN OPENGL - WILL HOLD 2 BUFFER OBJECT NAMES (SQUARE, TRIANGLE)
+unsigned int buffer[2];
+```
+
+Add VAO array after buffer[2] definition.
+
+```C++
+/// MODERN OPENGL - WILL HOLD 2  (SQUARE, TRIANGLE)
+unsigned int vao[2]; // Array of VAO ids.
 ```
 
 ## Creating a C++ Project using Visual Studio
