@@ -139,6 +139,7 @@ float colours1[] =
 ```
 
 ---- Set up drawing routine  ----
+
 Replace (we now have two objects instead one object)
 
 ```C++
