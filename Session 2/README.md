@@ -3,8 +3,8 @@
 #### Table of Contents
 1. [Create VBO](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#create-vbo)
 2. [Create VAO](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#create-vao)
-3. [Create Shaders](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#creating-a-c-project-using-visual-studio)
-4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201#Homework)
+3. [Convert to Modern OpenGL shader codes](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#Convert-to-Modern-OpenGL-shader-codes)
+4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#Homework)
 
 Welcome to Week 2! 
 
@@ -281,41 +281,12 @@ with
 Now, you can run the code. You can change color data to change to your preferred color.
 Or, you can change the coordinates of the triangle.
 
-## Creating a C++ Project using Visual Studio
+## Convert to Modern OpenGL shader codes
  
 > If you are not using Visual Studio 2019
 
 * Open Visual Studio and Click _"File"_ -> _"New"_ -> _"Project.."_
-* Select _"Empty Project"_.
-* Make sure _"Create directory for solution"_ is unticked.
-* Give it a sensible name.
-* Make sure the location is the same as where the README file is stored.
 
-> If you are using Visual Studio 2019, click "Continue without code".
-
-* Click _"File"_ -> _"New"_ -> _"Project.."_
-* Pick _"C++"_ as the Language to filter the list.
-* Select _"Empty Project"_ and then _"Next"_.
-* Give it a sensible name.
-* Make sure _"Place solution and project in the same directory"_ is ticked.
-* Make sure the location is the same as where the README file is stored.
-
-Once this has been done, click _"Create"_.
-
-![empty project picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Empty%20Project.PNG)
-
-![empty project picture 2](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/CreateProject1.PNG)
-
-We need to create the _.cpp_ file that will hold the _main()_ function. Remember, every C++ program needs a _main()_ function to run.
-
-This can be done by right clicking "Source Files" on the right hand side (in the Solution Explorer) and clicking _"Add"_ -> _"New Item..."_.
-
-Make sure C++ File (_.cpp_) is highlighted and either change the name (I always use _main.cpp_) or keep it as _Source.cpp_ and click _"Add"_ in the bottom right.
-
-![add file picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/AddFile.png)
-
-
-Type in the following code to get us started and make sure it all works. Once you have typed it in, click _"Local Windows Debugger"_ (or hit _"F5"_) at the top middle of the screen to compile and run the code.
 
 ```C++
 #include <iostream>
@@ -326,8 +297,6 @@ int main(int argc, char** argv)
 	return 0;
 }
 ```
-
-That should pop up a console window with _"Hello world!"_ in it.
 
 
 
