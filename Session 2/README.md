@@ -170,7 +170,7 @@ In the void setup(void) function, REPLACE
    glGenBuffers(1, buffer); // Generate buffer ids.
 ```
 
-with (we have two objects. So, both vao and buffer has two objects)
+with (we have two objects. So, both vao and buffer have two objects)
 
 ```C++
    /// MODERN OPENGL -GENERATE VERTEX BUFFER OBJECT NAMES FOR EACH OBJECT(2 OVERALL - 1 FOR EACH)
@@ -180,7 +180,41 @@ with (we have two objects. So, both vao and buffer has two objects)
    glGenBuffers(2, buffer); // Generate buffer ids.
 ```
 
+After glGenBuffers(2, buffer), Add following codes for binding first object
 
+```C++
+   /// MODERN OPENGL - BIND THE FIRST VAO FOR THE FIRST OBJECT
+   glBindVertexArray(vao[0]);
+
+   /// MODERN OPENGL - BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON
+   glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);   // Bind vertex buffer 
+   /// MODERN OPENGL - CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)	
+   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(colours), NULL, GL_STATIC_DRAW); // and reserve space
+  
+   /// MODERN OPENGL - 	(IN THIS CASE) TELL OPENGL THAT PART(FIRST HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR VERTICES
+   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);  // Copy vertex coordinates data into first half of vertex buffer.
+
+   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL THAT PART(SECOND HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR COLOURS
+   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(colours), colours); // Copy vertex color data into second half of vertex buffer.
+
+   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS
+   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
+   /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
+   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
+```
+
+Then add codes for binding second second
+
+```C++
+   glBindVertexArray(vao[1]);
+
+   glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);   // Bind vertex buffer 
+   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1) + sizeof(colours1), NULL, GL_STATIC_DRAW); // and reserve space																					
+   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices1), vertices1);  // Copy vertex coordinates data into first half of vertex buffer.
+   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices1), sizeof(colours1), colours1); // Copy vertex color data into second half of vertex buffer.							
+   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
+   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices1)));
+```
 
 ## Creating a C++ Project using Visual Studio
  
