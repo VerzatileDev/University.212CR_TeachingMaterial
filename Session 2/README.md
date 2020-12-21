@@ -55,11 +55,16 @@ This will set up vertex data for the square. The vertices array is the coordinat
 The colours array is the colour of four corners. The colour is in the format of RGB (red, green, blue). 
 The current value is black (0.0,0.0,0.0).
 
----- SETUP FUNCTION ----
+---- Set up drawing routine  ----
 
-GENERATE A (1) BUFFER OBJECT NAME																	
-(IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, -VERTEX ARRAY- AND -COLOR ARRAY-	
-THESE ALLOW US TO USE GLDRAWARRAYS LATER
+Generate a (1) BUFFER Object name																	
+
+add following declare line just before void drawScene(void) function in square.cpp file
+
+```C++
+/// MODERN OPENGL - WILL HOLD 1 BUFFER OBJECT NAME
+unsigned int buffer[1];
+```
 
 BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON	
 CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)		
