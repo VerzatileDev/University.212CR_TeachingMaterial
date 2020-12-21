@@ -238,6 +238,34 @@ Then add codes for binding second second
    glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices1)));
 ```
 
+---- Add drawing codes  ----
+
+In the void drawScene(void) function, REPLACE
+
+```C++
+   /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 4 VERTICES IN THE VBO
+   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+```
+
+with 
+
+```C++
+   /// MODERN OPENGL - BIND THE FIRST VAO FOR THE FIRST OBJECT
+   glBindVertexArray(vao[0]);
+   /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 4 VERTICES IN THE VBO
+   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+   
+   /// MODERN OPENGL - BIND THE SECOND VAO FOR THE SECOND OBJECT
+   glBindVertexArray(vao[1]);
+   /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 3 VERTICES IN THE VBO
+   glDrawArrays(GL_TRIANGLES, 0, 3);
+```
+
+---- Test and change codes  ----
+
+Now, you can run the code. You can change color data to change to your preferred color.
+Or, you can change the coordinates of the triangle.
+
 ## Creating a C++ Project using Visual Studio
  
 > If you are not using Visual Studio 2019
