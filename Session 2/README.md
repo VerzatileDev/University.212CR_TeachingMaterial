@@ -17,37 +17,38 @@ Welcome to Week 2!
 
 ## Create VBO
 
-As you will know by reading the assessment brief, your coursework can be on the Coventry GitHub server. 
+FOR THIS EXERCISE WE ONLY NEED TO CREATE AN VERTEX BUFFER OBJECT (VBO) (AS LEGACY HAS THESE IN).
+THIS MEANS NO SHADERS NEED TO BE USED - THIS WILL COME LATER IN EXERCISE 3 (Shader).
 
-Go onto the Coventry GitHub server via https://github.coventry.ac.uk and sign in via the top right. _This will be your normal username and password you use to log into university PCs._
+FOR A VBO, WE NEED TO PUT THE VERTEX DATA INTO A BUFFER AND THEN SEND THIS TO THE GPU.
+THIS WILL BE DIFFERENT LATER WHEN WE COMBINE CO-ORDS AND COLOUR INTO ONE VERTEX STRUCT, 
+BUT WE WANT TO EASE YOU INTO MODERN OPENGL WITH THIS WEEKS LAB TASKS.
 
-> **If you cannot sign into the server, please contact Ian to be sorted out.**
+---- WHAT IS A VBO ----
+A VERTEX BUFFER OBJECT OR VBO IS AN ARRAY OF DATA THAT IS COPIED TO THE GPU BEFORE DRAWING AND RAN ON THE GPU
 
-![Sign in picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Sign%20in.PNG)
- 
-Once you have logged into the server, 
+FLOWCHART FOR VBO USAGE IN THIS EXAMPLE:
 
-Click on + button to add new repository under your username. You are also welcome to use 217CR organization. 
+---- SETUP FUNCTION ----
+GENERATE A (1) BUFFER OBJECT NAME																	(https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glGenBuffers.xml)
+(IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, -VERTEX ARRAY- AND -COLOR ARRAY-	(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glEnableClientState.xml)
+THESE ALLOW US TO USE GLDRAWARRAYS LATER
 
-![Organizations picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/AddRepos.JPG)
+BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON	(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBindBuffer.xhtml)
+CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)		(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferData.xhtml)
+(IN THIS CASE) NO DATA GOES IN STRAIGHT AWAY BECAUSE OF THE BELOW SPLITTING OF DATA HENCE THE null
+
+(IN THIS CASE) TELL OPENGL THAT PART (FIRST HALF) OF THE BUFFER (BUFFERSUBDATA) IS FOR VERTICES		(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml)
+	AND PLACE THE VERTEX DATA IN THAT HALF
+(IN THIS CASE) TELL OPENGL THAT PART (SECOND HALF) OF THE BUFFER (BUFFERSUBDATA) IS FOR COLOURS		(https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml)
+	AND PLACE THE COLOUR DATA IN THAT HALF
+
+(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS			(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glVertexPointer.xml)
+(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS			(https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glColorPointer.xml)
+	TAKING INTO ACCOUNT THAT COLOURS ARE IN THE SECOND HALF OF THE BUFFER
+
  
- Once there, create a new repository via the green _"New button"_.
- 
- * For the repository name, call it something obvious (and add your student ID) to the front.
- * Set it to private (or everyone in the university can see it!).
- * Initialize a README file.
- 
- By doing all of this, it means that the markers will be able to see it, that other students cannot and that you can clone it straight away to your PC.
- 
-![Create a repository picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/CreateRepos.PNG)
- 
- Finally, add the module staff to your repository so they have access to it. (Our information can be found on the 212CR Aula page under _Module Essentials_.)
- 
- Go into your repository from the website, click "Settings", then "Collaborators", and then search for, and add, both members of module staff (YingLiang Ma (ac7020) and Ian) to the page. 
- 
- ![Add collaborators picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%201/Readme%20Pictures/Add%20Collabs.png)
- 
-  ## Cloning the repository
+## Cloning the repository
   
 Once you have made your repository, it should take you to it's page. (If you have backed out of this, you can always find it by clicking on your profile picture and selecting _"Your repositories"_.)
   
