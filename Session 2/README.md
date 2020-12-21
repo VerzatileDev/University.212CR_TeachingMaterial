@@ -180,7 +180,29 @@ with (we have two objects. So, both vao and buffer have two objects)
    glGenBuffers(2, buffer); // Generate buffer ids.
 ```
 
-After glGenBuffers(2, buffer), Add following codes for binding first object
+After glGenBuffers(2, buffer), REPLACE remaining codes ( The diference is to add glBindVertexArray(vao[0]);)
+
+
+```C++
+   /// MODERN OPENGL - BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON
+   glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);   // Bind vertex buffer 
+   /// MODERN OPENGL - CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)	
+   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(colours), NULL, GL_STATIC_DRAW); // and reserve space
+
+  
+   /// MODERN OPENGL - 	(IN THIS CASE) TELL OPENGL THAT PART(FIRST HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR VERTICES
+   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);  // Copy vertex coordinates data into first half of vertex buffer.
+
+   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL THAT PART(SECOND HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR COLOURS
+   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(colours), colours); // Copy vertex color data into second half of vertex buffer.
+
+   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS
+   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
+   /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
+   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
+```
+
+with following codes for binding first object
 
 ```C++
    /// MODERN OPENGL - BIND THE FIRST VAO FOR THE FIRST OBJECT
