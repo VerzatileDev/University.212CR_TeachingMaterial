@@ -63,7 +63,7 @@ unsigned int buffer[1];
 ```
 BIND THE BUFFER OBJECT
 
-In the void setup(void) function, add following lines after  glEnableClientState(GL_COLOR_ARRAY);
+In the void setup(void) function, add following lines after  glClearColor(1.0, 1.0, 1.0, 0.0);
 
 ```C++
    /// MODERN OPENGL - GENERATE A(1) BUFFER OBJECT NAME
@@ -84,6 +84,10 @@ In the void setup(void) function, add following lines after  glEnableClientState
    glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
    /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
    glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
+   
+   /// MODERN OPENGL - (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, - VERTEX ARRAY - AND - COLOR ARRAY -
+   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
+   glEnableClientState(GL_COLOR_ARRAY);
 ```
 ---- Add drawing codes  ----
 > In the void drawScene(void) function, add following lines after  glClear(GL_COLOR_BUFFER_BIT);
@@ -200,6 +204,10 @@ After glGenBuffers(2, buffer), REPLACE remaining codes ( The diference is to add
    glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
    /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
    glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
+   
+   /// MODERN OPENGL - (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, - VERTEX ARRAY - AND - COLOR ARRAY -
+   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
+   glEnableClientState(GL_COLOR_ARRAY);
 ```
 
 with following codes for binding first object
