@@ -98,38 +98,43 @@ Now, you can run the code. You will see a black square in the middle of the wind
 Or, you can change the coordinates of four corners of the square.
  
 ## Create VAO
+
+The main purpose of VAO is used for identify each data object if more than one objects will be drawn in the scene.
   
-FOR THIS EXERCISE WE ONLY NEED TO CREATE AN VERTEX BUFFER OBJECT (VBO) (AS LEGACY HAS THESE IN). 
-THIS MEANS NO SHADERS NEED TO BE USED - THIS WILL COME LATER IN EXERCISE 3 (Shader).
+FOR THIS EXERCISE AS WE HAVE 2 OBJECTS (THE SQUARE FROM EXECRISE 1 AND A TRIANGLE),
+WE NEED TO USE VERTEX ARRAY OBJECTS (VAOs) FOR THIS.
+THIS ALLOWS US TO SET THE BUFFERS FOR EACH ONCE AND THEN SWITCH BETWEEN THEM WHEN DRAWING
+BY SELECTING THE VAO FOR THAT OBJECT.
+		
+WE ONLY NEED TO CREATE A VAO (AS LEGACY HAS THESE IN).
+THIS MEANS NO SHADERS NEED TO BE USED - THIS WILL COME LATER IN EXERCISE 3.
 
-FOR A VBO, WE NEED TO PUT THE VERTEX DATA INTO A BUFFER AND THEN SEND THIS TO THE GPU.
-THIS WILL BE DIFFERENT LATER WHEN WE COMBINE CO-ORDS AND COLOUR INTO ONE VERTEX STRUCT, 
-BUT WE WANT TO EASE YOU INTO MODERN OPENGL WITH THIS WEEKS LAB TASKS.
+FOR A VAO, WE WILL CREATE IT, DO THE VBO PARTS NEEDED FOR VERTEX/OBJECT CREATION IN THE SETUP FUNCTION
+AND THEN SWITCH BETWEEN THESE IN THE DRAWING FUNCTION.
 
----- WHAT IS A VBO ----
-> A VERTEX BUFFER OBJECT OR VBO IS AN ARRAY OF DATA THAT IS COPIED TO THE GPU BEFORE DRAWING AND RAN ON THE GPU
+---- WHAT IS A VAO ----
+> A VERTEX ARRAY OBJECT OR VAO REMEMBERS ALL VBOS AND MEMORY LAYOUTS OF THEM. IT ALLOWS SWITCHING BETWEEN DIFFERENT VERTEX DATA AND VERTEX FORMATS VIA BINDING A VAO.
 
----- Download the Base Projecrt ----
-> Please download ModernOpenGLSimple.zip and unzip it. The OpenGL library has been sep up so it can be compiled.
+---- Use the previous Projecrt from Exercise 1 ----
+> Use the previous Projecrt from Exercise 1. Use following instructions to add codes or replace codes.
 
 ---- Set up Data ----
-> Add following data codes just before void drawScene(void) function in square.cpp file
+> Add following triange data right after the square data.
 
 ```C++
-float vertices[] = 
+float vertices1[] =
 {
-	20.0, 20.0, 0.0,
-	80.0, 20.0, 0.0,
-	20.0, 80.0, 0.0,
-	80.0, 80.0, 0.0
+	30.0, 30.0, 1.0,
+	70.0, 30.0, 1.0,
+	30.0, 70.0, 1.0
+
 };
 
-float colours[] = 
+float colours1[] =
 {
-	0.0, 0.0, 0.0,
-	0.0, 0.0, 0.0,
-	0.0, 0.0, 0.0,
-	0.0, 0.0, 0.0
+	1.0, 0.0, 1.0,
+	1.0, 0.0, 1.0,
+	1.0, 0.0, 1.0
 };
 ```
 
