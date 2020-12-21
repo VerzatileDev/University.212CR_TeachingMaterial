@@ -283,10 +283,12 @@ Or, you can change the coordinates of the triangle.
 
 ## Convert to Modern OpenGL shader codes
  
-> If you are not using Visual Studio 2019
+> You can use the finished codes in exercise 2 (VAO) or you can use square.cpp in week 2.
 
-* Open Visual Studio and Click _"File"_ -> _"New"_ -> _"Project.."_
-
+FOR THIS EXERCISE WE WILL FULLY CONVERT THE LEGACY PROGRAM INTO A MODERN ONE BY USING SHADERS ALONG WITH VBOs AND VAOs.
+WE WILL NEED TO ALWAYS DEFINE AT LEAST 2 SHADERS 
+THE VERTEX SHADER - WHICH RUNS PER VERTEX AND GIVES THE POSITION OF THE VERTEX
+THE FRAGMENT SHADER - WHICH RUNS PER PIXEL (WHICH CAN HAVE MULTIPLE FRAGMENTS IN IT) AND GIVES THE COLOUR OF THE PIXEL
 
 ```C++
 #include <iostream>
