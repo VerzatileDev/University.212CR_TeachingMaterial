@@ -402,9 +402,10 @@ Add shader loading function and checking function after all global variables
 
 ```C++
 // Function to read text file.
-char* readTextFile(char* aTextFile)
+char* readTextFile(const char* aTextFile)
 {
-	FILE* filePointer = fopen(aTextFile, "rb");
+	FILE* filePointer;
+	fopen_s(&filePointer,aTextFile, "rb");
 	char* content = NULL;
 	long numVal = 0;
 
@@ -535,6 +536,28 @@ with
    glEnableVertexAttribArray(0);
    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(triangleVertices[0]), (GLvoid*)sizeof(triangleVertices[0].coords));
    glEnableVertexAttribArray(1);
+```
+
+Add mdoelview and project matrix codes
+
+```C++
+  // Obtain projection matrix uniform location and set value.
+  glm::mat4 projMat  =
+	{
+		0.02, 0.0,  0.0, -1.0,
+		0.0,  0.02, 0.0, -1.0,
+		0.0,  0.0, -1.0,  0.0,
+		0.0,  0.0,  0.0,  1.0
+	};
+   projMatLoc = glGetUniformLocation(programId, "projMat");
+   glUniformMatrix4fv(projMatLoc, 1, GL_TRUE, glm::value_ptr(projMat));
+   ///////////////////////////////////////
+
+   // Obtain modelview matrix uniform location and set value.
+   glm::mat4 modelViewMat(1.0f);
+   modelViewMatLoc = glGetUniformLocation(programId, "modelViewMat");
+   glUniformMatrix4fv(modelViewMatLoc, 1, GL_TRUE, glm::value_ptr(modelViewMat));
+   ///////////////////////////////////////
 ```
 
 ## Homework
