@@ -429,6 +429,34 @@ void shaderCompileTest(GLuint shader)
 }
 ```
 
+* Step 4: Add shader initialization codes
+
+Add shader loading and compiling check codes in the void setup(void) (after glClearColor(1.0, 1.0, 1.0, 0.0); )
+
+
+```C++
+   // Create shader program executable.
+   char* vertexShader = readTextFile("vertexShader.glsl");
+   vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
+   glShaderSource(vertexShaderId, 1, (const char**)&vertexShader, NULL);
+   glCompileShader(vertexShaderId);
+   std::cout << "::: VERTEX SHADER :::" << std::endl;
+   shaderCompileTest(vertexShaderId);
+
+   char* fragmentShader = readTextFile("fragmentShader.glsl");
+   fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
+   glShaderSource(fragmentShaderId, 1, (const char**)&fragmentShader, NULL);
+   glCompileShader(fragmentShaderId);
+   std::cout << "::: FRAGMENT SHADER :::" << std::endl;
+   shaderCompileTest(fragmentShaderId);
+
+   programId = glCreateProgram();
+   glAttachShader(programId, vertexShaderId);
+   glAttachShader(programId, fragmentShaderId);
+   glLinkProgram(programId);
+   glUseProgram(programId);
+```
+
 ## Homework
 
 
