@@ -564,6 +564,17 @@ Add mdoelview and project matrix codes
 
 Download both fragmentShader.glsl and vertexShader.glsl from week 2 in github. Put both files in your project directory.
 
+* Step 6: Run the codes
+
+Make sure both fragmentShader.glsl and vertexShader.glsl together with the executable file in the same folder or put shader files in the project folder.
+
+* Step 7: Review the relationship between shaders and c++ program.
+
+Take a look the diagram beblow. 
+Please note that location in layout in vertex shader is linking to "n" in glVertexAttribPointer and glEnableVertexAttribArray.
+the name of uniform variable in vertext shader has to be exact the same name as it in glGetUniformLocation.
+
+![Shader picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%202/Readme%20Pictures/ShaderProg.JPG)
 
 ## Homework
 
