@@ -396,6 +396,39 @@ Add program location and other global variables
 unsigned int programId,		vertexShaderId,		fragmentShaderId,	modelViewMatLoc,	projMatLoc;
 ```
 
+* Step 3: Add shader loading and checking functions
+
+Add shader loading function and checking function after all global variables
+
+```C++
+// Function to read text file.
+char* readTextFile(char* aTextFile)
+{
+	FILE* filePointer = fopen(aTextFile, "rb");
+	char* content = NULL;
+	long numVal = 0;
+
+	fseek(filePointer, 0L, SEEK_END);
+	numVal = ftell(filePointer);
+	fseek(filePointer, 0L, SEEK_SET);
+	content = (char*)malloc((numVal + 1) * sizeof(char));
+	fread(content, 1, numVal, filePointer);
+	content[numVal] = '\0';
+	fclose(filePointer);
+	return content;
+}
+
+void shaderCompileTest(GLuint shader)
+{ 
+	GLint result = GL_FALSE; 
+	int logLength; glGetShaderiv(shader, GL_COMPILE_STATUS, &result); 
+	glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength); 
+	std::vector<GLchar> vertShaderError((logLength > 1) ? logLength : 1); 
+	glGetShaderInfoLog(shader, logLength, NULL, &vertShaderError[0]); 
+	std::cout << &vertShaderError[0] << std::endl; 
+}
+```
+
 ## Homework
 
 
