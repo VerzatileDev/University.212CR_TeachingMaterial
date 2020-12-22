@@ -500,6 +500,43 @@ with
    glEnableVertexAttribArray(1);
 ```
 
+Remove glEnableClientState functions (no longer needed for shaders)
+
+```C++
+   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
+   glEnableClientState(GL_COLOR_ARRAY);
+```
+
+Replace 
+
+```C++
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1) + sizeof(colours1), NULL, GL_STATIC_DRAW); // and reserve space
+```
+
+with (as we combine vertices and colours into one structure array)
+
+```C++
+	glBufferData(GL_ARRAY_BUFFER, sizeof(triangleVertices), triangleVertices, GL_STATIC_DRAW);
+```
+
+Replace 
+
+```C++
+   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices1), vertices1);  // Copy vertex coordinates data into first half of vertex buffer.
+   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices1), sizeof(colours1), colours1); // Copy vertex color data into second half of vertex buffer.							
+   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
+   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices1)));
+```
+
+with
+
+```C++
+   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(triangleVertices[0]), 0);
+   glEnableVertexAttribArray(0);
+   glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(triangleVertices[0]), (GLvoid*)sizeof(triangleVertices[0].coords));
+   glEnableVertexAttribArray(1);
+```
+
 ## Homework
 
 
