@@ -297,31 +297,82 @@ WE WILL NEED TO ALWAYS DEFINE AT LEAST 2 SHADERS
 
   A SHADER IS A MINI PROGRAM DEFINING A STYLE OF RENDERING ON THE GPU AND IS HIGHLY PARALLELISED.
 
-* STep 1: Add header files
+* Step 1: Add header files
 
 ```C++
 # include <fstream> ///FOR SHADER READING
-# include <glm.hpp> ///FOR MAT4 USAGE
-# include <gtc/type_ptr.hpp> ///FOR MAT4 VALUE PTR USAGE
+# include <glm/glm.hpp> ///FOR MAT4 USAGE
+# include <glm/gtc/type_ptr.hpp> ///FOR MAT4 VALUE PTR USAGE
 # include <vector> ///FOR SHADER COMPILE TEST
 # include <iostream> ///FOR SHADER COMPILE TEST
 ```
 
-* STep 1: Set up gobal variable
+* Step 2: Set up gobal variable
 
-
+Replace the data definition 
 		
 ```C++
-#include <iostream>
-
-int main(int argc, char** argv)
+float vertices[] = 
 {
-	std::cout << "Hello world!" << std::endl;
-	return 0;
-}
+	20.0, 20.0, 0.0,
+	80.0, 20.0, 0.0,
+	20.0, 80.0, 0.0,
+	80.0, 80.0, 0.0
+};
+
+float colours[] = 
+{
+	0.0, 0.0, 0.0,
+	0.0, 0.0, 0.0,
+	0.0, 0.0, 0.0,
+	0.0, 0.0, 0.0
+};return 0;
+
+float vertices1[] =
+{
+	30.0, 30.0, 1.0,
+	70.0, 30.0, 1.0,
+	30.0, 70.0, 1.0
+
+};
+
+float colours1[] =
+{
+	1.0, 0.0, 1.0,
+	1.0, 0.0, 1.0,
+	1.0, 0.0, 1.0
+};
 ```
 
+with (Here, we use a structure to combine vertex and color data together).
 
+```C++
+struct Vertex
+{
+	float coords[4];
+	float colours[4];
+};
+
+///MODERN OPENGL - THESE ARE THE SAME AS EXERCISE 2 - JUST STORED DIFFERENTLY AND BASED OFF THE VERTEX CLASS NOW
+Vertex squareVertices[] =
+{
+	{ { 20.0, 20.0, 0.0, 1.0 },{ 0.0, 0.0, 0.0, 1.0 } },
+	{ { 80.0, 20.0, 0.0, 1.0 },{ 0.0, 0.0, 0.0, 1.0 } },
+	{ { 20.0, 80.0, 0.0, 1.0 },{ 0.0, 0.0, 0.0, 1.0 } },
+	{ { 80.0, 80.0, 0.0, 1.0 },{ 0.0, 0.0, 0.0, 1.0 } }
+};
+
+Vertex triangleVertices[] =
+{
+
+	{ { 30.0, 30.0, 1.0, 1.0 },{ 1.0, 0.0, 1.0, 1.0 } },
+	{ { 70.0, 30.0, 1.0, 1.0 },{ 1.0, 0.0, 1.0, 1.0 } },
+	{ { 30.0, 70.0, 1.0, 1.0 },{ 1.0, 0.0, 1.0, 1.0 } }
+};
+
+```
+
+Replace 
 
 ## Homework
 

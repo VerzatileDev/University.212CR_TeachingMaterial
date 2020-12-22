@@ -12,7 +12,7 @@
 #else
 #  include <GL/glew.h>
 #  include <GL/freeglut.h>
-#pragma comment(lib, "glew32d.lib") 
+#pragma comment(lib, "glew32.lib") 
 #endif
 
 /*
