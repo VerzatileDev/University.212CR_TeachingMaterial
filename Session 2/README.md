@@ -309,6 +309,8 @@ WE WILL NEED TO ALWAYS DEFINE AT LEAST 2 SHADERS
 
 * Step 2: Set up gobal variable
 
+Gobal variables are the codes after header files and before function definitions.
+
 Replace the data definition 
 		
 ```C++
@@ -372,7 +374,27 @@ Vertex triangleVertices[] =
 
 ```
 
-Replace 
+
+Add modelview and project matrix definition
+
+Both modelview and project matrix are used to definition the camera.
+
+
+```C++
+///MODERN OPENGL - OUR MATRICES - MODELVIEW (COMBINED MODEL MATRIX AND VIEW MATRIX) AND PROJECTION MATRIX
+///				 - WHAT THESE DO IS ON MOODLE AS A LINK THAT SHOWS A DIAGRAM - http://antongerdelan.net/opengl/raycasting.html
+///				 - I HAVE USED GLM (A MATHS LIBRARY) TO DO MY MATRICES WHILE THE BOOK CODE USES A SELF DEFINED METHOD
+
+glm::mat4 modelViewMat(1.0f);
+glm::mat4 projMat(1.0f);
+```
+
+Add program location and other global variables
+
+```C++
+///MODERN OPENGL - THESE ARE USED IN THE SETUPO TO SET UP SHADERS AND SEND DATA TO THEM
+unsigned int programId,		vertexShaderId,		fragmentShaderId,	modelViewMatLoc,	projMatLoc;
+```
 
 ## Homework
 
