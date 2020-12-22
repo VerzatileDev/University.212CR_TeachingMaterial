@@ -560,17 +560,18 @@ Add mdoelview and project matrix codes
    ///////////////////////////////////////
 ```
 
+* Step 5: Add shader codes
+
+Download both fragmentShader.glsl and vertexShader.glsl from week 2 in github. Put both files in your project directory.
+
+
 ## Homework
 
 
-* Make sure you understand how GitHub works. Make sure to _git clone_ your work onto your home computer / laptop so you can work on the project outside of lecture / lab hours.<br/>This will make sure you understand how Git works.
+* Review the codes inside vertex and fragment shaders
 
-> Make sure to _git pull_ when you are on the other machine when you do changes so you have the latest files as your local copy!
+> Understand what vertex shader and frament shader do. Take a look at https://learnopengl.com/Getting-started/Shaders
+Read shader tutorials. 
 
-You need to understand how OpenGL works.
 
-* Can you tell which part is responsible for drawing what? 
-* Can you tell what each glut function is for? If you are unsure, look them up on OpenGL deocumentation or ask for help.
-* Why does idle() makes a call to glutPostRedisplay()?
-* How to enable and disable animation using keyboard input
 
