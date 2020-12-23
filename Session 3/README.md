@@ -32,6 +32,7 @@ Add following header files and namespace.
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_inverse.hpp>
+#include "vertex.h"
 
 using namespace glm;
 ```
@@ -50,6 +51,20 @@ private:
 
    void CreateSpherewithNormal();
 ```
+
+Add following public functions into the sphere class.
+
+```C++
+public:
+	Sphere();
+	~Sphere();
+
+	void SetPosition(vec3 newPos); 
+	vec3 GetPosition(void);
+	VertexWtihNormal * GetVerData(int &);
+	unsigned int * GetTriData(int &);
+```
+
 
 ---- Set up drawing routine  ----
 
