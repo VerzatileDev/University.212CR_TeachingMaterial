@@ -72,7 +72,6 @@ Add header files into Sphere.cpp file
 
 ```C++
 #include <fstream>
-#include "sphere.h"
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 ```
@@ -98,6 +97,62 @@ Sphere::~Sphere()
 	free(sphereIndices);
 }
 ```
+
+Add data create function.
+
+
+```C++
+void Sphere::CreateSpherewithNormal(void)
+{
+	int count;
+	count = 0;
+	for (int i = 0; i <= stacks; ++i) {
+
+		GLfloat V = i / (float)stacks;
+		GLfloat phi = V * glm::pi <float>();
+
+		// Loop Through Slices
+		for (int j = 0; j <= slices; ++j) {
+
+			GLfloat U = j / (float)slices;
+			GLfloat theta = U * (glm::pi <float>() * 2);
+
+			// Calc The Vertex Positions
+			GLfloat x = 
+			GLfloat y = 
+			GLfloat z = 
+
+			sphereVerticesNor[count].coords = vec4(x * radius, y * radius + 6.0, z * radius, 1.0);
+			sphereVerticesNor[count].normals = vec3(x, y, z); ///Sphere normals
+
+			count++;
+		}
+	}
+
+	count = 0;
+	// Calc The Index Positions
+	for (int i = 0; i < slices * stacks + slices; ++i) {
+
+		sphereIndices[count] = i;
+		count++;
+		sphereIndices[count] = i + slices + 1;
+		count++;
+		sphereIndices[count] = i + slices;
+		count++;
+
+		sphereIndices[count] = i + slices + 1;
+		count++;
+		sphereIndices[count] = i;
+		count++;
+		sphereIndices[count] = i + 1;
+		count++;
+	}
+
+	count = 0;
+}
+
+```
+
 
 ---- Set up drawing routine  ----
 
