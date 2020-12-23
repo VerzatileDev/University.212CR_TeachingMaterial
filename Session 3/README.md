@@ -1,17 +1,17 @@
 # Session 2 - Creat objects, Add lighting and Set up Camera
 
 #### Table of Contents
-1. [Create VBO](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#create-objects)
-2. [Create VAO](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#Add-lights)
-3. [Convert to Modern OpenGL shader codes](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#Set-up-Camera)
-4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%202#Homework)
+1. [Create objects](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#create-objects)
+2. [Add lighting](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#Add-lights)
+3. [Set up Camera](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#Set-up-Camera)
+4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#Homework)
 
 Welcome to Week 3! 
 
 > By following these sessions, we will learn how to create geomtric objects, add lights into the scene and set up a camera using Modern OpenGL. 
 
 
-## Creat objects
+## Create objects
 
 There is no auxiliary functions available in Modern OpenGL to create simple geometric objects such as sphere, square, cube and etc.
 So, we have to create the objects from scratch, which involves creating vertices, triangle indices and normal vectors (for lighting effects).
