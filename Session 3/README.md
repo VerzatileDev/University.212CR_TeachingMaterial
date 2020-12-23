@@ -1,4 +1,4 @@
-# Session 2 - Creat objects, Add lighting and Set up Camera
+# Session 3 - Creat objects, Add lighting and Set up Camera
 
 #### Table of Contents
 1. [Create objects](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#create-objects)
@@ -27,22 +27,13 @@ After running the program, you only see a grey plane (field) and nothing else. W
 
 ![Class picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/AddClass.JPG)
 
+Add following header files and namespace.
 ```C++
-float vertices[] = 
-{
-	20.0, 20.0, 0.0,
-	80.0, 20.0, 0.0,
-	20.0, 80.0, 0.0,
-	80.0, 80.0, 0.0
-};
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
 
-float colours[] = 
-{
-	0.0, 0.0, 0.0,
-	0.0, 0.0, 0.0,
-	0.0, 0.0, 0.0,
-	0.0, 0.0, 0.0
-};
+using namespace glm;
 ```
 
 This will set up vertex data for the square. The vertices array is the coordinates of four corners of the square. 
