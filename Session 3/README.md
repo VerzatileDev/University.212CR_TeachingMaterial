@@ -67,6 +67,38 @@ public:
 
 Both GetVerData and GetTriData allow the external function to extract data from the Sphere class.
 
+
+Add header files into Sphere.cpp file
+
+```C++
+#include <fstream>
+#include "sphere.h"
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+```
+
+Add constructor and destructor functions
+
+```C++
+Sphere::Sphere()
+{
+	stacks = 10; //number of segments
+	slices = 10; //number of segments
+	radius = 6.0f;
+	Position = vec3(0);
+
+	sphereVerticesNor = (VertexWtihNormal *)malloc(sizeof(VertexWtihNormal) * 121); //total number of vertices = (stacks+1)*(slices +1)
+	sphereIndices = (unsigned int *)malloc(sizeof(unsigned int) * 660);
+	CreateSpherewithNormal();
+}
+
+Sphere::~Sphere()
+{
+	free(sphereVerticesNor);
+	free(sphereIndices);
+}
+```
+
 ---- Set up drawing routine  ----
 
 Generate a (1) BUFFER Object name																	
