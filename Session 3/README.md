@@ -65,6 +65,7 @@ public:
 	unsigned int * GetTriData(int &);
 ```
 
+Both GetVerData and GetTriData allow the external function to extract data from the Sphere class.
 
 ---- Set up drawing routine  ----
 
