@@ -118,9 +118,9 @@ void Sphere::CreateSpherewithNormal(void)
 			GLfloat theta = U * (glm::pi <float>() * 2);
 
 			// Calc The Vertex Positions
-			GLfloat x = 
-			GLfloat y = 
-			GLfloat z = 
+			GLfloat x = cosf(theta) * sinf(phi);
+			GLfloat y = cosf(phi);
+			GLfloat z = sinf(theta) * sinf(phi);
 
 			sphereVerticesNor[count].coords = vec4(x * radius, y * radius + 6.0, z * radius, 1.0);
 			sphereVerticesNor[count].normals = vec3(x, y, z); ///Sphere normals
@@ -152,6 +152,9 @@ void Sphere::CreateSpherewithNormal(void)
 }
 
 ```
+
+Please complete calculation for x,y,z using following sphere equations.
+
 
 
 ---- Set up drawing routine  ----
