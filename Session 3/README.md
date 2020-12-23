@@ -22,8 +22,10 @@ After running the program, you only see a grey plane (field) and nothing else. W
 
 ![Base picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/BaseProject.JPG)
 
----- Set up Data ----
-> Add following data codes just before void drawScene(void) function in square.cpp file
+---- Add Sphere class ----
+> Right click the project in Solution Explorer. choose "Add" -> "class..". The Add class dialog will pop up. Type "Sphere" as class name.
+
+![Class picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/AddClass.JPG)
 
 ```C++
 float vertices[] = 
