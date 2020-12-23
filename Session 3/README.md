@@ -17,10 +17,9 @@ There is no auxiliary functions available in Modern OpenGL to create simple geom
 So, we have to create the objects from scratch, which involves creating vertices, triangle indices and normal vectors (for lighting effects).
 
 ---- Download the base project ----
-> A VERTEX BUFFER OBJECT OR VBO IS AN ARRAY OF DATA THAT IS COPIED TO THE GPU BEFORE DRAWING AND RAN ON THE GPU
-
----- Download the Base Projecrt ----
-> Please download ModernOpenGLSimple.zip and unzip it. The OpenGL library has been sep up so it can be compiled.
+> Please download CreateSphereClass.zip and unzip it. The OpenGL library has been sep up so it can be compiled. 
+After running the program, you only see a grey plane (field) and nothing else. We will add a sphere into the scene.
+![Base picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/BaseProject.JPG)
 
 ---- Set up Data ----
 > Add following data codes just before void drawScene(void) function in square.cpp file
