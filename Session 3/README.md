@@ -153,8 +153,31 @@ void Sphere::CreateSpherewithNormal(void)
 
 ```
 
-Please complete calculation for x,y,z using following sphere equations.
+Finish with some external access functions
 
+```C++
+VertexWtihNormal * Sphere::GetVerData(int &verNum)
+{
+	verNum = 121;
+	return sphereVerticesNor;
+}
+
+unsigned int * Sphere::GetTriData(int &triNum)
+{
+	triNum = 660;
+	return sphereIndices;
+}
+
+void Sphere::SetPosition(vec3 newPos)
+{
+	Position = newPos;
+}
+
+vec3 Sphere::GetPosition(void)
+{
+	return Position;
+}
+```
 
 
 ---- Set up drawing routine  ----
