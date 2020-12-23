@@ -36,9 +36,20 @@ Add following header files and namespace.
 using namespace glm;
 ```
 
-This will set up vertex data for the square. The vertices array is the coordinates of four corners of the square. 
-The colours array is the colour of four corners. The colour is in the format of RGB (red, green, blue). 
-The current value is black (0.0,0.0,0.0).
+Add following private data variables and functions into the sphere class.
+
+```C++
+private:
+   vec3 Position;
+   VertexWtihNormal *sphereVerticesNor;  //Sphere vertices data with normals
+   unsigned int *sphereIndices;          //Sphere triangle indices    
+
+   int stacks; // nunber of segments
+   int slices; // number of segments
+   float radius;
+
+   void CreateSpherewithNormal();
+```
 
 ---- Set up drawing routine  ----
 
