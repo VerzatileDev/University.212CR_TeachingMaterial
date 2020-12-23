@@ -8,19 +8,15 @@
 
 Welcome to Week 3! 
 
-> By following these sessions, we will learn how to create VERTEX BUFFER OBJECT (VBO), VERTEX ARRAY OBJECTS (VAO) and Shader codes, which are used to draw objects in OpenGL. 
+> By following these sessions, we will learn how to create geomtric objects, add lights into the scene and set up a camera using Modern OpenGL. 
 
 
 ## Creat objects
 
-FOR THIS EXERCISE WE ONLY NEED TO CREATE AN VERTEX BUFFER OBJECT (VBO) (AS LEGACY HAS THESE IN). 
-THIS MEANS NO SHADERS NEED TO BE USED - THIS WILL COME LATER IN EXERCISE 3 (Shader).
+There is no auxiliary functions available in Modern OpenGL to create simple geometric objects such as sphere, square, cube and etc.
+So, we have to create the objects from scratch, which involves creating vertices, triangle indices and normal vectors (for lighting effects).
 
-FOR A VBO, WE NEED TO PUT THE VERTEX DATA INTO A BUFFER AND THEN SEND THIS TO THE GPU.
-THIS WILL BE DIFFERENT LATER WHEN WE COMBINE CO-ORDS AND COLOUR INTO ONE VERTEX STRUCT, 
-BUT WE WANT TO EASE YOU INTO MODERN OPENGL WITH THIS WEEKS LAB TASKS.
-
----- WHAT IS A VBO ----
+---- Download the base project ----
 > A VERTEX BUFFER OBJECT OR VBO IS AN ARRAY OF DATA THAT IS COPIED TO THE GPU BEFORE DRAWING AND RAN ON THE GPU
 
 ---- Download the Base Projecrt ----
