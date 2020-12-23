@@ -19,6 +19,7 @@ So, we have to create the objects from scratch, which involves creating vertices
 ---- Download the base project ----
 > Please download CreateSphereClass.zip and unzip it. The OpenGL library has been sep up so it can be compiled. 
 After running the program, you only see a grey plane (field) and nothing else. We will add a sphere into the scene.
+
 ![Base picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/BaseProject.JPG)
 
 ---- Set up Data ----
