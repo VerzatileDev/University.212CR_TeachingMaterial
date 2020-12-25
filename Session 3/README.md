@@ -237,11 +237,52 @@ Now, you can run the code. You will see a green sphere in the middle of sphere. 
 
 We are going to add ambient and diffuse lighting effects which illuminate the sphere and make it look realistic.
 
----- WHAT IS A VAO ----
-> A VERTEX ARRAY OBJECT OR VAO REMEMBERS ALL VBOS AND MEMORY LAYOUTS OF THEM. IT ALLOWS SWITCHING BETWEEN DIFFERENT VERTEX DATA AND VERTEX FORMATS VIA BINDING A VAO.
+---- Add lighting and material structure definitions ----
 
----- Use the previous Projecrt from Exercise 1 ----
-> Use the previous Projecrt from Exercise 1. Use following instructions to add codes or replace codes.
+You add them anywhere in global variable definition area (before void setup(void) or before any function definition)
+
+```C++
+struct Material
+{
+	vec4 ambRefl;
+	vec4 difRefl;
+	vec4 specRefl;
+	vec4 emitCols;
+	float shininess;
+};
+
+struct Light
+{
+	vec4 ambCols;
+	vec4 difCols;
+	vec4 specCols;
+	vec4 coords;
+};
+```
+
+---- Add lighting and material value definitions ----
+> Add following codes after lighting and material struture definitions
+
+```C++
+static const vec4 globAmb = vec4(0.2, 0.2, 0.2, 1.0);
+// Front and back material properties.
+static const Material sphereFandB =
+{
+	vec4(1.0, 1.0, 0.0, 1.0),
+	vec4(1.0, 1.0, 0.0, 1.0),
+	vec4(1.0, 1.0, 0.0, 1.0),
+	vec4(0.0, 0.0, 0.0, 1.0),
+	50.0f
+};
+
+static const Light light0 =
+{
+	vec4(0.0, 0.0, 0.0, 1.0),
+	vec4(1.0, 1.0, 1.0, 1.0),
+	vec4(1.0, 1.0, 1.0, 1.0),
+	vec4(1.0, 1.0, 0.0, 0.0)
+};
+```
 
 ---- Set up Data ----
 > Add following triange data right after the square data.
