@@ -196,7 +196,6 @@ Add following declare codes for sphere object and its data (vertices, normals an
 static VertexWtihNormal *sphereVerticesNor = NULL;
 static unsigned int *sphereIndices = NULL;
 static Sphere testSphere;
-unsigned int buffer[1];
 ```
 BIND THE BUFFER OBJECT
 
@@ -230,10 +229,9 @@ BIND THE BUFFER OBJECT
    glDrawElements(GL_TRIANGLE_STRIP, triCount, GL_UNSIGNED_INT, sphereIndices);  ///use index array to control triangle drawing
 ```
 
----- Test and change codes  ----
+---- compile and change codes  ----
 
-Now, you can run the code. You will see a black square in the middle of the window. You can change color data to change to your preferred color.
-Or, you can change the coordinates of four corners of the square.
+Now, you can run the code. You will see a green sphere in the middle of sphere. It does not look like sphere because there is no lighting for it.
  
 ## Add lights
 
