@@ -194,7 +194,7 @@ unsigned int buffer[1];
 ```
 BIND THE BUFFER OBJECT
 
-> In the void setup(void) function, add following lines after  glEnableVertexAttribArray(1);
+> In the void setup(void) function, add following lines after  "//Sphere vertex data here" comments 
 ```C++
    // Obtain sphere data
    int verCount, triCount;
@@ -214,7 +214,15 @@ BIND THE BUFFER OBJECT
 ```
 
 ---- Add drawing codes  ----
+> In the void drawScene(void) function, add following lines after  "// Draw sphere" comments 
+```C++
+   int triCount;
+   sphereIndices = testSphere.GetTriData(triCount);
 
+   glUniform1ui(objectLoc, SPHERE);  //if (object == SPHERE)
+   glBindVertexArray(vao[SPHERE]);
+   glDrawElements(GL_TRIANGLE_STRIP, triCount, GL_UNSIGNED_INT, sphereIndices);  ///use index array to control triangle drawing
+```
 
 ---- Test and change codes  ----
 
