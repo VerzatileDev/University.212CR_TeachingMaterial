@@ -303,13 +303,35 @@ static const Light light0 =
    glUniform4fv(glGetUniformLocation(programId, "light0.coords"), 1, &light0.coords[0]);
 ```
 
----- Add drawing codes in vertex shader  ----
+---- Add drawing codes in fragment Shader ----
 
-Open vertexShader.glsl. You can drag vertexShader.glsl into Visual Studio and edit it.
+Open fragmentShader.glsl. You can drag fragmentShader.glsl into Visual Studio and edit it. 
+Add the same structure definition codes into fragmentShader.glsl (after in "vec3 normalExport;")
 
 ```C++
-/// MODERN OPENGL - WILL HOLD 1 BUFFER OBJECT NAME
-unsigned int buffer[1];
+struct Light
+{
+   vec4 ambCols;
+   vec4 difCols;
+   vec4 specCols;
+   vec4 coords;
+};
+
+struct Material
+{
+   vec4 ambRefl;
+   vec4 difRefl;
+   vec4 specRefl;
+   vec4 emitCols;
+   float shininess;
+};
+```
+Add the lighting and material definition codes into fragmentShader.glsl (after structure definition codes)
+
+```C++
+uniform Light light0;
+uniform vec4 globAmb;
+uniform Material sphereFandB;
 ```
 
 
