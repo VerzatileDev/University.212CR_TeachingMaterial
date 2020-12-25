@@ -284,159 +284,34 @@ static const Light light0 =
 };
 ```
 
----- Set up Data ----
-> Add following triange data right after the square data.
+---- Send data to the shader ----
+> Add following codes in void setup(void) before comments "// Create VAOs and VBOs... "
 
 ```C++
-float vertices1[] =
-{
-	30.0, 30.0, 1.0,
-	70.0, 30.0, 1.0,
-	30.0, 70.0, 1.0
+   //codes for OpenGL lighting
+   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.ambRefl"), 1,&sphereFandB.ambRefl[0]);
+   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.difRefl"), 1,&sphereFandB.difRefl[0]);
+   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.specRefl"), 1,&sphereFandB.specRefl[0]);
+   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.emitCols"), 1,&sphereFandB.emitCols[0]);
+   glUniform1f(glGetUniformLocation(programId, "sphereFandB.shininess"), sphereFandB.shininess);
 
-};
+   glUniform4fv(glGetUniformLocation(programId, "globAmb"), 1, &globAmb[0]);
 
-float colours1[] =
-{
-	1.0, 0.0, 1.0,
-	1.0, 0.0, 1.0,
-	1.0, 0.0, 1.0
-};
+   glUniform4fv(glGetUniformLocation(programId, "light0.ambCols"), 1,&light0.ambCols[0]);
+   glUniform4fv(glGetUniformLocation(programId, "light0.difCols"), 1,&light0.difCols[0]);
+   glUniform4fv(glGetUniformLocation(programId, "light0.specCols"), 1,&light0.specCols[0]);
+   glUniform4fv(glGetUniformLocation(programId, "light0.coords"), 1, &light0.coords[0]);
 ```
 
----- Set up drawing routine  ----
+---- Add drawing codes in vertex shader  ----
 
-Replace (we now have two objects instead one object)
+Open vertexShader.glsl. You can drag vertexShader.glsl into Visual Studio and edit it.
 
 ```C++
 /// MODERN OPENGL - WILL HOLD 1 BUFFER OBJECT NAME
 unsigned int buffer[1];
 ```
 
-with
-
-```C++
-/// MODERN OPENGL - WILL HOLD 2 BUFFER OBJECT NAMES (SQUARE, TRIANGLE)
-unsigned int buffer[2];
-```
-
-Add VAO array after buffer[2] definition.
-
-```C++
-/// MODERN OPENGL - WILL HOLD 2  (SQUARE, TRIANGLE)
-unsigned int vao[2]; // Array of VAO ids.
-```
-
-BIND THE BUFFER OBJECT
-
-In the void setup(void) function, REPLACE
-
-```C++
-   /// MODERN OPENGL - GENERATE A(1) BUFFER OBJECT NAME
-   glGenBuffers(1, buffer); // Generate buffer ids.
-```
-
-with (we have two objects. So, both vao and buffer have two objects)
-
-```C++
-   /// MODERN OPENGL -GENERATE VERTEX BUFFER OBJECT NAMES FOR EACH OBJECT(2 OVERALL - 1 FOR EACH)
-   glGenVertexArrays(2, vao); // Generate VAO ids
-   
-   /// MODERN OPENGL -GENERATE BUFFER OBJECT NAMES FOR EACH OBJECT(2 OVERALL - 1 FOR EACH)
-   glGenBuffers(2, buffer); // Generate buffer ids.
-```
-
-After glGenBuffers(2, buffer), REPLACE remaining codes ( The diference is to add glBindVertexArray(vao[0]);)
-
-
-```C++
-   /// MODERN OPENGL - BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON
-   glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);   // Bind vertex buffer 
-   /// MODERN OPENGL - CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)	
-   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(colours), NULL, GL_STATIC_DRAW); // and reserve space
-
-  
-   /// MODERN OPENGL - 	(IN THIS CASE) TELL OPENGL THAT PART(FIRST HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR VERTICES
-   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);  // Copy vertex coordinates data into first half of vertex buffer.
-
-   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL THAT PART(SECOND HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR COLOURS
-   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(colours), colours); // Copy vertex color data into second half of vertex buffer.
-
-   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS
-   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
-   /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
-   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
-   
-   /// MODERN OPENGL - (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, - VERTEX ARRAY - AND - COLOR ARRAY -
-   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
-   glEnableClientState(GL_COLOR_ARRAY);
-```
-
-with following codes for binding first object
-
-```C++
-   /// MODERN OPENGL - BIND THE FIRST VAO FOR THE FIRST OBJECT
-   glBindVertexArray(vao[0]);
-
-   /// MODERN OPENGL - BIND THE BUFFER OBJECT NAME - AKA TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON
-   glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);   // Bind vertex buffer 
-   /// MODERN OPENGL - CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)	
-   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(colours), NULL, GL_STATIC_DRAW); // and reserve space
-  
-   /// MODERN OPENGL - 	(IN THIS CASE) TELL OPENGL THAT PART(FIRST HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR VERTICES
-   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);  // Copy vertex coordinates data into first half of vertex buffer.
-
-   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL THAT PART(SECOND HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR COLOURS
-   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(colours), colours); // Copy vertex color data into second half of vertex buffer.
-
-   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS
-   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
-   /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
-   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
-   
-   /// MODERN OPENGL - (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, - VERTEX ARRAY - AND - COLOR ARRAY -
-   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
-   glEnableClientState(GL_COLOR_ARRAY);
-```
-
-Then add codes for binding second second
-
-```C++
-   glBindVertexArray(vao[1]);
-
-   glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);   // Bind vertex buffer 
-   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1) + sizeof(colours1), NULL, GL_STATIC_DRAW); // and reserve space																					
-   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices1), vertices1);  // Copy vertex coordinates data into first half of vertex buffer.
-   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices1), sizeof(colours1), colours1); // Copy vertex color data into second half of vertex buffer.							
-   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
-   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices1)));
-   
-   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
-   glEnableClientState(GL_COLOR_ARRAY);
-```
-
----- Add drawing codes  ----
-
-In the void drawScene(void) function, REPLACE
-
-```C++
-   /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 4 VERTICES IN THE VBO
-   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-```
-
-with 
-
-```C++
-   /// MODERN OPENGL - BIND THE FIRST VAO FOR THE FIRST OBJECT
-   glBindVertexArray(vao[0]);
-   /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 4 VERTICES IN THE VBO
-   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-   
-   /// MODERN OPENGL - BIND THE SECOND VAO FOR THE SECOND OBJECT
-   glBindVertexArray(vao[1]);
-   /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 3 VERTICES IN THE VBO
-   glDrawArrays(GL_TRIANGLES, 0, 3);
-```
 
 ---- Test and change codes  ----
 
