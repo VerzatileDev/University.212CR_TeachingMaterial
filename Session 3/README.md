@@ -350,10 +350,7 @@ Replace "colorsOut =  vec4(0.0,1.0,0.0, 1.0);  " (we do not need fixed color any
     colorsOut =  vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0); 
 ```
 
----- Test and change codes  ----
-
-Now, you can run the code. You can change color data to change to your preferred color.
-Or, you can change the coordinates of the triangle.
+Please note that you do not need compile the C++ project when change shader codes. You just change shader codes. Save it and run it.
 
 ## Set up Camera
  
