@@ -182,6 +182,12 @@ vec3 Sphere::GetPosition(void)
 
 ---- Set up drawing routine  ----
 
+Add sphere header file
+
+```C++
+#include "sphere.h"
+```
+
 Add sphere global variables																	
 
 Add following declare codes for sphere object and its data (vertices, normals and triangle indices)
