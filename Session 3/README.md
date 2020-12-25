@@ -182,48 +182,39 @@ vec3 Sphere::GetPosition(void)
 
 ---- Set up drawing routine  ----
 
-Generate a (1) BUFFER Object name																	
+Add sphere global variables																	
 
-add following declare line just before void drawScene(void) function in square.cpp file
+add following declare codes for sphere object and its data (vertices, normals and triangle indices)
 
 ```C++
-/// MODERN OPENGL - WILL HOLD 1 BUFFER OBJECT NAME
+static VertexWtihNormal *sphereVerticesNor = NULL;
+static unsigned int *sphereIndices = NULL;
+static Sphere testSphere;
 unsigned int buffer[1];
 ```
 BIND THE BUFFER OBJECT
 
-In the void setup(void) function, add following lines after  glClearColor(1.0, 1.0, 1.0, 0.0);
-
+> In the void setup(void) function, add following lines after  glEnableVertexAttribArray(1);
 ```C++
-   /// MODERN OPENGL - GENERATE A(1) BUFFER OBJECT NAME
-   glGenBuffers(1, buffer); // Generate buffer ids.
+   // Obtain sphere data
+   int verCount, triCount;
+   sphereVerticesNor = testSphere.GetVerData(verCount);
+   sphereIndices = testSphere.GetTriData(triCount);
    
-   /// MODERN OPENGL - BIND THE BUFFER OBJECT NAME - IT TELL OPENGL THIS IS THE BUFFER THE BELOW COMMANDS WILL WORK ON
-   glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);   // Bind vertex buffer 
-   /// MODERN OPENGL - CREATE AND INITIALIZE INTO THE BUFFER'S DATA STORE (BUFFER TYPE, SIZE, DATA GOING IN, USAGE)	
-   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(colours), NULL, GL_STATIC_DRAW); // and reserve space
-   
-   /// MODERN OPENGL - 	(IN THIS CASE) TELL OPENGL THAT PART(FIRST HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR VERTICES
-   glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);  // Copy vertex coordinates data into first half of vertex buffer.
-
-   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL THAT PART(SECOND HALF) OF THE BUFFER(BUFFERSUBDATA) IS FOR COLOURS
-   glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(colours), colours); // Copy vertex color data into second half of vertex buffer.
-   
-   /// MODERN OPENGL - 		(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX POSITION AND WHERE THIS STARTS
-   glVertexPointer(3, GL_FLOAT, 0, 0);  // Specify vertex and color pointers to the start of the respective data.
-   /// MODERN OPENGL - 			(IN THIS CASE) TELL OPENGL HOW MANY THINGS MAKE UP A VERTEX COLOUR AND WHERE THIS STARTS
-   glColorPointer(3, GL_FLOAT, 0, (GLvoid*)(sizeof(vertices)));
-   
-   /// MODERN OPENGL - (IN THIS CASE) TELL OPENGL TO ENABLE THE USE OF 2 CAPABILITIES, - VERTEX ARRAY - AND - COLOR ARRAY -
-   glEnableClientState(GL_VERTEX_ARRAY);// Enable two vertex arrays: co-ordinates and color.
-   glEnableClientState(GL_COLOR_ARRAY);
+   //Binding VAO and VBO
+   glBindVertexArray(vao[SPHERE]);
+   glBindBuffer(GL_ARRAY_BUFFER, buffer[SPHERE_VERTICES]);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(VertexWtihNormal)*verCount, sphereVerticesNor, GL_STATIC_DRAW);  ///please note the change
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer[SPHERE_INDICES]);
+   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*triCount, sphereIndices, GL_STATIC_DRAW); ///please note the change
+   glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(sphereVerticesNor[0]), 0);  //layout(location=4) in vec4 fieldCoords;
+   glEnableVertexAttribArray(4);
+   glVertexAttribPointer(5, 3, GL_FLOAT, GL_FALSE, sizeof(sphereVerticesNor[0]), (GLvoid*)sizeof(sphereVerticesNor[0].normals));
+   glEnableVertexAttribArray(5);
 ```
+
 ---- Add drawing codes  ----
-> In the void drawScene(void) function, add following lines after  glClear(GL_COLOR_BUFFER_BIT);
-```C++
-   /// MODERN OPENGL - DRAW A GL_TRIANGLE_STRIP USING THE 4 VERTICES IN THE VBO
-   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-```
+
 
 ---- Test and change codes  ----
 
