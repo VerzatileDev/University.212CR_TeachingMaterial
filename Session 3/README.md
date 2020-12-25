@@ -184,7 +184,7 @@ vec3 Sphere::GetPosition(void)
 
 Add sphere global variables																	
 
-add following declare codes for sphere object and its data (vertices, normals and triangle indices)
+Add following declare codes for sphere object and its data (vertices, normals and triangle indices)
 
 ```C++
 static VertexWtihNormal *sphereVerticesNor = NULL;
@@ -207,10 +207,10 @@ BIND THE BUFFER OBJECT
    glBufferData(GL_ARRAY_BUFFER, sizeof(VertexWtihNormal)*verCount, sphereVerticesNor, GL_STATIC_DRAW);  ///please note the change
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer[SPHERE_INDICES]);
    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)*triCount, sphereIndices, GL_STATIC_DRAW); ///please note the change
-   glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(sphereVerticesNor[0]), 0);  //layout(location=4) in vec4 fieldCoords;
-   glEnableVertexAttribArray(4);
-   glVertexAttribPointer(5, 3, GL_FLOAT, GL_FALSE, sizeof(sphereVerticesNor[0]), (GLvoid*)sizeof(sphereVerticesNor[0].normals));
-   glEnableVertexAttribArray(5);
+   glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(sphereVerticesNor[0]), 0);  //layout(location=4) in vec4 fieldCoords;
+   glEnableVertexAttribArray(2);
+   glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(sphereVerticesNor[0]), (GLvoid*)sizeof(sphereVerticesNor[0].normals));
+   glEnableVertexAttribArray(3);
 ```
 
 ---- Add drawing codes  ----
