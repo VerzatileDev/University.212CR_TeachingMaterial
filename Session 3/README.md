@@ -340,6 +340,16 @@ vec3 normal, lightDirection;
 vec4 fAndBDif;
 ```
 
+Finally, add lighting calculation codes for ambient and diffuse effects. (add inside if statement "if (object == SPHERE)" )
+Replace "colorsOut =  vec4(0.0,1.0,0.0, 1.0);  " (we do not need fixed color anymore.)
+
+```C++
+	normal = normalize(normalExport);
+	lightDirection = normalize(vec3(light0.coords));
+	fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
+    colorsOut =  vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0); 
+```
+
 ---- Test and change codes  ----
 
 Now, you can run the code. You can change color data to change to your preferred color.
