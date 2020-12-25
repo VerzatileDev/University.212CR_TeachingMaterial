@@ -333,7 +333,12 @@ uniform Light light0;
 uniform vec4 globAmb;
 uniform Material sphereFandB;
 ```
+Add temp variables for lighting calculation. (add after "out vec4 colorsOut;")
 
+```C++
+vec3 normal, lightDirection;
+vec4 fAndBDif;
+```
 
 ---- Test and change codes  ----
 
