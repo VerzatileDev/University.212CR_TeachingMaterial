@@ -129,7 +129,7 @@ Final result should look like this.
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%204/Readme%20Pictures/Texture1.JPG)
 
-## Add a simple animation
+## Add Sky
  
 > We can create a simple animation which let the sphere move long the Z axis.
 
