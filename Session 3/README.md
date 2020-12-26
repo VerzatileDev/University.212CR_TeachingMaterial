@@ -448,7 +448,7 @@ Use left and right arrow keys to move the camera
 
 * Create A cube from scratch using modern OpenGL
 
-> There is tutorial. The link is  httphttp://www.opengl-tutorial.org/beginners-tutorials/tutorial-4-a-colored-cube/
+> There is tutorial. The link is  http://www.opengl-tutorial.org/beginners-tutorials/tutorial-4-a-colored-cube/
 
 
 
