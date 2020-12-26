@@ -353,9 +353,12 @@ Replace "colorsOut =  vec4(0.0,1.0,0.0, 1.0);  " (we do not need fixed color any
 
 Please note that you do not need compile the C++ project when change shader codes. You just change shader codes. Save it and run it.
 
+Final result should look like this.
+![Base picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/LightEffect.JPG)
+
 ## Add a simple animation
  
-> You can use the finished codes in exercise 2 (VAO) or you can use square.cpp in week 2.
+> We can create a simple animation which let the sphere move long the Z axis.
 
 
 * Step 1: Add header files
