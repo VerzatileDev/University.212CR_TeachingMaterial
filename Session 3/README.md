@@ -374,7 +374,8 @@ In void drawScene(void) function, add sphere translation codes before "glUniform
 		
 ```C++
    modelViewMat = mat4(1.0);
-   modelViewMat = translate(modelViewMat, testSphere.GetPosition()); //apply Sphere Position
+   modelViewMat = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0, 10.0, 0.0), vec3(0.0, 1.0, 0.0)); //apply the same modelview as other objects
+   modelViewMat = translate(modelViewMat, testSphere.GetPosition()); //apply Sphere Position and modify the modelview matrix
    glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(modelViewMat));  //send modelview matrix to the shader
 ```
 
