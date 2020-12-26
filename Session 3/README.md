@@ -353,7 +353,8 @@ Replace "colorsOut =  vec4(0.0,1.0,0.0, 1.0);  " (we do not need fixed color any
 
 Please note that you do not need compile the C++ project when change shader codes. You just change shader codes. Save it and run it.
 
-Final result should look like this.
+Final result should look like this. You can reference to "CreateSphere_finish.cpp" if you think you have made some mistakes. 
+
 ![Base picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/LightEffect.JPG)
 
 ## Add a simple animation
