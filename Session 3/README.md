@@ -373,8 +373,9 @@ static float zVal = 0; // Z Co-ordinates of the ball.
 In void drawScene(void) function, add sphere translation codes before "glUniform1ui(objectLoc, SPHERE); "
 		
 ```C++
-modelViewMat = mat4(1.0);
-modelViewMat = translate(modelViewMat, testSphere.GetPosition()); //apply Sphere Position
+   modelViewMat = mat4(1.0);
+   modelViewMat = translate(modelViewMat, testSphere.GetPosition()); //apply Sphere Position
+   glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(modelViewMat));  //send modelview matrix to the shader
 ```
 
 * Step 3: Modifiy void animate() function
