@@ -446,10 +446,9 @@ Use left and right arrow keys to move the camera
 ## Homework
 
 
-* Review the codes inside vertex and fragment shaders
+* Create A cube from scratch using modern OpenGL
 
-> Understand what vertex shader and frament shader do. Take a look at https://learnopengl.com/Getting-started/Shaders
-Read shader tutorials. 
+> There is tutorial. The link is  httphttp://www.opengl-tutorial.org/beginners-tutorials/tutorial-4-a-colored-cube/
 
 
 
