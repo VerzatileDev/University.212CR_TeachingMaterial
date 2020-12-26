@@ -109,58 +109,25 @@ Download based project: CreateSphereClassTex.zip from week 4 folder. unzip it. O
    glUniform1i(grassTexLoc, 0); //send texture to shader
 ```
 
----- Add drawing codes in fragment Shader ----
+---- Add texture codes in fragment Shader ----
 
 Open fragmentShader.glsl. You can drag fragmentShader.glsl into Visual Studio and edit it. 
-Add the same structure definition codes into fragmentShader.glsl (after in "vec3 normalExport;")
+Add following definition in fragmentShader.glsl (add before main(void) function).
 
 ```C++
-struct Light
-{
-   vec4 ambCols;
-   vec4 difCols;
-   vec4 specCols;
-   vec4 coords;
-};
-
-struct Material
-{
-   vec4 ambRefl;
-   vec4 difRefl;
-   vec4 specRefl;
-   vec4 emitCols;
-   float shininess;
-};
+uniform sampler2D grassTex;
 ```
-Add the lighting and material definition codes into fragmentShader.glsl (after structure definition codes)
+Replace fieldTexColor color calculation with texture color in main function.
 
 ```C++
-uniform Light light0;
-uniform vec4 globAmb;
-uniform Material sphereFandB;
-```
-Add temp variables for lighting calculation. (add after "out vec4 colorsOut;")
-
-```C++
-vec3 normal, lightDirection;
-vec4 fAndBDif;
+fieldTexColor = texture(grassTex, texCoordsExport);
 ```
 
-Finally, add lighting calculation codes for ambient and diffuse effects. (add inside if statement "if (object == SPHERE)" )
-Replace "colorsOut =  vec4(0.0,1.0,0.0, 1.0);  " (we do not need fixed color anymore.)
+---- compile and run ----
 
-```C++
-	normal = normalize(normalExport);
-	lightDirection = normalize(vec3(light0.coords));
-	fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
-    colorsOut =  vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0); 
-```
+Final result should look like this. 
 
-Please note that you do not need compile the C++ project when change shader codes. You just change shader codes. Save it and run it.
-
-Final result should look like this. You can reference to "CreateSphere_finish.cpp" if you think you have made some mistakes. 
-
-![Base picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%203/Readme%20Pictures/LightEffect.JPG)
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%204/Readme%20Pictures/Texture1.JPG)
 
 ## Add a simple animation
  
