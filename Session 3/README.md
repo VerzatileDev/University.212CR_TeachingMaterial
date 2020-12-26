@@ -397,54 +397,51 @@ glutIdleFunc(animate); has been added into main function, which enables animatio
 
 ## Set up Camera
  
-> You can use the finished codes in exercise 2 (VAO) or you can use square.cpp in week 2.
+> We will set up a moving camera by pressing arrow keys. It allow moving camera up and down.
 
 
-* Step 1: Add header files
+* Step 1: Add camera position global variable
 
 ```C++
+static float d = 0.0; //Camera position
 ```
 
-* Step 2: Set up gobal variable
+* Step 2: Insert position into modelview matrix
 
-Gobal variables are the codes after header files and before function definitions.
-
+In void drawScene(void), change lookAt function input parameters
 		
+from 
 ```C++
-float vertices[] = 
-{
-	20.0, 20.0, 0.0,
-	80.0, 20.0, 0.0,
-	20.0, 80.0, 0.0,
-	80.0, 80.0, 0.0
-};
+modelViewMat = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0, 10.0, 0.0), vec3(0.0, 1.0, 0.0));
 ```
 
-Add modelview and project matrix definition
-
-Both modelview and project matrix are used to definition the camera.
-
-
+to 
 ```C++
-
+modelViewMat = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0 + d, 10.0, 0.0), vec3(0.0, 1.0, 0.0));
 ```
 
-* Step 3: Add shader loading and checking functions
+We need to change both lookAt() functions in drawScene(void) function.
 
-Add shader loading function and checking function after all global variables
 
-```C++
+* Step 3: Add codes into void specialKeyInput(int key, int x, int y)
 
-```
-
-* Step 4: Add shader initialization codes
-
-Add shader loading and compiling check codes in the void setup(void) (after glClearColor(1.0, 1.0, 1.0, 0.0); )
-
+Add codes to change d value 
 
 ```C++
-  
+   if (key == GLUT_KEY_LEFT) 
+   {
+	   if (d > -50.0) d -= 0.1;
+   }
+   if (key == GLUT_KEY_RIGHT) 
+   {
+	   if (d < 15.0) d += 0.1;
+   }
 ```
+
+* Step 4: compile and run
+
+Use left and right arrow keys to move the camera
+
 
 ## Homework
 
