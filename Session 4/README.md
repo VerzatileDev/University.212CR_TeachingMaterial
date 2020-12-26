@@ -1,4 +1,4 @@
-# Session 4 - Add Texture and Texture animation
+# Session 4 - Texture
 
 #### Table of Contents
 1. [SOIL Library](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#SOIL-Library)
@@ -6,9 +6,9 @@
 3. [Add Sky](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#Add-Sky)
 4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#Homework)
 
-Welcome to Week 3! 
+Welcome to Week 4! 
 
-> By following these sessions, we will learn how to create geomtric objects, add lights into the scene and set up a camera using Modern OpenGL. 
+> By following these sessions, we will learn how to load texture and send texture to shader.
 
 
 ## SOIL Library
@@ -42,6 +42,16 @@ https://github.com/littlstar/soil
 * Can load cube maps directly into an OpenGL texture (same features as regular 2D textures, above)
 * Can take six image files directly into an OpenGL cube map texture
 * Can take a single image file where `width = 6 * height` (or vice versa), split it into an OpenGL cube map texture
+
+*** Readable Image Formats
+
+* BMP - non-1bpp, non-RLE (from `stb_image` documentation)
+* PNG - non-interlaced (from `stb_image` documentation)
+* JPG - JPEG baseline (from `stb_image` documentation)
+* TGA - greyscale or RGB or RGBA or indexed, uncompressed or RLE
+* DDS - DXT1/2/3/4/5, uncompressed, cubemaps (can't read 3D DDS files yet)
+* PSD - (from `stb_image` documentation)
+* HDR - converted to LDR, unless loaded with *HDR* functions (RGBE or RGBdivA or RGBdivA2)
  
 ## Add lights
 
