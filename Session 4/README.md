@@ -20,7 +20,7 @@ also be used to save and load images in a variety of formats.
 
 https://github.com/littlstar/soil
 
-**Features
+### Features
 
 * No external dependencies
 * Tiny
@@ -43,7 +43,7 @@ https://github.com/littlstar/soil
 * Can take six image files directly into an OpenGL cube map texture
 * Can take a single image file where `width = 6 * height` (or vice versa), split it into an OpenGL cube map texture
 
-*** Readable Image Formats
+### Readable Image Formats
 
 * BMP - non-1bpp, non-RLE (from `stb_image` documentation)
 * PNG - non-interlaced (from `stb_image` documentation)
