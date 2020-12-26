@@ -129,6 +129,66 @@ Final result should look like this.
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%204/Readme%20Pictures/Texture1.JPG)
 
+
+## Add Sky
+
+In this section, you will be asked to add a Sky plane with sky texture.
+
+---- Add Sky plane ----
+
+Insert into global variable definition area.
+
+```C++
+static Vertex skyVertices[4] =  
+{
+	{vec4(100.0, 0.0, -70.0, 1.0), vec2(1.0, 0.0)},
+	{vec4(100.0, 120.0, -70.0, 1.0), vec2(1.0, 1.0)},
+	{vec4(-100.0, 0.0, -70.0, 1.0), vec2(0.0, 0.0)},
+	{vec4(-100.0, 120.0, -70.0, 1.0), vec2(0.0, 1.0)}
+}; 
+```
+
+---- Add Sky vertices data ----
+> Add following codes in void setup(void) function (after comments "// Sky vertex data here")
+
+```C++
+   glBindVertexArray(vao[SKY]);
+   glBindBuffer(GL_ARRAY_BUFFER, buffer[SKY_VERTICES]);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(skyVertices), skyVertices, GL_STATIC_DRAW);
+   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(skyVertices[0]), 0);  //layout(location=2) in vec4 skyCoords;
+   glEnableVertexAttribArray(0);
+   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(skyVertices[0]), (void*)(sizeof(skyVertices[0].coords))); //layout(location=3) in vec2 skyTexCoords;
+   glEnableVertexAttribArray(1);
+```
+
+---- Add drawing codes ----
+
+in void drawScene(void) function.
+
+```C++
+   glUniform1ui(objectLoc, SKY);  //if (object == SKY)
+   glBindVertexArray(vao[SKY]);
+   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+```
+
+---- compile and run ----
+
+You will see a blue sky.
+
+---- Add Sky Texture ----
+
+Using similar step as field texture. Add texture to Sky plane
+
+---- Add Texture loc variable ----
+> Add following codes after 
+
+```C++
+ skyTexLoc, 
+```
+
+
+
+
 ## Add Sky
  
 > We can create a simple animation which let the sphere move long the Z axis.
