@@ -362,51 +362,36 @@ Final result should look like this. You can reference to "CreateSphere_finish.cp
 > We can create a simple animation which let the sphere move long the Z axis.
 
 
-* Step 1: Add header files
+* Step 1: Add a global variable for Z Co-ordinates of the ball 
 
 ```C++
+static float zVal = 0; // Z Co-ordinates of the ball.
 ```
 
-* Step 2: Set up gobal variable
+* Step 2: Add modelview matrix before draw the sphere
 
-Gobal variables are the codes after header files and before function definitions.
-
+In void drawScene(void) function, add sphere translation codes before "glUniform1ui(objectLoc, SPHERE); "
 		
 ```C++
-float vertices[] = 
-{
-	20.0, 20.0, 0.0,
-	80.0, 20.0, 0.0,
-	20.0, 80.0, 0.0,
-	80.0, 80.0, 0.0
-};
+modelViewMat = mat4(1.0);
+modelViewMat = translate(modelViewMat, testSphere.GetPosition()); //apply Sphere Position
 ```
 
-Add modelview and project matrix definition
+* Step 3: Modifiy void animate() function
 
-Both modelview and project matrix are used to definition the camera.
-
+Add following codes before "glutPostRedisplay();" in animate() function. It changes zVal by -0.2 in every frame.
 
 ```C++
-
+	zVal = zVal -0.2;
+	if (zVal < -25.0) zVal = 0.0;
+	testSphere.SetPosition(vec3(0, 0, zVal)); //modify sphere's position
 ```
 
-* Step 3: Add shader loading and checking functions
+glutIdleFunc(animate); has been added into main function, which enables animation.
 
-Add shader loading function and checking function after all global variables
-
-```C++
-
-```
-
-* Step 4: Add shader initialization codes
-
-Add shader loading and compiling check codes in the void setup(void) (after glClearColor(1.0, 1.0, 1.0, 0.0); )
+* Step 4: compile and run the program.
 
 
-```C++
-  
-```
 
 ## Set up Camera
  
