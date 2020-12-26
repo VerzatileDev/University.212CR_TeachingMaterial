@@ -52,8 +52,13 @@ https://github.com/littlstar/soil
 * DDS - DXT1/2/3/4/5, uncompressed, cubemaps (can't read 3D DDS files yet)
 * PSD - (from `stb_image` documentation)
 * HDR - converted to LDR, unless loaded with *HDR* functions (RGBE or RGBdivA or RGBdivA2)
+
+### SOIL library struture in Base project
+* header files - They are located in include/soil folder.
+* lib files - one lib file: soil.lib is located in include folder. It is compiled with x64 option so it can be only used with x64 configuration.
  
-## Add lights
+ 
+## Add Texture
 
 We are going to add ambient and diffuse lighting effects which illuminate the sphere and make it look realistic.
 
