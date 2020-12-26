@@ -60,72 +60,53 @@ https://github.com/littlstar/soil
  
 ## Add Texture
 
-We are going to add ambient and diffuse lighting effects which illuminate the sphere and make it look realistic.
+Download based project: CreateSphereClassTex.zip from week 4 folder. unzip it. Open CreateSphere.cpp for editing.
 
----- Add lighting and material structure definitions ----
-
-You add them anywhere in global variable definition area (before void setup(void) or before any function definition)
+---- Add header file ----
 
 ```C++
-struct Material
-{
-	vec4 ambRefl;
-	vec4 difRefl;
-	vec4 specRefl;
-	vec4 emitCols;
-	float shininess;
-};
-
-struct Light
-{
-	vec4 ambCols;
-	vec4 difCols;
-	vec4 specCols;
-	vec4 coords;
-};
+#include "soil/SOIL.h"
 ```
 
----- Add lighting and material value definitions ----
-> Add following codes after lighting and material struture definitions
+---- Add Texture loc variable ----
+> Add following codes after "objectLoc," in Global variable definition area
 
 ```C++
-static const vec4 globAmb = vec4(0.2, 0.2, 0.2, 1.0);
-// Front and back material properties.
-static const Material sphereFandB =
-{
-	vec4(1.0, 1.0, 0.0, 1.0),
-	vec4(1.0, 1.0, 0.0, 1.0),
-	vec4(1.0, 1.0, 0.0, 1.0),
-	vec4(0.0, 0.0, 0.0, 1.0),
-	50.0f
-};
-
-static const Light light0 =
-{
-	vec4(0.0, 0.0, 0.0, 1.0),
-	vec4(1.0, 1.0, 1.0, 1.0),
-	vec4(1.0, 1.0, 1.0, 1.0),
-	vec4(1.0, 1.0, 0.0, 0.0)
-};
+ grassTexLoc,  ///for grass texture 
 ```
 
----- Send data to the shader ----
-> Add following codes in void setup(void) before comments "// Create VAOs and VBOs... "
+---- Add texture loading and setup codes ----
+> Add following codes in the end of void setup(void) function.
 
 ```C++
-   //codes for OpenGL lighting
-   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.ambRefl"), 1,&sphereFandB.ambRefl[0]);
-   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.difRefl"), 1,&sphereFandB.difRefl[0]);
-   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.specRefl"), 1,&sphereFandB.specRefl[0]);
-   glUniform4fv(glGetUniformLocation(programId, "sphereFandB.emitCols"), 1,&sphereFandB.emitCols[0]);
-   glUniform1f(glGetUniformLocation(programId, "sphereFandB.shininess"), sphereFandB.shininess);
+   // Load the images.
+   std::string TexNames[] = {
+		"Textures/grass.bmp",
+		"Textures/sky.bmp",
+   };
+   
+   // Create texture ids.
+   glGenTextures(2, texture);
 
-   glUniform4fv(glGetUniformLocation(programId, "globAmb"), 1, &globAmb[0]);
+   int width, height;
+   unsigned char* data;
 
-   glUniform4fv(glGetUniformLocation(programId, "light0.ambCols"), 1,&light0.ambCols[0]);
-   glUniform4fv(glGetUniformLocation(programId, "light0.difCols"), 1,&light0.difCols[0]);
-   glUniform4fv(glGetUniformLocation(programId, "light0.specCols"), 1,&light0.specCols[0]);
-   glUniform4fv(glGetUniformLocation(programId, "light0.coords"), 1, &light0.coords[0]);
+   // Bind grass image.
+   glActiveTexture(GL_TEXTURE0);
+   glBindTexture(GL_TEXTURE_2D, texture[0]);
+
+   //load image data using SOIL library
+   data = SOIL_load_image(TexNames[0].c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+   SOIL_free_image_data(data);
+
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+   glGenerateMipmap(GL_TEXTURE_2D);
+   grassTexLoc = glGetUniformLocation(programId, "grassTex");
+   glUniform1i(grassTexLoc, 0); //send texture to shader
 ```
 
 ---- Add drawing codes in fragment Shader ----
