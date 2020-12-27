@@ -204,7 +204,7 @@ You need to add codes into fragment shader
 
 ## Class design
 
-As you have know object design principle in last few weeks, it is the time that you should think about design c++ classes for modern OpenGL game engine.
+As you have learned object design principle in last few weeks, it is the time that you should think about designing c++ classes for modern OpenGL game engine.
 Here some example of C++ classes are given. The first one is the abstract class for game object.
 
 Header file
@@ -215,7 +215,6 @@ Header file
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <glm/glm.hpp>
-#include <map>
 #include "SphereCollider.h" //link to your physics (Sphere collider)
 
 class GameObject
@@ -277,6 +276,114 @@ void GameObject::Update(float deltaTime)
 
 ```
 
+Second example is a stationary object: Rock.
+
+Header file
+
+```C++
+#pragma once
+#include "GameObject.h"
+#include "SphereCollider.h"
+#include "objReader.h"  // OBJ file reader 
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
+
+class Rock : public GameObject
+{
+private:
+	
+public:
+	Rock(glm::vec3 pos);
+	~Rock();
+
+	SphereCollider* collider;
+	SphereCollider* GetCollider();
+
+	void Draw();
+	void Update(float, glm::vec3 offset);
+};
+ 
+```
+
+C++ file
+
+```C++
+#include "Rock.h"
+
+Rock::Rock(glm::vec3 pos) : GameObject(pos)
+{
+	position = pos;
+	collider = new SphereCollider(4, glm::vec3(position.x, position.y, position.z));
+	AttachCollider(collider);
+}
+
+Rock::~Rock()
+{
+}
+
+SphereCollider* Rock::GetCollider()
+{
+	return collider;
+}
+
+void Rock::Draw()
+{
+}
+
+void Rock::Update(float deltaTime, glm::vec3 offset)
+{
+	collider->Update(deltaTime, position, offset);
+}
+```
+
+The final example is a moving object which is controlled by the user
+
+Header file 
+
+
+```C++
+#pragma once
+#include "GameObject.h"
+#include "SphereCollider.h"
+#include "objReader.h"
+#include "Rock.h"
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
+
+class Hovercraft : public GameObject
+{
+private:
+	float mass;
+
+	glm::vec3 acceleration;
+	glm::vec3 velocity;
+
+public:
+	Hovercraft(float mass, glm::vec3 pos);
+	~Hovercraft();
+
+	glm::vec3 orientation = glm::vec3(0.0f, 0.0f, 1.0f);
+	float accelerationOrientation = 0;
+	float angle;
+	float drag = 0.8f;
+	float terminalVelocity = 10;
+	float turnSpeed = 0.0f;
+	float propellorForce = 2.0f;
+
+	SphereCollider* collider;
+	SphereCollider* GetCollider();
+
+	void Draw();
+	void Update(float, glm::vec3 offset);
+	void Collide(Rock collidedObject);
+};
+```
 
 ## Homework
 
