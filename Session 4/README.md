@@ -204,9 +204,10 @@ You need to add codes into fragment shader
 ## Homework
 
 
-* Create A cube from scratch using modern OpenGL
+* Change sky texture map when a key is pressed.
 
-> There is tutorial. The link is  http://www.opengl-tutorial.org/beginners-tutorials/tutorial-4-a-colored-cube/
+> Implement additional codes for loading night sky texture (nightSky.bmp) in Textures folder of the base project.
+Also send it the shader when a key is pressed. So, the sky texture can be changed when a key is pressed.
 
 
 
