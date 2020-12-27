@@ -4,7 +4,8 @@
 1. [SOIL Library](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#SOIL-Library)
 2. [Add Texture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Add-Texture)
 3. [Add Sky](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Add-Sky)
-4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Homework)
+4. [C++ class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#C++-class-design)
+5. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Homework)
 
 Welcome to Week 4! 
 
@@ -199,6 +200,82 @@ Add sky texture loading and setup code
 ---- Add texture codes in fragment Shader ----
 
 You need to add codes into fragment shader
+
+
+## C++ class design
+
+As you have know object design principle in last few weeks, it is the time that you should think about design c++ classes for modern OpenGL game engine.
+Here some example of C++ classes are given. The first one is the abstract class for game object.
+
+Header file
+
+```C++
+#pragma once
+
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+#include <glm/glm.hpp>
+#include <map>
+#include "SphereCollider.h" //link to your physics (Sphere collider)
+
+class GameObject
+{
+protected:
+	
+public:
+	GameObject();
+	GameObject(glm::vec3 pos);
+	~GameObject();
+
+	glm::vec3 position;
+	
+	//link to your Sphere collider
+	SphereCollider* collider;
+	SphereCollider* GetCollider();
+	void AttachCollider(SphereCollider* attachingCollider);
+
+    //OpenGL drawing function
+	virtual void Draw() = 0;
+	
+	///physics update function
+	virtual void Update(float);
+};
+
+```
+
+C++ file
+
+```C++
+#include "GameObject.h"
+
+GameObject::GameObject()
+{
+}
+
+GameObject::GameObject(glm::vec3 pos)
+{
+	position = pos;
+}
+
+GameObject::~GameObject()
+{
+}
+
+SphereCollider* GameObject::GetCollider()
+{
+	return collider;
+}
+
+void GameObject::AttachCollider(SphereCollider* attachingCollider)
+{
+	collider = attachingCollider;
+}
+
+void GameObject::Update(float deltaTime)
+{
+}
+
+```
 
 
 ## Homework
