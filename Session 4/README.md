@@ -175,7 +175,7 @@ in void drawScene(void) function.
 
 You will see a blue sky.
 
----- Add Sky Texture ----
+### Add Sky Texture
 
 Using similar step as field texture. Add texture to Sky plane
 
@@ -186,93 +186,19 @@ Using similar step as field texture. Add texture to Sky plane
  skyTexLoc, 
 ```
 
-
-
-
-## Add Sky
- 
-> We can create a simple animation which let the sphere move long the Z axis.
-
-
-* Step 1: Add a global variable for Z Co-ordinates of the ball 
+Add sky texture loading and setup code
 
 ```C++
-static float zVal = 0; // Z Co-ordinates of the ball.
+   // Bind Sky image.
+   glActiveTexture(GL_TEXTURE1);
+   glBindTexture(GL_TEXTURE_2D, texture[1]);
+   
+   ////// You need to complete remaining codes //
 ```
 
-* Step 2: Add modelview matrix before draw the sphere
+---- Add texture codes in fragment Shader ----
 
-In void drawScene(void) function, add sphere translation codes before "glUniform1ui(objectLoc, SPHERE); "
-		
-```C++
-   modelViewMat = mat4(1.0);
-   modelViewMat = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0, 10.0, 0.0), vec3(0.0, 1.0, 0.0)); //apply the same modelview as other objects
-   modelViewMat = translate(modelViewMat, testSphere.GetPosition()); //apply Sphere Position and modify the modelview matrix
-   glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(modelViewMat));  //send modelview matrix to the shader
-```
-
-* Step 3: Modifiy void animate() function
-
-Add following codes before "glutPostRedisplay();" in animate() function. It changes zVal by -0.2 in every frame.
-
-```C++
-	zVal = zVal -0.2;
-	if (zVal < -25.0) zVal = 0.0;
-	testSphere.SetPosition(vec3(0, 0, zVal)); //modify sphere's position
-```
-
-glutIdleFunc(animate); has been added into main function, which enables animation.
-
-* Step 4: compile and run the program.
-
-
-
-## Set up Camera
- 
-> We will set up a moving camera by pressing arrow keys. It allow moving camera up and down.
-
-
-* Step 1: Add camera position global variable
-
-```C++
-static float d = 0.0; //Camera position
-```
-
-* Step 2: Insert position into modelview matrix
-
-In void drawScene(void), change lookAt function input parameters
-		
-from 
-```C++
-modelViewMat = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0, 10.0, 0.0), vec3(0.0, 1.0, 0.0));
-```
-
-to 
-```C++
-modelViewMat = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0 + d, 10.0, 0.0), vec3(0.0, 1.0, 0.0));
-```
-
-We need to change both lookAt() functions in drawScene(void) function.
-
-
-* Step 3: Add codes into void specialKeyInput(int key, int x, int y)
-
-Add codes to change d value 
-
-```C++
-   if (key == GLUT_KEY_LEFT) 
-   {
-	   if (d > -50.0) d -= 0.1;
-   }
-   if (key == GLUT_KEY_RIGHT) 
-   {
-	   if (d < 15.0) d += 0.1;
-   }
-```
-
-* Step 4: compile and run
-
-Use left and right arrow keys to move the camera
+You need to add codes into fragment shader
 
 
 ## Homework
