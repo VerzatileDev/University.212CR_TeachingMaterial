@@ -4,7 +4,7 @@
 1. [SOIL Library](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#SOIL-Library)
 2. [Add Texture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Add-Texture)
 3. [Add Sky](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Add-Sky)
-4. [C++ class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#C++-class-design)
+4. [Class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Class-design)
 5. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Homework)
 
 Welcome to Week 4! 
@@ -202,7 +202,7 @@ Add sky texture loading and setup code
 You need to add codes into fragment shader
 
 
-## C++ class design
+## Class design
 
 As you have know object design principle in last few weeks, it is the time that you should think about design c++ classes for modern OpenGL game engine.
 Here some example of C++ classes are given. The first one is the abstract class for game object.
