@@ -1,18 +1,18 @@
 # Session 5 - Import 3D Models
 
 #### Table of Contents
-1. [SOIL Library](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#SOIL-Library)
-2. [Add Texture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Add-Texture)
-3. [Add Sky](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Add-Sky)
-4. [Class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Class-design)
-5. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%204#Homework)
+1. [Create Models](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Create-Models)
+2. [Base Project](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Base-Project)
+3. [Add Sky](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Add-Sky)
+4. [Class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Class-design)
+5. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Homework)
 
 Welcome to Week 4! 
 
 > By following these sessions, we will learn how to load texture and send texture to shader.
 
 
-## SOIL Library
+## Create Models
 
 SOIL is a tiny C library used primarily for uploading textures into OpenGL.
 It is based on `stb_image` version 1.16. It has been extended to load TGA and DDS files, and
@@ -131,7 +131,7 @@ Final result should look like this.
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%204/Readme%20Pictures/Texture1.JPG)
 
 
-## Add Sky
+## Base Project
 
 In this section, you will be asked to add a Sky plane with sky texture.
 
