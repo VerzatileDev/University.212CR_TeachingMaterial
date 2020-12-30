@@ -294,14 +294,26 @@ Header file
 class Rock : public GameObject
 {
 private:
+	VertexWtihNormal* VerticesData;  //vertices data 
+	unsigned int* Indices;          //triangle indices    
+
+	unsigned int VAO; 
+	unsigned int VBO;
+	unsigned int IBO; //for triangle indices buffer
+
+	mat4 ModelMatrix;
 	
 public:
 	Rock(glm::vec3 pos);
 	~Rock();
 
-	SphereCollider* collider;
-	SphereCollider* GetCollider();
+	//SphereCollider* collider;
+	//SphereCollider* GetCollider();
 
+	void SetIDs(unsigned int, unsigned int, unsigned int);
+	void updateModelMatrix(unsigned int, float);
+
+	void Setup();
 	void Draw();
 	void Update(float, glm::vec3 offset);
 };
@@ -316,8 +328,8 @@ C++ file
 Rock::Rock(glm::vec3 pos) : GameObject(pos)
 {
 	position = pos;
-	collider = new SphereCollider(4, glm::vec3(position.x, position.y, position.z));
-	AttachCollider(collider);
+	//collider = new SphereCollider(4, glm::vec3(position.x, position.y, position.z));
+	//AttachCollider(collider);
 }
 
 Rock::~Rock()
@@ -329,8 +341,26 @@ SphereCollider* Rock::GetCollider()
 	return collider;
 }
 
+void Sphere::SetIDs(unsigned int vao, unsigned int vbo, unsigned int ibo)
+{
+	VAO = vao;
+	VBO = vbo;
+	IBO = ibo;
+}
+
+void Sphere::Setup()
+{
+	//you need implement setup codes for OpenGL. 
+}
+
+void Sphere::updateModelMatrix(unsigned int modelViewMatLoc,float d)
+{
+	//you need implement Update function for ModelView matrix
+}
+
 void Rock::Draw()
 {
+	//you need implement drawing codes for OpenGL. 
 }
 
 void Rock::Update(float deltaTime, glm::vec3 offset)
