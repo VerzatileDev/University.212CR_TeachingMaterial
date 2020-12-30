@@ -276,7 +276,8 @@ void GameObject::Update(float deltaTime)
 
 ```
 
-Second example is a stationary object: Rock.
+Second example is a stationary object: Rock. You need to implement setup, draw and updateModelMatrix functions. 
+There will be more examples (in Base Project) in next week.
 
 Header file
 
