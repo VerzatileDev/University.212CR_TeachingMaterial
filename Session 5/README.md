@@ -47,7 +47,37 @@ Example
 
 ### Face elements
 
-
+Faces are defined using lists of vertex, texture and normal indices in the format
+ vertex_index/texture_index/normal_index for which each index starts at 1 and increases corresponding to the order
+ in which the referenced element was defined. Polygons such as quadrilaterals can be 
+ defined by using more than three indices.
+ 
+ Each face can contain three or more vertices.
+ 
+ Example
+ 
+ * f v1 v2 v3 ....
+ 
+ Optionally, texture coordinate indices can be used to specify texture coordinates when defining a face. 
+ To add a texture coordinate index to a vertex index when defining a face, 
+ one must put a slash immediately after the vertex index and then put the texture coordinate index.
+ No spaces are permitted before or after the slash. A valid texture coordinate 
+ index starts from 1 and matches the corresponding element in the previously defined list of texture coordinates.
+ Each face can contain three or more elements.
+ 
+ Example
+ 
+ * f v1/vt1 v2/vt2 v3/vt3 ...
+ 
+ 
+ Optionally, normal indices can be used to specify normal vectors for vertices when defining a face. 
+ To add a normal index to a vertex index when defining a face, one must put a second slash after the texture
+ coordinate index and then put the normal index. A valid normal index starts from 1 and matches the 
+ corresponding element in the previously defined list of normals. Each face can contain three or more elements.
+ 
+ Example
+ 
+ * f v1//vn1 v2//vn2 v3//vn3 ...
  
 ## Add Texture
 
