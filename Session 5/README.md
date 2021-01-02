@@ -3,7 +3,7 @@
 #### Table of Contents
 1. [What is OBJ file](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#What-is-OBJ-file)
 2. [Create Models](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Create-Models)
-3. [Add Sky](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Add-Sky)
+3. [Import OBJ file](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Import-OBJ-file)
 4. [Class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Class-design)
 5. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Homework)
 
@@ -79,79 +79,17 @@ Faces are defined using lists of vertex, texture and normal indices in the forma
  
  * f v1//vn1 v2//vn2 v3//vn3 ...
  
-## Add Texture
+## Create Models
 
-Download based project: CreateSphereClassTex.zip from week 4 folder. unzip it. Open CreateSphere.cpp for editing.
+Please download MakingRaceTrack3DSMax.pdf in week 5 folder. Following the tutorial to create your own racing track. 
+You also can watch youtube video embedded in the PDF and following the video tutorial.
 
----- Add header file ----
+In the end, please export texture coordinates if you have applied texture to the object.
 
-```C++
-#include "soil/SOIL.h"
-```
-
----- Add Texture loc variable ----
-> Add following codes after "objectLoc," in Global variable definition area
-
-```C++
- grassTexLoc,  ///for grass texture 
-```
-
----- Add texture loading and setup codes ----
-> Add following codes in the end of void setup(void) function.
-
-```C++
-   // Load the images.
-   std::string TexNames[] = {
-		"Textures/grass.bmp",
-		"Textures/sky.bmp",
-   };
-   
-   // Create texture ids.
-   glGenTextures(2, texture);
-
-   int width, height;
-   unsigned char* data;
-
-   // Bind grass image.
-   glActiveTexture(GL_TEXTURE0);
-   glBindTexture(GL_TEXTURE_2D, texture[0]);
-
-   //load image data using SOIL library
-   data = SOIL_load_image(TexNames[0].c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
-   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-   SOIL_free_image_data(data);
-
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-   glGenerateMipmap(GL_TEXTURE_2D);
-   grassTexLoc = glGetUniformLocation(programId, "grassTex");
-   glUniform1i(grassTexLoc, 0); //send texture to shader
-```
-
----- Add texture codes in fragment Shader ----
-
-Open fragmentShader.glsl. You can drag fragmentShader.glsl into Visual Studio and edit it. 
-Add following definition in fragmentShader.glsl (add before main(void) function).
-
-```C++
-uniform sampler2D grassTex;
-```
-Replace fieldTexColor color calculation with texture color in main function.
-
-```C++
-fieldTexColor = texture(grassTex, texCoordsExport);
-```
-
----- compile and run ----
-
-Final result should look like this. 
-
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%204/Readme%20Pictures/Texture1.JPG)
+You are also welcome to use Blender to create the racing track if you prefer to. 
 
 
-## Base Project
+## Import OBJ file
 
 In this section, you will be asked to add a Sky plane with sky texture.
 
@@ -226,6 +164,8 @@ You need to add codes into fragment shader
 
 As you have learned object design principle in last few weeks, it is the time that you should think about designing c++ classes for modern OpenGL game engine.
 Here some example of C++ classes are given. The first one is the abstract class for game object.
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%204/Readme%20Pictures/Texture1.JPG)
 
 Header file
 
