@@ -40,9 +40,9 @@ list, the keyword (in parentheses) follows the data type.
 
 Example
 
-v 34.954346 7.512550 -53.632324
-vt 1.000000 1.000000
-vn -0.0000 1.0000 0.0000
+* v 34.954346 7.512550 -53.632324
+* vt 1.000000 1.000000
+* vn -0.0000 1.0000 0.0000
 
 
 ### Face elements
