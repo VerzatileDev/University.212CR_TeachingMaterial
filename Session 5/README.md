@@ -38,11 +38,16 @@ list, the keyword (in parentheses) follows the data type.
 *       texture vertices (vt)
 *       vertex normals (vn)
 
+Example
 
-### SOIL library struture in Base project
-* header files - They are located in include/soil folder.
-* lib files - one lib file: soil.lib is located in include folder. It is compiled with x64 option so it can be only used with x64 configuration.
- 
+v 34.954346 7.512550 -53.632324
+vt 1.000000 1.000000
+vn -0.0000 1.0000 0.0000
+
+
+### Face elements
+
+
  
 ## Add Texture
 
