@@ -1,58 +1,43 @@
 # Session 5 - Import 3D Models
 
 #### Table of Contents
-1. [Create Models](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Create-Models)
-2. [Base Project](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Base-Project)
+1. [What is OBJ file](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#What-is-OBJ-file)
+2. [Create Models](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Create-Models)
 3. [Add Sky](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Add-Sky)
 4. [Class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Class-design)
 5. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Homework)
 
-Welcome to Week 4! 
+Welcome to Week 5! 
 
-> By following these sessions, we will learn how to load texture and send texture to shader.
+> In this week, we will learn how to use OBJ file to export from 3D modelling software and import into your OpenGL program.
+Also, we will learn how to create a racing track in 3DS Max.
 
 
-## Create Models
+## What is OBJ file
 
-SOIL is a tiny C library used primarily for uploading textures into OpenGL.
-It is based on `stb_image` version 1.16. It has been extended to load TGA and DDS files, and
-to perform common functions needed in loading OpenGL textures. SOIL can
-also be used to save and load images in a variety of formats.
+An OBJ file is a standard 3D image format that can be exported and opened by various 3D image editing programs. 
+It contains a three-dimensional object, which includes 3D coordinates, texture maps, polygonal faces, 
+and other object information.
 
-https://github.com/littlstar/soil
+The OBJ format is considered to be a universal 3D model format since it is widely supported by 3D editing applications. 
+The format is simple and text-based, which is one reason why many programs use it. 
+However, the simple format structure may also lead to huge OBJ file sizes if they store large and complex 3D objects.
 
-### Features
+If you receive an OBJ file you can choose from a large number of free and commercial applications to open it such as 
+Microsoft 3D Builder, Microsoft 3D viewer (Windows 10), 3DS Max, Blender, MeshLab and more. 
 
-* No external dependencies
-* Tiny
-* Cross platform (Windows, \*nix, Mac OS X)
-* Public Domain
-* Can load an image file directly into a 2D OpenGL texture
-* Can generate a new texture handle, or reuse one specified
-* Can automatically rescale the image to the next largest power-of-two size
-* Can automatically create MIPmaps
-* Can scale (not simply clamp) the RGB values into the "safe range" for NTSC displays (16 to 235, as recommended [here][1])
-* Can multiply alpha on load (for more correct blending / compositing)
-* Can flip the image vertically
-* Can compress and upload any image as DXT1 or DXT5 (if `EXT_texture_compression_s3tc` is available), using an internal (very fast!) compressor
-* Can convert the RGB to YCoCg color space (useful with DXT5 compression: see [this link][2] from NVIDIA)
-* Will automatically downsize a texture if it is larger than `GL_MAX_TEXTURE_SIZE`
-* Can directly upload DDS files (DXT1/3/5/uncompressed/cubemap, with or without MIPmaps). Note: directly uploading the compressed DDS image will disable the other options (no flipping, no pre-multiplying alpha, no rescaling, no creation of MIPmaps, no auto-downsizing)
-* Can load rectangluar textures for GUI elements or splash screens (requires `GL_ARB/EXT/NV_texture_rectangle`)
-* Can decompress images from RAM (e.g. via [PhysicsFS][3] or similar) into an OpenGL texture (same features as regular 2D textures, above)
-* Can load cube maps directly into an OpenGL texture (same features as regular 2D textures, above)
-* Can take six image files directly into an OpenGL cube map texture
-* Can take a single image file where `width = 6 * height` (or vice versa), split it into an OpenGL cube map texture
 
-### Readable Image Formats
+### File structure
 
-* BMP - non-1bpp, non-RLE (from `stb_image` documentation)
-* PNG - non-interlaced (from `stb_image` documentation)
-* JPG - JPEG baseline (from `stb_image` documentation)
-* TGA - greyscale or RGB or RGBA or indexed, uncompressed or RLE
-* DDS - DXT1/2/3/4/5, uncompressed, cubemaps (can't read 3D DDS files yet)
-* PSD - (from `stb_image` documentation)
-* HDR - converted to LDR, unless loaded with *HDR* functions (RGBE or RGBdivA or RGBdivA2)
+* The following types of data may be included in an .obj file. In this
+list, the keyword (in parentheses) follows the data type.
+
+### Vertex data
+
+*       geometric vertices (v)
+*       texture vertices (vt)
+*       vertex normals (vn)
+
 
 ### SOIL library struture in Base project
 * header files - They are located in include/soil folder.
