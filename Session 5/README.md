@@ -91,11 +91,20 @@ You are also welcome to use Blender to create the racing track if you prefer to.
 
 ## Import OBJ file
 
-In this section, you will be asked to add a Sky plane with sky texture.
+In this section, you will learn how to import your model in OBJ format into the OpenGL program.
 
----- Add Sky plane ----
 
-Insert into global variable definition area.
+### Base Project
+
+The base project (LoadObjClass.zip) is located in week 5 folder. Please download it and unzip it.
+
+The codes handle the import of OBJ file is inside the header file : OBJloader.h.
+This is a head file only library. It is a simplified version of Bly7 OBJ Loader library (https://github.com/Bly7/OBJ-Loader).
+If you prefer to use the Bly7 OBJ loader, you can use Bly7 OBJ-Loader (https://github.com/Bly7/OBJ-Loader) 
+which can material files.
+
+But the following tutorial is designed for my OBJ loader. If you use Bly7 OBJ-Loader, you have to change some codes (for example, data structures)
+  
 
 ```C++
 static Vertex skyVertices[4] =  
