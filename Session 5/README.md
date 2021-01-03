@@ -117,25 +117,42 @@ There are already two testing OBJ files in week 5 folder. Please download track.
 * Modify Model.h 
 
 We need change Model class so that it can input a OBJ file name, load it and draw it.
-First  
+
+First declare NumVert variable as private variable
 
 ```C++
- std::vector<Vertex> mesh = loadOBJ(objFile); 
+ int NumVert; 
 ```
+
+Change CreateObject input parameter so it can take filename as an input parameter
+
+```C++
+ void CreateObject(const char *);
+```
+
+Change constructor input parameter so it can take filename as an input parameter
+
+```C++
+ Model(const char*);
+```
+
+Change updateModelMatrix input parameter so it can take position and scale for individual model.
+
+```C++
+ void updateModelMatrix(unsigned int, float,float,float);
+```
+
+* Complete  
 
 Add sky texture loading and setup code
 
 ```C++
    // Bind Sky image.
    glActiveTexture(GL_TEXTURE1);
-   glBindTexture(GL_TEXTURE_2D, texture[1]);
-   
-   ////// You need to complete remaining codes //
 ```
 
----- Add texture codes in fragment Shader ----
 
-You need to add codes into fragment shader
+
 
 
 ## Class design
