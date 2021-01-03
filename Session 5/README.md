@@ -285,6 +285,8 @@ layout(location=6) in vec2 objTexCoords;
 
 * Add codes to process Track data
 
+Please note that objCoords is vec3. It need to be converted into vec4
+
 ```C++
 	if (object == TRACK)
     {
@@ -304,7 +306,15 @@ Open fragmentShader.glsl in MS Visual Studio.
 #define TRACK 3
 ```
 
+* Add Track coloring codes. For now, we just borrow Sky texture to color the track object.
 
+```C++
+if (object == TRACK) {
+    colorsOut = skyTexColor;
+   }
+```
+
+* Finally, compile it and run it. You will see a track object with Sky texture in the scene.
 
 
 ## Class design
