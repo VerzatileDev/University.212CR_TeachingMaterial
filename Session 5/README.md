@@ -106,18 +106,19 @@ which can material files.
 But the following tutorial is designed for my OBJ loader. If you use Bly7 OBJ-Loader, you have to change some codes (for example, data structures)
   
 
-### Add Track Class
+### Add Import codes into Model Class
 
-In Solution Explorer (MS Visual Studio), right click the project and select "Class Wizard...". then click on Add class.
-In CreateClass Dialog, set GameObject as base class. Set class name to "Track"
+There is already a skeleton class for importing OBJ file. It is Model class. 
+In Solution Explorer (MS Visual Studio), double click Model.cpp and open it. 
+You need to complete the CreateObject() function to add importing codes for OBJ file.
 
- ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%205/Readme%20Pictures/AddClass.JPG)
+There are already two testing OBJ files in week 5 folder. Please download track.obj and hover.obj and put them in the project folder.
 
----- Add Texture loc variable ----
+---- Modify Model.h ----
 > Add following codes after 
 
 ```C++
- skyTexLoc, 
+ std::vector<Vertex> mesh = loadOBJ(objFile); 
 ```
 
 Add sky texture loading and setup code
