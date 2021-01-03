@@ -360,10 +360,13 @@ Final result
 ## Homework
 
 
-* Change sky texture map when a key is pressed.
+* Add your model into scene.
 
-> Implement additional codes for loading night sky texture (nightSky.bmp) in Textures folder of the base project.
-Also send it the shader when a key is pressed. So, the sky texture can be changed when a key is pressed.
+You should create a track 3D model in 3DS max or Blender and export it as OBJ file. Import it into your OpenGL program.
+
+You should position the center of your track model in the orgin of coordinate system in 3DS max or Blender. 
+That will cause less trouble to position it in your OpenGL program. Please adjust model scale it first and apply translation to position the model.
+
 
 
 
