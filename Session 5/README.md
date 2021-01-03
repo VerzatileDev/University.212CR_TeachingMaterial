@@ -114,8 +114,10 @@ You need to complete the CreateObject() function to add importing codes for OBJ 
 
 There are already two testing OBJ files in week 5 folder. Please download track.obj and hover.obj and put them in the project folder.
 
----- Modify Model.h ----
-> Add following codes after 
+* Modify Model.h 
+
+We need change Model class so that it can input a OBJ file name, load it and draw it.
+First  
 
 ```C++
  std::vector<Vertex> mesh = loadOBJ(objFile); 
