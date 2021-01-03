@@ -320,13 +320,41 @@ if (object == TRACK) {
 
 ## Add another OBJ
 
-As you have learned object design principle in last few weeks, it is the time that you should think about designing c++ classes for modern OpenGL game engine.
-Here some example of C++ classes are given. The first one is the abstract class for game object.
+You can easily add another OBJ object into scene. For testing purpose, you can use hover.obj as the second testing file.
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%205/Readme%20Pictures/Texture1.JPG)
+You need to declare another instantce of Model class as 
 
-Header file
+```C++
+static Model Hover("hover.obj");
+```
 
+You also need to add one more object into VAO and VBO arrays. Following instructions from last section.
+
+You need binding hover object and draw it. You could use following parameter for ModelView matrix
+
+```C++
+   // Draw Hover
+   Hover.updateModelMatrix(modelViewMatLoc, d, 1.5f, 0.0f);
+   glUniform1ui(objectLoc, HOVER);  //if (object == HOVER)
+   Hover.Draw();
+```
+
+Finally, you need to add codes to both Vertex and Fragement Shaders.
+
+This time, you can use diffuse lighting effects instead of texture mapping in Fragment shader.
+
+```C++
+if (object == HOVER) {
+    normal = normalize(normalExport);
+	lightDirection = normalize(vec3(light0.coords));
+	fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
+    colorsOut =  vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0);
+   }
+```
+
+Final result
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%205/Readme%20Pictures/Hover.JPG)
 
 
 ## Homework
