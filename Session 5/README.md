@@ -4,7 +4,7 @@
 1. [What is OBJ file](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#What-is-OBJ-file)
 2. [Create Models](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Create-Models)
 3. [Import OBJ file](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Import-OBJ-file)
-4. [Class design](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Class-design)
+4. [Add another OBJ](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Add-another-OBJ)
 5. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Homework)
 
 Welcome to Week 5! 
@@ -207,6 +207,63 @@ void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,f
 	glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(ModelMatrix));  //send modelview matrix to the shader
 }
 ```
+
+* Complete Draw function (in Model.cpp).
+
+```C++
+void Model::Draw()
+{
+	glBindVertexArray(VAO);
+	glDrawArrays(GL_TRIANGLES, 0, NumVert);
+}
+```
+
+### Use Model class in GameEngine (LoadObjClass.cpp)
+
+* Add head file
+
+```C++
+#include "Model.h"
+```
+
+* Add object into VAO and VBO
+
+```C++
+static enum object {FIELD, SKY, SPHERE,TRACK}; // VAO ids.
+static enum buffer {FIELD_VERTICES, SKY_VERTICES,SPHERE_VERTICES, SPHERE_INDICES, TRACK_VERTICES}; // VBO ids.
+```
+
+* change VAO and VBO array definition
+
+```C++
+   buffer[5], ///add one more object
+   vao[4], ///add one more object
+```
+
+* Generate more VAO in setup function
+
+```C++
+glGenVertexArrays(4, vao); ///add one more object
+```
+
+* Binding TRACK VAO and VBO in setup function
+
+```C++
+   //Binding Track VAO and VBO
+   glGenBuffers(1, &buffer[TRACK_VERTICES]); ///generate one more id for VBO
+   Track.SetIDs(vao[TRACK], buffer[TRACK_VERTICES], 0);
+   Track.Setup();
+```
+
+* Add drawing codes for the TRACK in drawScene function, add it after draw sphere
+
+```C++
+   // Draw Track
+   Track.updateModelMatrix(modelViewMatLoc, d, 0.2f,-60.0f);
+   glUniform1ui(objectLoc, TRACK);  //if (object == TRACK)
+   Track.Draw();
+```
+
 
 ## Class design
 
