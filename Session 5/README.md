@@ -264,6 +264,48 @@ glGenVertexArrays(4, vao); ///add one more object
    Track.Draw();
 ```
 
+### Modify Vertex shader
+
+Open vertexShader.glsl in MS Visual Studio.
+
+* Add Track object definition
+
+```C++
+#define TRACK 3
+```
+
+* Add import ports, please note objCoords is vec3 (NOT vec4)
+
+```C++
+layout(location=4) in vec3 objCoords;
+layout(location=5) in vec3 objNormals;
+layout(location=6) in vec2 objTexCoords;
+
+```
+
+* Add codes to process Track data
+
+```C++
+	if (object == TRACK)
+    {
+      coords = vec4(objCoords, 1.0f);
+      normalExport = objNormals;
+      texCoordsExport = objTexCoords;
+    }
+```
+
+### Modify Fragment shader
+
+Open fragmentShader.glsl in MS Visual Studio.
+
+* Add Track object definition
+
+```C++
+#define TRACK 3
+```
+
+
+
 
 ## Class design
 
