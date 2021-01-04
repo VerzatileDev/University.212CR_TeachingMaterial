@@ -1,4 +1,4 @@
-# Session 3 - Creat objects, Add lighting and Set up Camera
+# Session 3 - Create objects, Add lighting and Set up Camera
 
 #### Table of Contents
 1. [Create objects](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%203#create-objects)
