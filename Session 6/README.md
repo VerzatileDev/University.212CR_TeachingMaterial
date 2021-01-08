@@ -106,8 +106,8 @@ We only need multiple texture color with diffuse color in fragment shader
 ```C++
    if (object == HOVER) {
     normal = normalize(normalExport);
-	lightDirection = normalize(vec3(light0.coords));
-	fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
+    lightDirection = normalize(vec3(light0.coords));
+    fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
     colorsOut =  woodTexColor*vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0);
    }
 ```
