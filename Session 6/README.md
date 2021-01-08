@@ -111,7 +111,10 @@ We only need multiple texture color with diffuse color in fragment shader
     colorsOut =  woodTexColor*vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0);
    }
 ```
- 
+
+* Finally, it should look like this
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%206/Readme%20Pictures/TextureLight.JPG)
 
 ## Animation using shader
 
