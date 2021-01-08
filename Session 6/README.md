@@ -86,12 +86,15 @@ woodTexColor = texture(woodTex, texCoordsExport);
    if (object == HOVER) {
     colorsOut = woodTexColor;
     //normal = normalize(normalExport);
-	//lightDirection = normalize(vec3(light0.coords));
-	//fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
+    //lightDirection = normalize(vec3(light0.coords));
+    //fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
     //colorsOut =  vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0);
    }
 ```
 
+* It should look like this
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%206/Readme%20Pictures/Texture.JPG)
 
 ### combine diffuse light with texture
 
