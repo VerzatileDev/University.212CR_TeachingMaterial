@@ -14,29 +14,86 @@ Welcome to Week 6!
 
 ## Combine Light and Texture
 
-You should use the project you finished last week. However, if you have problems to complete all tasks last week. 
-You can use the base project provided in this week folder (LoadObjClass_Completed.zip). 
+We are going to add texture and lighting effects to the hovercraft model.
 
 
-### File structure
+### Add texture
 
-* The following types of data may be included in an .obj file. In this
-list, the keyword (in parentheses) follows the data type.
+* Download wood texture (wood.png) from week 6 folder and put it in the Textures folder.
+* Add woodTexLoc variable after skyTexLoc
 
-### Vertex data
+```C++
+ woodTexLoc,
+```
 
-*       geometric vertices (v)
-*       texture vertices (vt)
-*       vertex normals (vn)
-
-Example
-
-* v 34.954346 7.512550 -53.632324
-* vt 1.000000 1.000000
-* vn -0.0000 1.0000 0.0000
+* In TexNames[] array (setup() function), add wood.png into namelist
 
 
-### Face elements
+```C++
+ "Textures/wood.png",
+```
+
+* change 
+
+```C++
+ glGenTextures(2, texture);
+```
+
+to 
+
+```C++
+ glGenTextures(3, texture);
+```
+
+* Also change texture[2];  to texture[3]; 
+
+* Add texture initalization codes
+
+```C++
+   glActiveTexture(GL_TEXTURE2);
+   glBindTexture(GL_TEXTURE_2D, texture[2]);
+
+   data = SOIL_load_image(TexNames[2].c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+   SOIL_free_image_data(data);
+
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+   glGenerateMipmap(GL_TEXTURE_2D);
+   woodTexLoc = glGetUniformLocation(programId, "woodTex");
+   glUniform1i(woodTexLoc, 2); //send texture to shader
+```
+
+### Add texture drawing in fragment shader
+
+* Add woodTex definition
+
+```C++
+uniform sampler2D woodTex;
+```
+
+* Add Wood texture color calculation codes
+
+```C++
+woodTexColor = texture(woodTex, texCoordsExport);
+```
+
+* Finally, test the texture out. Comments all lighting calculation codes and add woodTexColor only.
+
+```C++
+   if (object == HOVER) {
+    colorsOut = woodTexColor;
+    //normal = normalize(normalExport);
+	//lightDirection = normalize(vec3(light0.coords));
+	//fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
+    //colorsOut =  vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0);
+   }
+```
+
+
+### combine diffuse light with texture
 
 Faces are defined using lists of vertex, texture and normal indices in the format
  vertex_index/texture_index/normal_index for which each index starts at 1 and increases corresponding to the order
