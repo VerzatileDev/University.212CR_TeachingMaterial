@@ -4,7 +4,7 @@
 1. [Combine Light and Texture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Combine-Light-and-Texture)
 2. [Animation](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Animation)
 3. [Animation using shader](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Animation-using-shader)
-4. [Interactive Camera](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Interactive-Camera)
+4. [Work on your own model](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Work-on-your-own-model)
 4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%205#Homework)
 
 Welcome to Week 6! 
@@ -222,7 +222,7 @@ Add
 uniform float yPos;
 ```
 
-Add track position update codes
+* Add track position update codes
 
 ```C++
     if (object == TRACK)
@@ -234,66 +234,26 @@ Add track position update codes
     }
 ```
 
+* Compile and run
 
 
+## Work on your own model
 
-### Add Import codes into Model Class
+Now, you should be able to work on your own model 
 
-There is already a skeleton class for importing OBJ file. It is Model class. 
-In Solution Explorer (MS Visual Studio), double click Model.cpp and open it. 
-You need to modify both header and cpp files to add importing codes for OBJ file and draw OBJ model.
+For example, 
 
-There are already two testing OBJ files in week 5 folder. Please download track.obj and hover.obj and put them in the project folder.
+* you can create a car model in 3DS max with normal vector and texture coordinates.
 
-* Modify Model.h 
+* Import it into your own project
 
-We need change Model class so that it can input a OBJ file name, load it and draw it.
+* Import your own texture map
 
-First declare NumVert variable as private variable
+* Add texture initialization code and sent it to the shader
 
-```C++
- int NumVert; 
-```
+* combine diffuse lighting effect with texture color
 
-
-
-## Interactive Camera
-
-You can easily add another OBJ object into scene. For testing purpose, you can use hover.obj as the second testing file.
-
-You need to declare another instantce of Model class as 
-
-```C++
-static Model Hover("hover.obj");
-```
-
-You also need to add one more object into VAO and VBO arrays. Following instructions from last section.
-
-You need binding hover object and draw it. You could use following parameter for ModelView matrix
-
-```C++
-   // Draw Hover
-   Hover.updateModelMatrix(modelViewMatLoc, d, 1.5f, 0.0f);
-   glUniform1ui(objectLoc, HOVER);  //if (object == HOVER)
-   Hover.Draw();
-```
-
-Finally, you need to add codes to both Vertex and Fragement Shaders.
-
-This time, you can use diffuse lighting effects instead of texture mapping in Fragment shader.
-
-```C++
-if (object == HOVER) {
-    normal = normalize(normalExport);
-	lightDirection = normalize(vec3(light0.coords));
-	fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
-    colorsOut =  vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0);
-   }
-```
-
-Final result
-
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%205/Readme%20Pictures/Hover.JPG)
+* Add some animation
 
 
 ## Homework
