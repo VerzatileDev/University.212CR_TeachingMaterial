@@ -170,6 +170,70 @@ void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,f
 
 In this section, you will learn how to use a uniform variable in vextex shader to create animation
 
+You can pass a variable to shader to change the position of an object (instead of going through modelview matrix).
+
+* Add
+
+```C++
+static float yVal = 0; // Y Co-ordinates of the track. 
+```
+
+* Change yVale in animation function
+
+Add yValLoc for accessing yPos in the shader
+
+```C++
+static unsigned int
+   programId,
+   vertexShaderId,
+   fragmentShaderId,
+   modelViewMatLoc,
+   projMatLoc,
+   objectLoc,
+   yValLoc, //added
+   grassTexLoc,  
+   skyTexLoc,
+   woodTexLoc,
+   buffer[6], 
+   vao[5], 
+   texture[3];  
+```
+
+* Add codes in animation function to change yVale
+
+```C++
+	yVal += 0.1;
+	if (yVal > 12.0) yVal = 0.0;
+```
+
+* Send value to shader (in animation function)
+
+```C++
+	//set yVal to vertex shader
+	yValLoc = glGetUniformLocation(programId, "yPos");  //uniform uint object;
+	glUniform1f(yValLoc, yVal);
+```
+
+* Add yPos into vertex shder (vertexShader.glsl)
+
+Add
+
+```C++
+uniform float yPos;
+```
+
+Add track position update codes
+
+```C++
+    if (object == TRACK)
+    {
+      coords = vec4(objCoords, 1.0f);
+      coords.y = coords.y+yPos; //added
+      normalExport = objNormals;
+      texCoordsExport = objTexCoords;
+    }
+```
+
 
 
 
