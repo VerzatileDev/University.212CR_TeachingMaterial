@@ -116,6 +116,30 @@ We only need multiple texture color with diffuse color in fragment shader
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%206/Readme%20Pictures/TextureLight.JPG)
 
+
+## Animation
+
+In this section, you will learn how to import your model in OBJ format into the OpenGL program.
+
+
+### Add Import codes into Model Class
+
+There is already a skeleton class for importing OBJ file. It is Model class. 
+In Solution Explorer (MS Visual Studio), double click Model.cpp and open it. 
+You need to modify both header and cpp files to add importing codes for OBJ file and draw OBJ model.
+
+There are already two testing OBJ files in week 5 folder. Please download track.obj and hover.obj and put them in the project folder.
+
+* Modify Model.h 
+
+We need change Model class so that it can input a OBJ file name, load it and draw it.
+
+First declare NumVert variable as private variable
+
+```C++
+ int NumVert; 
+```
+
 ## Animation using shader
 
 In this section, you will learn how to import your model in OBJ format into the OpenGL program.
@@ -139,153 +163,7 @@ First declare NumVert variable as private variable
  int NumVert; 
 ```
 
-Change CreateObject input parameter so it can take filename as an input parameter
 
-```C++
- void CreateObject(const char *);
-```
-
-Change constructor input parameter so it can take filename as an input parameter
-
-```C++
- Model(const char*);
-```
-
-Change updateModelMatrix input parameter so it can take position and scale for individual model.
-
-```C++
- void updateModelMatrix(unsigned int, float,float,float);
-```
-
-* Modify constructor  
-
-Change constructor to following codes (allow it take input filename
-
-```C++
-Model::Model(const char* name)
-{
-	position = vec3(0);
-	VAO = VBO = 0;
-	VerticesData = NULL; 
-	NumVert = 0;
-	CreateObject(name);
-}
-```
-
-* Complete CreateObject function (in Model.cpp)
-
-```C++
-void Model::CreateObject(const char *name)
-{
-	std::vector<VertexWithAll> mesh = loadOBJ(name); //Import OBJ file data into a vector array
-	NumVert = mesh.size();
-
-	this->VerticesData = new VertexWithAll[NumVert];
-	for (size_t i = 0; i < NumVert; i++)
-	{
-		this->VerticesData[i] = mesh[i];
-	}
-}
-```
-
-* Complete setup function (in Model.cpp). 
-
-```C++
-void Model::Setup()
-{
-   glBindVertexArray(VAO);
-   glBindBuffer(GL_ARRAY_BUFFER, VBO);
-   glBufferData(GL_ARRAY_BUFFER, sizeof(VertexWithAll) * NumVert, VerticesData, GL_STATIC_DRAW);  ///please note the change
-
-   glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(VertexWithAll), (GLvoid*)offsetof(VertexWithAll, position));
-   glEnableVertexAttribArray(4);
-   glVertexAttribPointer(5, 3, GL_FLOAT, GL_FALSE, sizeof(VertexWithAll), (GLvoid*)offsetof(VertexWithAll, normal));
-   glEnableVertexAttribArray(5);
-
-   glVertexAttribPointer(6, 2, GL_FLOAT, GL_FALSE, sizeof(VertexWithAll), (GLvoid*)offsetof(VertexWithAll, textcoord));
-   glEnableVertexAttribArray(6);
-
-}
-```
-
-* Complete updateModelMatrix function (in Model.cpp).
-
-So, it takes scale and Z position parameter. But you add more or remove parameters to make it subitable for your class.
-
-```C++
-void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,float ZPos)
-{
-	ModelMatrix = mat4(1.0);
-	ModelMatrix = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0 + d, 10.0, 0.0), vec3(0.0, 1.0, 0.0)); //camera matrix, apply first
-	ModelMatrix = glm::scale(ModelMatrix, vec3(scale, scale, scale));  //scale down the model
-	ModelMatrix = glm::translate(ModelMatrix, vec3(0.0f, 0.0f, ZPos));
-	glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(ModelMatrix));  //send modelview matrix to the shader
-}
-```
-
-* Complete Draw function (in Model.cpp).
-
-```C++
-void Model::Draw()
-{
-	glBindVertexArray(VAO);
-	glDrawArrays(GL_TRIANGLES, 0, NumVert);
-}
-```
-
-### Modify Vertex shader
-
-Open vertexShader.glsl in MS Visual Studio.
-
-* Add Track object definition
-
-```C++
-#define TRACK 3
-```
-
-* Add import ports, please note objCoords is vec3 (NOT vec4)
-
-```C++
-layout(location=4) in vec3 objCoords;
-layout(location=5) in vec3 objNormals;
-layout(location=6) in vec2 objTexCoords;
-
-```
-
-* Add codes to process Track data
-
-Please note that objCoords is vec3. It need to be converted into vec4
-
-```C++
-	if (object == TRACK)
-    {
-      coords = vec4(objCoords, 1.0f);
-      normalExport = objNormals;
-      texCoordsExport = objTexCoords;
-    }
-```
-
-### Modify Fragment shader
-
-Open fragmentShader.glsl in MS Visual Studio.
-
-* Add Track object definition
-
-```C++
-#define TRACK 3
-```
-
-* Add Track coloring codes. For now, we just borrow Sky texture to color the track object.
-
-```C++
-if (object == TRACK) {
-    colorsOut = skyTexColor;
-   }
-```
-
-* Finally, compile it and run it. You will see a track object with Sky texture in the scene.
-
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%205/Readme%20Pictures/Track.JPG)
 
 ## Interactive Camera
 
