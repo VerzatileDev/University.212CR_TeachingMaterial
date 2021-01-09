@@ -119,26 +119,39 @@ We only need multiple texture color with diffuse color in fragment shader
 
 ## Animation
 
-In this section, you will learn how to import your model in OBJ format into the OpenGL program.
+In this section, you will learn how to animate the object using glutIdleFunc function.
 
 
-### Add Import codes into Model Class
+### How glutIdleFunc animation works. 
 
-There is already a skeleton class for importing OBJ file. It is Model class. 
-In Solution Explorer (MS Visual Studio), double click Model.cpp and open it. 
-You need to modify both header and cpp files to add importing codes for OBJ file and draw OBJ model.
+glutIdleFunc sets the global idle callback to be func so a GLUT program can perform background processing tasks or continuous
+ animation when window system events are not being received. If enabled, the idle callback is continuously called when events are not being received. 
 
-There are already two testing OBJ files in week 5 folder. Please download track.obj and hover.obj and put them in the project folder.
+In this way, if the position of the object was changed over the time, it will create animation of the moving object.
 
-* Modify Model.h 
-
-We need change Model class so that it can input a OBJ file name, load it and draw it.
-
-First declare NumVert variable as private variable
+* First, create a global variable for the position 
 
 ```C++
- int NumVert; 
+static float xVal = 0; // X Co-ordinates of the hover. 
 ```
+
+* In animate function, change codes to add the position of the target object
+
+```C++
+void animate() 
+{
+	zVal = zVal - 0.2;
+	xVal += 0.1;
+	if (zVal < -25.0) zVal = 0.0;
+	if (xVal > 12.0) xVal = -12.0;
+	testSphere.SetPosition(vec3(0, 0, zVal)); //modify sphere's position
+	Hover.SetPosition(vec3(xVal, 0, 0));
+	// refresh screen 
+	glutPostRedisplay();
+}
+```
+
+* Finally, in Model class c++ file, 
 
 ## Animation using shader
 
