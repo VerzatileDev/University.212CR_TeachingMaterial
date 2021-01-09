@@ -151,7 +151,21 @@ void animate()
 }
 ```
 
-* Finally, in Model class c++ file, 
+* Finally, in Model class c++ file, add position update for modelview matrix in updateModelMatrix() function
+
+```C++
+void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,float ZPos)
+{
+	ModelMatrix = mat4(1.0);
+	ModelMatrix = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0 + d, 10.0, 0.0), vec3(0.0, 1.0, 0.0)); //camera matrix, apply first
+	ModelMatrix = glm::scale(ModelMatrix, vec3(scale, scale, scale));  //scale down the model
+	ModelMatrix = glm::translate(ModelMatrix, vec3(0.0f, 0.0f, ZPos));
+	ModelMatrix = glm::translate(ModelMatrix, GetPosition());
+	glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(ModelMatrix));  //send modelview matrix to the shader
+}
+```
+
+
 
 ## Animation using shader
 
@@ -220,12 +234,16 @@ Final result
 ## Homework
 
 
-* Add your model into scene.
+* Create complex motion animation, for example, move the object around the track of a circle.
 
-You should create a track 3D model in 3DS max or Blender and export it as OBJ file. Import it into your OpenGL program.
+You should update the position of object around the track of a circle. The circle equation is
 
-You should position the center of your track model in the orgin of coordinate system in 3DS max or Blender. 
-That will cause less trouble to position it in your OpenGL program. Please adjust model scale it first and apply translation to position the model.
+x = R*cos(angle);
+y = R*sin(angle);
+
+Where R is the radius of circle. The origin  of circle in vec3(0,0,0);
+You suggest that your compute an array of position along the track of a circle in the setup function
+ so that you do not have to compute them during the runtime. 
 
 
 
