@@ -166,10 +166,11 @@ void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,f
 ```
 
 
-
 ## Animation using shader
 
-In this section, you will learn how to import your model in OBJ format into the OpenGL program.
+In this section, you will learn how to use a uniform variable in vextex shader to create animation
+
+
 
 
 ### Add Import codes into Model Class
