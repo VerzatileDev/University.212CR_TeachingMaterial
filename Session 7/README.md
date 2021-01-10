@@ -178,12 +178,16 @@ In this section, you will learn how to Add a camera which can be controlled by k
 
 ### Basic theory. 
 
-glutIdleFunc sets the global idle callback to be func so a GLUT program can perform background processing tasks or continuous
- animation when window system events are not being received. If enabled, the idle callback is continuously called when events are not being received. 
+To look around the scene we have to change the cameraForward vector based on the input of the keyboard. However, changing the direction vector is a little complicated and requires some trigonometry. 
+If you do not understand the trigonometry, don't worry, you can just skip to the code sections and paste them in your code; you can always come back later if you want to know more.. 
 
-In this way, if the position of the object was changed over the time, it will create animation of the moving object.
 
-* First, create a global variable for the position 
+* Euler angles 
+
+Euler angles are 3 values that can represent any rotation in 3D, defined by Leonhard Euler somewhere in the 1700s. 
+There are 3 Euler angles: pitch, yaw and roll. The following image gives them a visual meaning:
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Euler.JPG)
 
 ```C++
 static float xVal = 0; // X Co-ordinates of the hover. 
