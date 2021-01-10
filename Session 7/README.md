@@ -129,26 +129,6 @@ void Skybox::Draw()
 
 * Finally it should look like this (Always to Compile option to "x64" )
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%206/Readme%20Pictures/Texture.JPG)
-
-### combine diffuse light with texture
-
-To improve the appearance of hovercraft, we need to add diffuse lighting effects on it. 
- 
-* We only need to combine texture color with diffuse light color. 
-We only need multiple texture color with diffuse color in fragment shader
-
-```C++
-   if (object == HOVER) {
-    normal = normalize(normalExport);
-    lightDirection = normalize(vec3(light0.coords));
-    fAndBDif = max(dot(normal, lightDirection), 0.0f) * (light0.difCols * sphereFandB.difRefl); 
-    colorsOut =  woodTexColor*vec4(vec3(min(fAndBDif, vec4(1.0))), 1.0);
-   }
-```
-
-* Finally, it should look like this
-
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/SkyScreenshot.JPG)
 
 ### Try to add a skybox into your project (Optional)
