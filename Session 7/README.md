@@ -34,12 +34,12 @@ This means we have to call glTexImage2D once for each face of the cubemap.
 Since we have 6 faces OpenGL gives us 6 special texture targets for targeting a face of the cubemap:
 
 Texture target	Orientation
-GL_TEXTURE_CUBE_MAP_POSITIVE_X	Right
-GL_TEXTURE_CUBE_MAP_NEGATIVE_X	Left
-GL_TEXTURE_CUBE_MAP_POSITIVE_Y	Top
-GL_TEXTURE_CUBE_MAP_NEGATIVE_Y	Bottom
-GL_TEXTURE_CUBE_MAP_POSITIVE_Z	Back
-GL_TEXTURE_CUBE_MAP_NEGATIVE_Z	Front
+* GL_TEXTURE_CUBE_MAP_POSITIVE_X	Right
+* GL_TEXTURE_CUBE_MAP_NEGATIVE_X	Left
+* GL_TEXTURE_CUBE_MAP_POSITIVE_Y	Top
+* GL_TEXTURE_CUBE_MAP_NEGATIVE_Y	Bottom
+* GL_TEXTURE_CUBE_MAP_POSITIVE_Z	Back
+* GL_TEXTURE_CUBE_MAP_NEGATIVE_Z	Front
 
 Like many of OpenGL's enums, their behind-the-scenes int value is linearly incremented, 
 so if we were to have an array or vector of texture locations we could loop over them by starting with GL_TEXTURE_CUBE_MAP_POSITIVE_X and
