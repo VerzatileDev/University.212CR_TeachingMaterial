@@ -187,7 +187,7 @@ If you do not understand the trigonometry, don't worry, you can just skip to the
 Euler angles are 3 values that can represent any rotation in 3D, defined by Leonhard Euler somewhere in the 1700s. 
 There are 3 Euler angles: pitch, yaw and roll. The following image gives them a visual meaning:
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Euler.JPG)
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Euler.png)
 
 ```C++
 static float xVal = 0; // X Co-ordinates of the hover. 
