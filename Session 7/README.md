@@ -12,10 +12,7 @@ Welcome to Week 7!
 
 ## Skybox
 
-A skybox is a panoramic view representing a sky or any other scenery. It is a simple way to add realism to a game with minimal performance cost.
-
-A skybox is generated from a cube. Each face of the cube contains a texture representing a visible view (up, down, front, back, left, right) of the scenery.
-An example of skybox texture images is shown here:
+Since a skybox is by itself just a cubemap, loading a skybox isn't too different from what we've seen at the start of this chapter. To load the skybox we're going to use the following function that accepts a vector of 6 texture locations:
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Skybox.png)
 
@@ -23,52 +20,88 @@ To implement a skybox is quite simple. We simply unwrap a cube into its UV Map. 
 
 ### Loading a skybox
 
-* Download wood texture (wood.png) from week 6 folder and put it in the Textures folder.
-* Add woodTexLoc variable after skyTexLoc
+* Download the base project. Open Skybox.cpp
+
+* Since a skybox is by itself just a cubemap, loading a skybox is to accept a vector of 6 texture locations.
+
+A cubemap is a texture like any other texture, so to create one we generate a texture and bind it to the proper texture target 
+before we do any further texture operations. This time binding it to GL_TEXTURE_CUBE_MAP:
+
+Because a cubemap contains 6 textures, one for each face, we have to call glTexImage2D six times with their parameters set. 
+We have to set the texture target parameter to match a specific face of the cubemap, telling OpenGL which side of the cubemap we're creating a texture for. 
+This means we have to call glTexImage2D once for each face of the cubemap.
+
+Since we have 6 faces OpenGL gives us 6 special texture targets for targeting a face of the cubemap:
+
+Texture target	Orientation
+GL_TEXTURE_CUBE_MAP_POSITIVE_X	Right
+GL_TEXTURE_CUBE_MAP_NEGATIVE_X	Left
+GL_TEXTURE_CUBE_MAP_POSITIVE_Y	Top
+GL_TEXTURE_CUBE_MAP_NEGATIVE_Y	Bottom
+GL_TEXTURE_CUBE_MAP_POSITIVE_Z	Back
+GL_TEXTURE_CUBE_MAP_NEGATIVE_Z	Front
+
+Like many of OpenGL's enums, their behind-the-scenes int value is linearly incremented, 
+so if we were to have an array or vector of texture locations we could loop over them by starting with GL_TEXTURE_CUBE_MAP_POSITIVE_X and
+ incrementing the enum by 1 each iteration, effectively looping through all the texture targets:
 
 ```C++
- woodTexLoc,
+for (unsigned int i = 0; i < 6; i++)
+ glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data); 
 ```
 
-* In TexNames[] array (setup() function), add wood.png into namelist
-
+Because a cubemap is a texture like any other texture, we will also specify its wrapping and filtering methods
 
 ```C++
- "Textures/wood.png",
+glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE); 
 ```
+Don't be scared by the GL_TEXTURE_WRAP_R, this simply sets the wrapping method for the texture's R coordinate 
+which corresponds to the texture's 3rd dimension (like z for positions). We set the wrapping method to GL_CLAMP_TO_EDGE 
+since texture coordinates that are exactly between two faces may not hit an exact face (due to some hardware limitations) so 
+by using GL_CLAMP_TO_EDGE OpenGL always returns their edge values whenever we sample between faces.
 
-* change 
+* Add following codes to Skybox::InitialiseCubeMap().  
 
 ```C++
- glGenTextures(2, texture);
+void Skybox::InitialiseCubeMap()
+{
+	std::string skyboxTextures[] = 
+	{	
+		"Textures/SkyboxRight.jpg",
+		"Textures/SkyboxLeft.jpg",
+		"Textures/SkyboxTop.jpg",
+		"Textures/SkyboxBottom.jpg",
+		"Textures/SkyboxFront.jpg",
+		"Textures/SkyboxBack.jpg"
+	};
+	glUseProgram(programId);
+	glGenTextures(1, &textureID);
+	glActiveTexture(GL_TEXTURE0 + textureID);
+	myTextureIDs[0] = textureID;
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+
+	int width, height;
+	for (unsigned int i = 0; i < 6; i++)
+	{
+		unsigned char *data = SOIL_load_image(skyboxTextures[i].c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		SOIL_free_image_data(data);
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	++textureID;
+}
 ```
 
-to 
-
-```C++
- glGenTextures(3, texture);
-```
-
-* Also change texture[2];  to texture[3]; 
-
-* Add texture initalization codes
-
-```C++
-   glActiveTexture(GL_TEXTURE2);
-   glBindTexture(GL_TEXTURE_2D, texture[2]);
-
-   data = SOIL_load_image(TexNames[2].c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
-   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-   SOIL_free_image_data(data);
-
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-   glGenerateMipmap(GL_TEXTURE_2D);
-   woodTexLoc = glGetUniformLocation(programId, "woodTex");
-   glUniform1i(woodTexLoc, 2); //send texture to shader
-```
 
 ### Add texture drawing in fragment shader
 
