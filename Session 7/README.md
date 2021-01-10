@@ -168,13 +168,15 @@ skybox.Draw();
 	
 ```
 
+* Also, you need to be careful with textureID in Skybox class, which gives you the information which textureID has been used.
+So, you should use skybox texture as the first textureID and add your other textures after it.
 
 ## Look around camera
 
-In this section, you will learn how to animate the object using glutIdleFunc function.
+In this section, you will learn how to Add a camera which can be controlled by key pressing to look around the scene.
 
 
-### How glutIdleFunc animation works. 
+### Basic theory. 
 
 glutIdleFunc sets the global idle callback to be func so a GLUT program can perform background processing tasks or continuous
  animation when window system events are not being received. If enabled, the idle callback is continuously called when events are not being received. 
