@@ -20,7 +20,7 @@ To implement a skybox is quite simple. We simply unwrap a cube into its UV Map. 
 
 ### Loading a skybox
 
-* Download the base project. Open Skybox.cpp
+* Download the base project. Always to Compile option to "x64".  Open Skybox.cpp
 
 * Since a skybox is by itself just a cubemap, loading a skybox is to accept a vector of 6 texture locations.
 
@@ -103,7 +103,7 @@ void Skybox::InitialiseCubeMap()
 ```
 
 
-### Redner Skybox
+### Render Skybox
 
 * Rendering the skybox is easy now that we have a cubemap texture, 
 we simply bind the cubemap texture and the skybox sampler is automatically filled with the skybox cubemap.
@@ -127,7 +127,7 @@ void Skybox::Draw()
 }
 ```
 
-* Finally it should look like this
+* Finally it should look like this (Always to Compile option to "x64" )
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%206/Readme%20Pictures/Texture.JPG)
 
@@ -149,8 +149,11 @@ We only need multiple texture color with diffuse color in fragment shader
 
 * Finally, it should look like this
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%206/Readme%20Pictures/TextureLight.JPG)
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/SkyScreenshot.JPG)
 
+### Try to add a skybox into your project (Optional)
+
+* Now, 
 
 ## Look around camera
 
