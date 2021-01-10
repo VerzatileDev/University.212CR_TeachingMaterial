@@ -133,7 +133,41 @@ void Skybox::Draw()
 
 ### Try to add a skybox into your project (Optional)
 
-* Now, 
+* Now, you can try to add the skybox into your own project. Following instructions were just for guidance (probably not able to solve every problem you have)
+
+* add skybox texture map into your texture folder.  The list is
+
+```C++
+"Textures/SkyboxRight.jpg",
+"Textures/SkyboxLeft.jpg",
+"Textures/SkyboxTop.jpg",
+"Textures/SkyboxBottom.jpg",
+"Textures/SkyboxFront.jpg",
+"Textures/SkyboxBack.jpg"
+```
+
+* Copy Both Skybox.cpp and Skybox.h into your project folder
+
+* Copy Both SkyboxFragmentShader.glsl and SkyboxVertexShader.glsl into your project.
+Both shaders are stand-alone shader, you do not need to add them into your main shaders.
+
+* Add Skybox initialization codes into your main.cpp. Please refer to example project main.cpp to find out where to put them.
+
+```C++
+Skybox skybox;
+
+skybox.InitialiseCubeMap();	
+skybox.InitialiseSkybox();
+skybox.CreateShader("SkyboxVertexShader.glsl", "SkyboxFragmentShader.glsl");
+skybox.SetViewMatrix(modelViewMat);	
+
+
+skybox.Bind();
+skybox.Draw();
+
+	
+```
+
 
 ## Look around camera
 
