@@ -189,57 +189,119 @@ There are 3 Euler angles: pitch, yaw and roll. The following image gives them a 
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Euler.png)
 
+The pitch is the angle that depicts how much we're looking up or down as seen in the first image. 
+The second image shows the yaw value which represents the magnitude we're looking to the left or to the right. 
+The roll represents how much we roll as mostly used in space-flight cameras. 
+Each of the Euler angles are represented by a single value and with the combination of all 3 of them we can calculate any rotation vector in 3D.
+
+For our camera system we only care about the yaw and pitch values so we won't discuss the roll value here. 
+Given a pitch and a yaw value we can convert them into a 3D vector that represents a new direction vector. 
+The process of converting yaw and pitch values to a direction vector requires a bit of trigonometry.
+
+
 ```C++
-static float xVal = 0; // X Co-ordinates of the hover. 
+cameraForward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+cameraForward.y = sin(glm::radians(pitch));
+cameraForward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 ```
 
-* In animate function, change codes to add the position of the target object
+### Implmentation codes.
+
+* Add Yaw and Pitch definitions (global variables)
 
 ```C++
-void animate() 
+float cameraYaw = 90;
+float cameraPitch;
+```
+
+* Create UpdateCamera function based trigonometry
+
+```C++
+void UpdateCamera()
 {
-	zVal = zVal - 0.2;
-	xVal += 0.1;
-	if (zVal < -25.0) zVal = 0.0;
-	if (xVal > 12.0) xVal = -12.0;
-	testSphere.SetPosition(vec3(0, 0, zVal)); //modify sphere's position
-	Hover.SetPosition(vec3(xVal, 0, 0));
-	// refresh screen 
-	glutPostRedisplay();
+	if (cameraPitch < -89)
+	{
+		cameraPitch = -89;
+	}
+	if (cameraPitch > 89)
+	{
+		cameraPitch = 89;
+	}
+	glm::vec3 eye = glm::vec3(0,0,0);
+	eye.x = glm::cos(glm::radians(cameraPitch)) * -glm::cos(glm::radians(cameraYaw));
+	eye.y = glm::sin(glm::radians(cameraPitch));
+	eye.z = glm::cos(glm::radians(cameraPitch)) * glm::sin(glm::radians(cameraYaw));
+
+	cameraForward = glm::normalize(eye);
+
+	glm::mat4 modelViewMat = glm::lookAt(cameraForward, glm::vec3(0), glm::vec3(0, 1, 0));
+	modelViewMat = glm::translate(modelViewMat, cameraPosition);
+	skybox.SetViewMatrix(modelViewMat);
 }
 ```
 
-* Finally, in Model class c++ file, add position update for modelview matrix in updateModelMatrix() function
+* Add Keyboard handling codes
+
+w move forward. s move backword. a move left. d move right. e move up. q move down.
+
 
 ```C++
-void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,float ZPos)
+void KeyInputCallback(unsigned char key, int x, int y)
 {
-	ModelMatrix = mat4(1.0);
-	ModelMatrix = lookAt(vec3(0.0, 10.0, 15.0), vec3(0.0 + d, 10.0, 0.0), vec3(0.0, 1.0, 0.0)); //camera matrix, apply first
-	ModelMatrix = glm::scale(ModelMatrix, vec3(scale, scale, scale));  //scale down the model
-	ModelMatrix = glm::translate(ModelMatrix, vec3(0.0f, 0.0f, ZPos));
-	ModelMatrix = glm::translate(ModelMatrix, GetPosition());
-	glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(ModelMatrix));  //send modelview matrix to the shader
+	switch (key)
+	{
+	case 'w':
+	{
+		cameraPosition += cameraForward;
+		UpdateCamera();
+	}break;
+	case 's':
+	{
+		cameraPosition += -cameraForward;
+		UpdateCamera();
+	}break;
+	case 'a':
+	{
+		cameraPosition += -glm::normalize(glm::cross(cameraForward, glm::vec3(0, 1, 0)));
+		UpdateCamera();
+	}break;
+	case 'd':
+	{
+		cameraPosition += glm::normalize(cross(cameraForward, glm::vec3(0, 1, 0)));
+		UpdateCamera();
+	}break;
+	case 'e':
+	{
+		cameraPosition += -glm::vec3(0, 1, 0);
+		UpdateCamera();
+	}break;
+	case 'q':
+	{
+		cameraPosition += glm::vec3(0, 1, 0);
+		UpdateCamera();
+	}break;
+	case 27:
+	{
+		exit(0);
+	}break;
+	}
 }
 ```
 
 ## Your own project
 
-Now, you should be able to work on your own model 
+Now, you should be able to work on your own project 
 
 For example, 
 
-* you can create a car model in 3DS max with normal vectors and texture coordinates.
+* Add skybox into your project (optional)
 
-* Import it into your own project
+* Add look around camera into your project. You have to modify the model class to allow input modelview matrix from camera setup.
+change void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,float ZPos) function (both input parameters and codes)
 
-* Import your own texture map
+* Add mouse control camera codes (optional, advanced level)
+Tutorials: https://learnopengl.com/Getting-started/Camera
 
-* Add texture initialization code and sent it to the shader
-
-* combine diffuse lighting effect with texture color
-
-* Add some animations
 
 
 
