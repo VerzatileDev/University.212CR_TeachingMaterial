@@ -1,21 +1,26 @@
 # Session 7 - Advanced Topics One
 
 #### Table of Contents
-1. [Combine Light and Texture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Combine-Light-and-Texture)
-2. [Animation](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Animation)
-3. [Animation using shader](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Animation-using-shader)
-4. [Work on your own model](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Work-on-your-own-model)
+1. [Skybox](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Skybox)
+2. [Look around camera](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Animation)
+3. [Animation using shader](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Look-around-camera)
 4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Homework)
 
-Welcome to Week 6! 
+Welcome to Week 7! 
 
-> In this week, we will learn how to put everything learn in last few week together and create a interactive scene with animations.
+> In this week, we will learn how to create a Skybox and create a look-around camera.
 
 
-## Combine Light and Texture
+## Skybox
 
-We are going to add texture and lighting effects to the hovercraft model.
+A skybox is a panoramic view representing a sky or any other scenery. It is a simple way to add realism to a game with minimal performance cost.
 
+A skybox is generated from a cube. Each face of the cube contains a texture representing a visible view (up, down, front, back, left, right) of the scenery.
+An example of skybox texture images is shown here:
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Skybox.png)
+
+To implement a skybox is quite simple. We simply unwrap a cube into its UV Map. Apply a texture to each face of the cube and render the cube in the middle of the scene.
 
 ### Add texture
 
