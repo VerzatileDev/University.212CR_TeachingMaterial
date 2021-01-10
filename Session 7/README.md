@@ -1,11 +1,11 @@
-# Session 6 - Put All Together
+# Session 7 - Advanced Topics One
 
 #### Table of Contents
-1. [Combine Light and Texture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Combine-Light-and-Texture)
-2. [Animation](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Animation)
-3. [Animation using shader](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Animation-using-shader)
-4. [Work on your own model](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Work-on-your-own-model)
-4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%206#Homework)
+1. [Combine Light and Texture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Combine-Light-and-Texture)
+2. [Animation](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Animation)
+3. [Animation using shader](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Animation-using-shader)
+4. [Work on your own model](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Work-on-your-own-model)
+4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Homework)
 
 Welcome to Week 6! 
 
