@@ -2,9 +2,8 @@
 
 #### Table of Contents
 1. [Skybox](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Skybox)
-2. [Look around camera](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Animation)
-3. [Animation using shader](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Look-around-camera)
-4. [Homework](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Homework)
+2. [Look around camera](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Look-around-camera)
+3. [Your own project](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%207#Your-own-project)
 
 Welcome to Week 7! 
 
@@ -22,7 +21,7 @@ An example of skybox texture images is shown here:
 
 To implement a skybox is quite simple. We simply unwrap a cube into its UV Map. Apply a texture to each face of the cube and render the cube in the middle of the scene.
 
-### Add texture
+### Loading a skybox
 
 * Download wood texture (wood.png) from week 6 folder and put it in the Textures folder.
 * Add woodTexLoc variable after skyTexLoc
@@ -122,7 +121,7 @@ We only need multiple texture color with diffuse color in fragment shader
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%206/Readme%20Pictures/TextureLight.JPG)
 
 
-## Animation
+## Look around camera
 
 In this section, you will learn how to animate the object using glutIdleFunc function.
 
@@ -170,79 +169,7 @@ void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,f
 }
 ```
 
-
-## Animation using shader
-
-In this section, you will learn how to use a uniform variable in vextex shader to create animation
-
-You can pass a variable to shader to change the position of an object (instead of going through modelview matrix).
-
-* Add
-
-```C++
-static float yVal = 0; // Y Co-ordinates of the track. 
-```
-
-* Change yVale in animation function
-
-Add yValLoc for accessing yPos in the shader
-
-```C++
-static unsigned int
-   programId,
-   vertexShaderId,
-   fragmentShaderId,
-   modelViewMatLoc,
-   projMatLoc,
-   objectLoc,
-   yValLoc, //added
-   grassTexLoc,  
-   skyTexLoc,
-   woodTexLoc,
-   buffer[6], 
-   vao[5], 
-   texture[3];  
-```
-
-* Add codes in animation function to change yVale
-
-```C++
-	yVal += 0.1;
-	if (yVal > 12.0) yVal = 0.0;
-```
-
-* Send value to shader (in animation function)
-
-```C++
-	//set yVal to vertex shader
-	yValLoc = glGetUniformLocation(programId, "yPos");  //uniform uint object;
-	glUniform1f(yValLoc, yVal);
-```
-
-* Add yPos into vertex shder (vertexShader.glsl)
-
-Add
-
-```C++
-uniform float yPos;
-```
-
-* Add track position update codes
-
-```C++
-    if (object == TRACK)
-    {
-      coords = vec4(objCoords, 1.0f);
-      coords.y = coords.y+yPos; //added
-      normalExport = objNormals;
-      texCoordsExport = objTexCoords;
-    }
-```
-
-* Compile and run
-
-
-## Work on your own model
+## Your own project
 
 Now, you should be able to work on your own model 
 
@@ -260,20 +187,6 @@ For example,
 
 * Add some animations
 
-
-## Homework
-
-
-* Create complex motion animation, for example, move the object around the track of a circle.
-
-You should update the position of object around the track of a circle. The circle equation is
-
-x = R*cos(angle);
-y = R*sin(angle);
-
-Where R is the radius of circle. The origin  of circle in vec3(0,0,0);
-You suggest that your compute an array of position along the track of a circle in the setup function
- so that you do not have to compute them during the runtime. 
 
 
 
