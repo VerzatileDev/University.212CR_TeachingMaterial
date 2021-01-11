@@ -47,90 +47,50 @@ These instanced versions of the classic rendering functions take an extra parame
  and then tell the GPU how it should draw all these instances with a single call. 
  The GPU then renders all these instances without having to continually communicate with the CPU.
 
-### Loading a skybox
+### Implementation
 
-* Download the base project. Always to Compile option to "x64".  Open Skybox.cpp
+* Download the base project (CreateSphereClass.zip). Always to Compile option to "x64".  Open CreateSphere.cpp
 
-* Since a skybox is by itself just a cubemap, loading a skybox is to accept a vector of 6 texture locations.
+We just need to modify the drawing function to draw 10 spheres instead one.
 
-A cubemap is a texture like any other texture, so to create one we generate a texture and bind it to the proper texture target 
-before we do any further texture operations. This time binding it to GL_TEXTURE_CUBE_MAP:
-
-Because a cubemap contains 6 textures, one for each face, we have to call glTexImage2D six times with their parameters set. 
-We have to set the texture target parameter to match a specific face of the cubemap, telling OpenGL which side of the cubemap we're creating a texture for. 
-This means we have to call glTexImage2D once for each face of the cubemap.
-
-Since we have 6 faces OpenGL gives us 6 special texture targets for targeting a face of the cubemap:
-
-Texture target	Orientation
-* GL_TEXTURE_CUBE_MAP_POSITIVE_X	Right
-* GL_TEXTURE_CUBE_MAP_NEGATIVE_X	Left
-* GL_TEXTURE_CUBE_MAP_POSITIVE_Y	Top
-* GL_TEXTURE_CUBE_MAP_NEGATIVE_Y	Bottom
-* GL_TEXTURE_CUBE_MAP_POSITIVE_Z	Back
-* GL_TEXTURE_CUBE_MAP_NEGATIVE_Z	Front
-
-Like many of OpenGL's enums, their behind-the-scenes int value is linearly incremented, 
-so if we were to have an array or vector of texture locations we could loop over them by starting with GL_TEXTURE_CUBE_MAP_POSITIVE_X and
- incrementing the enum by 1 each iteration, effectively looping through all the texture targets:
+Replace
 
 ```C++
-for (unsigned int i = 0; i < 6; i++)
- glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data); 
+glDrawElements(GL_TRIANGLE_STRIP, triCount, GL_UNSIGNED_INT, sphereIndices);
 ```
 
-Because a cubemap is a texture like any other texture, we will also specify its wrapping and filtering methods
+with 
 
 ```C++
-glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE); 
+glDrawElementsInstanced(GL_TRIANGLE_STRIP, 660, GL_UNSIGNED_INT, sphereIndices, 10);
 ```
-Don't be scared by the GL_TEXTURE_WRAP_R, this simply sets the wrapping method for the texture's R coordinate 
-which corresponds to the texture's 3rd dimension (like z for positions). We set the wrapping method to GL_CLAMP_TO_EDGE 
-since texture coordinates that are exactly between two faces may not hit an exact face (due to some hardware limitations) so 
-by using GL_CLAMP_TO_EDGE OpenGL always returns their edge values whenever we sample between faces.
 
-* Add following codes to Skybox::InitialiseCubeMap().  
+
+* Modify Vertex shader codes so that we can see 10 sphere.
+
+Now, all 10 sphere is in the same position. So, you do not see any difference at all. Modify position  
+
+Replace
+```C++
+   if (object == SPHERE)
+   {
+      coords = sphereCoords;
+      normalExport = sphereNormals;
+   }
+```
+
+with
 
 ```C++
-void Skybox::InitialiseCubeMap()
-{
-	std::string skyboxTextures[] = 
-	{	
-		"Textures/SkyboxRight.jpg",
-		"Textures/SkyboxLeft.jpg",
-		"Textures/SkyboxTop.jpg",
-		"Textures/SkyboxBottom.jpg",
-		"Textures/SkyboxFront.jpg",
-		"Textures/SkyboxBack.jpg"
-	};
-	glUseProgram(programId);
-	glGenTextures(1, &textureID);
-	glActiveTexture(GL_TEXTURE0 + textureID);
-	myTextureIDs[0] = textureID;
-	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
-
-	int width, height;
-	for (unsigned int i = 0; i < 6; i++)
-	{
-		unsigned char *data = SOIL_load_image(skyboxTextures[i].c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		SOIL_free_image_data(data);
-	}
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	++textureID;
-}
+   if (object == SPHERE)
+   {
+      coords = vec4(sphereCoords.x+gl_InstanceID*3,sphereCoords.y,sphereCoords.z,sphereCoords.w);
+      normalExport = sphereNormals;
+   }
 ```
 
+Here gl_InstanceID is a built-in variable inside shader which represent the id of instance object. So, it is range from 0 to 9. 
+We, move the x coordinate by gl_InstanceID*3 for each instance.
 
 ### Render Skybox
 
