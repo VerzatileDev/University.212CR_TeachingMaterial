@@ -34,7 +34,18 @@ glDrawElements eats up quite some performance since OpenGL must make necessary p
 (like telling the GPU which buffer to read data from, where to find vertex attributes and all this over the relatively slow CPU to GPU bus).
  So even though rendering your vertices is super fast, giving your GPU the commands to render them isn't.
  
+It would be much more convenient if we could send data over to the GPU once, and then tell OpenGL to draw multiple objects using this data with a single drawing call. 
+That is instancing.
 
+To render using instancing many times,
+
+* glDrawArrays -> glDrawArraysInstanced
+* glDrawElements -> glDrawElementsInstanced 
+
+These instanced versions of the classic rendering functions take an extra parameter called the instance count
+ that sets the number of instances we want to render. We sent all the required data to the GPU once, 
+ and then tell the GPU how it should draw all these instances with a single call. 
+ The GPU then renders all these instances without having to continually communicate with the CPU.
 
 ### Loading a skybox
 
