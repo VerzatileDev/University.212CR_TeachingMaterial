@@ -381,17 +381,13 @@ with
 
 ## Home work
 
-Now, you should be able to work on your own project 
+Continue to work on your own project 
 
-For example, 
+* Add some instances of decorated objects into the scene.
 
-* Add skybox into your project (optional)
+* Add blending textures such as trees into the scene
 
-* Add look around camera into your project. You have to modify the model class to allow input modelview matrix from camera setup.
-change void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,float ZPos) function (both input parameters and codes)
-
-* Add mouse control camera codes (optional, advanced level)
-Tutorials: https://learnopengl.com/Getting-started/Camera
+* Add billboardings into the scene (optional) 
 
 
 
