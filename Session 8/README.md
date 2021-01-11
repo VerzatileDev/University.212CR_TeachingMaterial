@@ -10,14 +10,31 @@ Welcome to Week 8!
 
 > In this week, we will learn how to add instances of an object, blending the object and add billboards into the scene.
 
-
 ## Instancing
 
-Since a skybox is by itself just a cubemap, loading a skybox isn't too different from what we've seen at the start of this chapter. To load the skybox we're going to use the following function that accepts a vector of 6 texture locations:
+Say you have a scene where you're drawing a lot of models where most of these models contain the same set of vertex data, 
+but with different world transformations. Think of a scene filled with grass leaves: each grass leave is a small model that consists of only a few triangles. 
+You'll probably want to draw quite a few of them and your scene may end up with thousands or maybe tens of thousands of grass leaves 
+that you need to render each frame. Because each leaf is only a few triangles, the leaf is rendered almost instantly. 
+However, the thousands of render calls you'll have to make will drastically reduce performance.
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Skybox.png)
+If we were to actually render such a large amount of objects it will look a bit like this in code:
 
-To implement a skybox is quite simple. We simply unwrap a cube into its UV Map. Apply a texture to each face of the cube and render the cube in the middle of the scene.
+```C++
+for(unsigned int i = 0; i < amount_of_models_to_draw; i++)
+{
+    DoSomePreparations(); // bind VAO, bind textures, set uniforms etc.
+    glDrawArrays(GL_TRIANGLES, 0, amount_of_vertices);
+}
+```
+
+When drawing many instances of your model like this you'll quickly reach a performance bottleneck because of the many draw calls. 
+Compared to rendering the actual vertices, telling the GPU to render your vertex data with functions like glDrawArrays or 
+glDrawElements eats up quite some performance since OpenGL must make necessary preparations before it can draw your vertex data 
+(like telling the GPU which buffer to read data from, where to find vertex attributes and all this over the relatively slow CPU to GPU bus).
+ So even though rendering your vertices is super fast, giving your GPU the commands to render them isn't.
+ 
+
 
 ### Loading a skybox
 
