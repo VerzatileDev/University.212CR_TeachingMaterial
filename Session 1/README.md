@@ -154,7 +154,7 @@ The libraries we will be using are:
 * GLM
 
 
-> You can download the library files I use through-out this tutorial series by downloading and extracting the _"Library"_ .zip file on the Aula Week 1 page.
+> You can download the library files I use through-out this tutorial series by downloading and extracting the include.zip file on the Aula Week 1 page.
 
 These libraries are created for a certain build of project which can be a mix of Debug or Release and Win32 (x86) or Win64 (x64). For our case, these are for both Debug or Release and Win64 (x64).
 
