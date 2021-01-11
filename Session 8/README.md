@@ -92,33 +92,10 @@ with
 Here gl_InstanceID is a built-in variable inside shader which represent the id of instance object. So, it is range from 0 to 9. 
 We, move the x coordinate by gl_InstanceID*3 for each instance.
 
-### Render Skybox
-
-* Rendering the skybox is easy now that we have a cubemap texture, 
-we simply bind the cubemap texture and the skybox sampler is automatically filled with the skybox cubemap.
- To draw the skybox we're going to draw it as the first object in the scene and disable depth writing. 
- This way the skybox will always be drawn at the background of all the other objects 
- since the unit cube is most likely smaller than the rest of the scene.
-
-
-```C++
-void Skybox::Draw()
-{
-	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
-	glUseProgram(programId);
-	// skybox cube
-	glBindVertexArray(skyboxVAO);
-	int pos =glGetUniformLocation(programId, "skyboxTexture");
-	glUniform1i(glGetUniformLocation(programId, "skyboxTexture"), myTextureIDs[0]);
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-	glBindVertexArray(0);
-	glDepthFunc(GL_LESS); // set depth function back to default
-}
-```
 
 * Finally it should look like this (Always to Compile option to "x64" )
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/SkyScreenshot.JPG)
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/Instance.JPG)
 
 ### Try to add a skybox into your project (Optional)
 
