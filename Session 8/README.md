@@ -190,6 +190,63 @@ For now, we just use sky texture map for testing
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepOne.JPG)
 
+### Add transparent TREE texture map
+
+* Add texture location
+
+```C++
+TreeTexLoc,
+```
+
+* Add texture filename
+
+```C++
+TreeTexLoc,
+```
+
+* Increase array size
+
+```C++
+glGenTextures(3, texture);
+```
+
+* Texture initialization codes
+
+```C++
+   glActiveTexture(GL_TEXTURE2);
+   glBindTexture(GL_TEXTURE_2D, texture[2]);
+
+   data = SOIL_load_image(TexNames[2].c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+   SOIL_free_image_data(data);
+
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+   glGenerateMipmap(GL_TEXTURE_2D);
+   TreeTexLoc = glGetUniformLocation(programId, "treeTex");
+   glUniform1i(TreeTexLoc, 2); //send texture to shader
+```
+
+* Add codes into fragment shader
+
+```C++
+uniform sampler2D treeTex;
+
+vec4 fieldTexColor, skyTexColor, treeTexColor;
+
+treeTexColor =  texture(treeTex, texCoordsExport);
+
+ if (object == TREE) colorsOut = treeTexColor;
+```
+
+* Compile and run
+
+You will notice there are two problem. One is not transparent. The other one is upside down.
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepTwo.JPG)
+
 ## Billboards
 
 It is an advanced topic (optional). 
