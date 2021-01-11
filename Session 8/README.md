@@ -247,6 +247,37 @@ You will notice there are two problem. One is not transparent. The other one is 
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepTwo.JPG)
 
+* Fix transparency
+
+This happens because OpenGL by default does not know what to do with alpha values, nor when to discard them. 
+We have to manually do this ourselves. Luckily this is quite easy thanks to the use of shaders. 
+GLSL gives us the discard command that (once called) ensures the fragment will not be further processed and thus not end up into the color buffer. 
+Thanks to this command we can check whether a fragment has an alpha value below a certain threshold and 
+if so, discard the fragment as if it had never been processed:
+
+```C++
+   if (object == TREE) 
+   {
+      if(treeTexColor.a < 0.2)         discard;
+      colorsOut = treeTexColor;
+   }
+```
+
+* Fix upside down. Add codes into vertex shader to flip y axis
+
+```C++
+   if (object == TREE)
+   {
+      coords = Coords;
+      coords.y = 40.0 - Coords.y;
+      texCoordsExport = TexCoords;
+   }
+```
+
+* Compile and run
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepThree.JPG)
+
 ## Billboards
 
 It is an advanced topic (optional). 
