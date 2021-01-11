@@ -309,6 +309,75 @@ ModelView[2][1]  // 9
 ModelView[2][2]  // 10
 ```
 
+Spherical billboarding makes the object to always face the camera no matter the position of the camera on an imaginary sphere. 
+Cylindrical billboarding makes the object to face the camera only when the camera looks at the right or at the left.
+
+To do spherical billboarding, just remove all rotations by setting the identity matrix:
+
+```C++
+// Column 0:
+ModelView[0][0] = 1;
+ModelView[0][1] = 0;
+ModelView[0][2] = 0;
+
+// Column 1:
+ModelView[1][0] = 0;
+ModelView[1][1] = 1;
+ModelView[1][2] = 0;
+
+// Column 2:
+ModelView[2][0] = 0;
+ModelView[2][1] = 0;
+ModelView[2][2] = 1;
+```
+
+If we don’t touch the second column (column 1), we get the cylindrical billboarding:
+
+```C++
+// Column 0:
+ModelView[0][0] = 1;
+ModelView[0][1] = 0;
+ModelView[0][2] = 0;
+
+// Column 2:
+ModelView[2][0] = 0;
+ModelView[2][1] = 0;
+ModelView[2][2] = 1;
+```
+
+* Example of cylindrical billboarding implementation in vertex shader
+
+Just replace Final part vertex shader codes 
+
+```C++
+   gl_Position = projMat * modelViewMat * coords;
+```
+
+with
+
+```C++
+   if (object == TREE)
+   {
+         mat4 modelView = modelViewMat;
+          // First colunm.
+          modelView[0][0] = 1.0; 
+          modelView[0][1] = 0.0; 
+          modelView[0][2] = 0.0; 
+
+          // Thrid colunm.
+          modelView[2][0] = 0.0; 
+          modelView[2][1] = 0.0; 
+          modelView[2][2] = 1.0; 
+
+        gl_Position = projMat * modelView * coords;
+   }
+   else
+      gl_Position = projMat * modelViewMat * coords;
+```
+
+* Finally, it looks like this (in different view angle) (Use left and right arrow keys to adjust views)
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepFour.JPG)
 
 ## Home work
 
