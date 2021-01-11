@@ -106,21 +106,19 @@ We, move the x coordinate by gl_InstanceID*3 for each instance.
 
 ## Blending
 
-In this section, you will learn how to Add a camera which can be controlled by key pressing to look around the scene.
+Blending in OpenGL is commonly known as the technique to implement transparency within objects. 
+Transparency is all about objects (or parts of them) not having a solid color, 
+but having a combination of colors from the object itself and any other object behind it with varying intensity.
 
+The textures we've used so far all consisted of 3 color components: red, green and blue, 
+but some textures also have an embedded alpha channel that contains an alpha value per texel (such as PNG image file).
 
-### Basic theory. 
+We are going to use a transparent image (trees.png) as the texture map and use it as decorated objects.
 
-To look around the scene we have to change the cameraForward vector based on the input of the keyboard. However, changing the direction vector is a little complicated and requires some trigonometry. 
-If you do not understand the trigonometry, don't worry, you can just skip to the code sections and paste them in your code; you can always come back later if you want to know more.. 
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/trees.png)
 
 
 * Euler angles 
-
-Euler angles are 3 values that can represent any rotation in 3D, defined by Leonhard Euler somewhere in the 1700s. 
-There are 3 Euler angles: pitch, yaw and roll. The following image gives them a visual meaning:
-
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%207/Readme%20Pictures/Euler.png)
 
 The pitch is the angle that depicts how much we're looking up or down as seen in the first image. 
 The second image shows the yaw value which represents the magnitude we're looking to the left or to the right. 
