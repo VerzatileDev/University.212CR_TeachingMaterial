@@ -118,106 +118,77 @@ We are going to use a transparent image (trees.png) as the texture map and use i
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/trees.png)
 
 
-* Euler angles 
+* Step 1: Add a rectangle plane into your secne 
 
-The pitch is the angle that depicts how much we're looking up or down as seen in the first image. 
-The second image shows the yaw value which represents the magnitude we're looking to the left or to the right. 
-The roll represents how much we roll as mostly used in space-flight cameras. 
-Each of the Euler angles are represented by a single value and with the combination of all 3 of them we can calculate any rotation vector in 3D.
-
-For our camera system we only care about the yaw and pitch values so we won't discuss the roll value here. 
-Given a pitch and a yaw value we can convert them into a 3D vector that represents a new direction vector. 
-The process of converting yaw and pitch values to a direction vector requires a bit of trigonometry.
-
+Use the project in instancing (set the number of instance to 1), open CreateSphere.cpp. Add Both VAO and VBO for new object: Tree.
 
 ```C++
-cameraForward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-cameraForward.y = sin(glm::radians(pitch));
-cameraForward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+static enum object {FIELD, SKY,SPHERE, TREE}; // VAO ids.
+static enum buffer {FIELD_VERTICES, SKY_VERTICES,SPHERE_VERTICES, SPHERE_INDICES, TREE_VERTICES}; // VBO ids.
 ```
 
-### Implmentation codes.
-
-* Add Yaw and Pitch definitions (global variables)
+* Increase VAO and VBO array size
 
 ```C++
-float cameraYaw = 90;
-float cameraPitch;
+   buffer[5], ///add one more object
+   vao[4], ///add one more object
+   
+   glGenVertexArrays(4, vao); ///add one more object
+   glGenBuffers(3, buffer);  ///add one more object
 ```
 
-* Create UpdateCamera function based trigonometry
+* Create ID for VBO
 
 ```C++
-void UpdateCamera()
-{
-	if (cameraPitch < -89)
-	{
-		cameraPitch = -89;
-	}
-	if (cameraPitch > 89)
-	{
-		cameraPitch = 89;
-	}
-	glm::vec3 eye = glm::vec3(0,0,0);
-	eye.x = glm::cos(glm::radians(cameraPitch)) * -glm::cos(glm::radians(cameraYaw));
-	eye.y = glm::sin(glm::radians(cameraPitch));
-	eye.z = glm::cos(glm::radians(cameraPitch)) * glm::sin(glm::radians(cameraYaw));
-
-	cameraForward = glm::normalize(eye);
-
-	glm::mat4 modelViewMat = glm::lookAt(cameraForward, glm::vec3(0), glm::vec3(0, 1, 0));
-	modelViewMat = glm::translate(modelViewMat, cameraPosition);
-	skybox.SetViewMatrix(modelViewMat);
-}
+   glGenBuffers(1, &buffer[TREE_VERTICES]);
 ```
 
-* Add Keyboard handling codes
-
-w move forward. s move backword. a move left. d move right. e move up. q move down.
-
+* Binding VAO and VBO
 
 ```C++
-void KeyInputCallback(unsigned char key, int x, int y)
-{
-	switch (key)
-	{
-	case 'w':
-	{
-		cameraPosition += cameraForward;
-		UpdateCamera();
-	}break;
-	case 's':
-	{
-		cameraPosition += -cameraForward;
-		UpdateCamera();
-	}break;
-	case 'a':
-	{
-		cameraPosition += -glm::normalize(glm::cross(cameraForward, glm::vec3(0, 1, 0)));
-		UpdateCamera();
-	}break;
-	case 'd':
-	{
-		cameraPosition += glm::normalize(cross(cameraForward, glm::vec3(0, 1, 0)));
-		UpdateCamera();
-	}break;
-	case 'e':
-	{
-		cameraPosition += -glm::vec3(0, 1, 0);
-		UpdateCamera();
-	}break;
-	case 'q':
-	{
-		cameraPosition += glm::vec3(0, 1, 0);
-		UpdateCamera();
-	}break;
-	case 27:
-	{
-		exit(0);
-	}break;
-	}
-}
+   glBindVertexArray(vao[TREE]);
+   glBindBuffer(GL_ARRAY_BUFFER, buffer[TREE_VERTICES]);
+   glBufferData(GL_ARRAY_BUFFER, sizeof(treeVertices), treeVertices, GL_STATIC_DRAW);
+   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(treeVertices[0]), 0);  //layout(location=2) in vec4 skyCoords;
+   glEnableVertexAttribArray(0);
+   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(treeVertices[0]), (void*)(sizeof(treeVertices[0].coords))); //layout(location=3) in vec2 skyTexCoords;
+   glEnableVertexAttribArray(1);
 ```
+
+* Draw tree
+
+```C++
+   // Draw Tree.
+   glUniform1ui(objectLoc, TREE);  //if (object == TREE)
+   glBindVertexArray(vao[TREE]);
+   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+```
+
+* Add codes for vertex shader
+
+```C++
+#define TREE 3
+
+   if (object == TREE)
+   {
+      coords = Coords;
+      texCoordsExport = TexCoords;
+   }
+```
+
+* Add testing codes for fragment shader
+
+For now, we just use sky texture map for testing
+
+```C++
+#define TREE 3
+
+ if (object == TREE) colorsOut = skyTexColor;
+```
+
+* compile and run
+
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepOne.png)
 
 ## Billboards
 
