@@ -287,10 +287,10 @@ There are two simple techniques (spherical and cylindrical) to do billboarding i
 Both techniques are similar and consist in tweaking the rotational part of the ModelView matrix. 
 This matrix is the result of the multiplication of the View matrix (camera) and the Model matrix (object):
 
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/modelview.jpg)
+
 The rotation matrix included in the ModelView matrix is a 3×3 matrix (green dotted lines). 
 This rotation matrix (three columns) can be extracted from the ModelView matrix like this:
-
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/modelview.jpg)
 
 ```C++
 // Column 0:
