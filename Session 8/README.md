@@ -188,7 +188,7 @@ For now, we just use sky texture map for testing
 
 * compile and run
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepOne.jpg)
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/StepOne.JPG)
 
 ## Billboards
 
