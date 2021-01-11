@@ -97,45 +97,12 @@ We, move the x coordinate by gl_InstanceID*3 for each instance.
 
 ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/Instance.JPG)
 
-### Try to add a skybox into your project (Optional)
+### Add instancing into your own project
 
-* Now, you can try to add the skybox into your own project. Following instructions were just for guidance (probably not able to solve every problem you have)
+* Select a decorated object in your scene such as a rock object. Modify the drawing codes.
 
-* add skybox texture map into your texture folder.  The list is
+* In the vertex shader, change their position. Ideally, along certain pattern such as line, circle and etc.
 
-```C++
-"Textures/SkyboxRight.jpg",
-"Textures/SkyboxLeft.jpg",
-"Textures/SkyboxTop.jpg",
-"Textures/SkyboxBottom.jpg",
-"Textures/SkyboxFront.jpg",
-"Textures/SkyboxBack.jpg"
-```
-
-* Copy Both Skybox.cpp and Skybox.h into your project folder
-
-* Copy Both SkyboxFragmentShader.glsl and SkyboxVertexShader.glsl into your project.
-Both shaders are stand-alone shader, you do not need to add them into your main shaders.
-
-* Add Skybox initialization codes into your main.cpp. Please refer to example project main.cpp to find out where to put them.
-
-```C++
-Skybox skybox;
-
-skybox.InitialiseCubeMap();	
-skybox.InitialiseSkybox();
-skybox.CreateShader("SkyboxVertexShader.glsl", "SkyboxFragmentShader.glsl");
-skybox.SetViewMatrix(modelViewMat);	
-
-
-skybox.Bind();
-skybox.Draw();
-
-	
-```
-
-* Also, you need to be careful with textureID in Skybox class, which gives you the information which textureID has been used.
-So, you should use skybox texture as the first textureID and add your other textures after it.
 
 ## Blending
 
