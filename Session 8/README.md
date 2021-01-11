@@ -290,7 +290,7 @@ This matrix is the result of the multiplication of the View matrix (camera) and 
 The rotation matrix included in the ModelView matrix is a 3×3 matrix (green dotted lines). 
 This rotation matrix (three columns) can be extracted from the ModelView matrix like this:
 
-![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/modelview.JPG)
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/modelview.jpg)
 
 ```C++
 // Column 0:
