@@ -280,17 +280,34 @@ if so, discard the fragment as if it had never been processed:
 
 ## Billboards
 
-It is an advanced topic (optional). 
+Billboarding is a popular technique used in 3D graphics programming. Billboarding allows an object (usually a quad) to always face a given camera.  
 
-For example, 
+There are two simple techniques (spherical and cylindrical) to do billboarding in the vertex shader.
 
-* Add skybox into your project (optional)
+Both techniques are similar and consist in tweaking the rotational part of the ModelView matrix. 
+This matrix is the result of the multiplication of the View matrix (camera) and the Model matrix (object):
 
-* Add look around camera into your project. You have to modify the model class to allow input modelview matrix from camera setup.
-change void Model::updateModelMatrix(unsigned int modelViewMatLoc,float d,float scale,float ZPos) function (both input parameters and codes)
+The rotation matrix included in the ModelView matrix is a 3×3 matrix (green dotted lines). 
+This rotation matrix (three columns) can be extracted from the ModelView matrix like this:
 
-* Add mouse control camera codes (optional, advanced level)
-Tutorials: https://learnopengl.com/Getting-started/Camera
+![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%208/Readme%20Pictures/modelview.JPG)
+
+```C++
+// Column 0:
+ModelView[0][0]  // 0
+ModelView[0][1]  // 1
+ModelView[0][2]  // 2
+
+// Column 1:
+ModelView[1][0]  // 4
+ModelView[1][1]  // 5
+ModelView[1][2]  // 6
+
+// Column 2:
+ModelView[2][0]  // 8
+ModelView[2][1]  // 9
+ModelView[2][2]  // 10
+```
 
 
 ## Home work
