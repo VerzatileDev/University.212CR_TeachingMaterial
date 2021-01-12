@@ -30,58 +30,28 @@ The sin or cos function generates periodic wave.
 
  ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/cos.png)
 
-When drawing many instances of your model like this you'll quickly reach a performance bottleneck because of the many draw calls. 
-Compared to rendering the actual vertices, telling the GPU to render your vertex data with functions like glDrawArrays or 
-glDrawElements eats up quite some performance since OpenGL must make necessary preparations before it can draw your vertex data 
-(like telling the GPU which buffer to read data from, where to find vertex attributes and all this over the relatively slow CPU to GPU bus).
- So even though rendering your vertices is super fast, giving your GPU the commands to render them isn't.
+We are going to use both cos and sin functions to modify the height value of water mesh to generate wave.  
  
-It would be much more convenient if we could send data over to the GPU once, and then tell OpenGL to draw multiple objects using this data with a single drawing call. 
-That is instancing.
+Waves are animated using the changing time value.
 
 To render using instancing many times,
 
-* glDrawArrays -> glDrawArraysInstanced
-* glDrawElements -> glDrawElementsInstanced 
-
-These instanced versions of the classic rendering functions take an extra parameter called the instance count
- that sets the number of instances we want to render. We sent all the required data to the GPU once, 
- and then tell the GPU how it should draw all these instances with a single call. 
- The GPU then renders all these instances without having to continually communicate with the CPU.
 
 ### Implementation
 
-* Download the base project (CreateSphereClass.zip). Always to Compile option to "x64".  Open CreateSphere.cpp
+* Download the base project (waterEx.zip). Always to Compile option to "x64".  Open waterEx.cpp
 
-We just need to modify the drawing function to draw 10 spheres instead one.
+There is a water OBJ file already in the project folder and it has been imported into the project.
 
-Replace
+You need to add water texture and replace the existing one (sky texture) on the water plane.
 
-```C++
-glDrawElements(GL_TRIANGLE_STRIP, triCount, GL_UNSIGNED_INT, sphereIndices);
-```
+There is a water.bmp in the Textures folder. Following the previous intructions to add it into the project.
 
-with 
+* Add water texture into fragment shader and assign it to water mesh
 
-```C++
-glDrawElementsInstanced(GL_TRIANGLE_STRIP, 660, GL_UNSIGNED_INT, sphereIndices, 10);
-```
+It should look this
 
-
-* Modify Vertex shader codes so that we can see 10 sphere.
-
-Now, all 10 sphere is in the same position. So, you do not see any difference at all. Modify position  
-
-Replace
-```C++
-   if (object == SPHERE)
-   {
-      coords = sphereCoords;
-      normalExport = sphereNormals;
-   }
-```
-
-with
+ ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/waterTex.JPG)
 
 ```C++
    if (object == SPHERE)
