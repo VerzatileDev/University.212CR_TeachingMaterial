@@ -2,9 +2,7 @@
 
 #### Table of Contents
 1. [Procedural generation introduction](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Procedural-generation-introduction)
-2. [Blending](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Blending)
-3. [Billboards](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Billboards)
-4. [Home work](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Home-work)
+2. [Home work](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Home-work)
 
 Welcome to Week 9! 
 
