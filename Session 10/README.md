@@ -49,6 +49,8 @@ Modify the color calculation codes based on the intensity value which is calcula
 It should look this
 
  ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%2010/Readme%20Pictures/Result.JPG)
+ 
+ * You can adjust intensity values to achieve better results. 
 
 
 
