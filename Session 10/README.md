@@ -22,64 +22,35 @@ then we’ll use the brightest tone. As the angle between the normal and the lig
 
 ### Implementation
 
-* Download the base project (waterEx.zip). Always to Compile option to "x64".  Open waterEx.cpp
+* Download the base project (ToonShader.zip). Always to Compile option to "x64".  Open fragmentShader.glsl
 
-There is a water OBJ file already in the project folder and it has been imported into the project.
+we will do the toon shader effect per fragment. Therefore, we only need to modify the fragment shader.
 
-You need to add water texture and replace the existing one (sky texture) on the water plane.
-
-* There is a water.bmp in the Textures folder. Following the previous intructions to add it into the project.
-
+Modify the color calculation codes based on the intensity value which is calculated as dot product between the light vector and the normal vector.
 
 ```C++
-y = sin(x+t) - cos(z+t);
+   if (object == SPHERE) {
+    normal = normalize(normalExport);
+	lightDirection = normalize(vec3(light0.coords));
+    intensity = dot(lightDirection,normal);
+	fAndBDif = (light0.difCols * sphereFandB.difRefl);
+    if (intensity > 0.95)
+		colorsOut =  0.95f*fAndBDif;
+	else if (intensity > 0.5)
+		colorsOut =  0.5f*fAndBDif;
+	else if (intensity > 0.25)
+		colorsOut =  0.25f*fAndBDif;
+	else
+		colorsOut =  0.1f*fAndBDif;
+   }
 ```
 
-* Add water texture into fragment shader and assign it to water mesh
 
 It should look this
 
- ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%2010/Readme%20Pictures/Example.JPG)
+ ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%2010/Readme%20Pictures/Result.JPG)
 
 
-### Modify water mesh in vertex shader
-
-* Add a time variable (global) in waterEx.cpp
-
-```C++
-static float waveTime = 0;
-```
-
-* In drawscene function, update the waveTime value and send it to the shader
-
-```C++
-   // Water settings
-   waveTime += 0.004f;
-   glUniform1f(glGetUniformLocation(programId, "waveTime"), waveTime);
-```
-
-* Add waveTime in vertex shader
-
-```C++
-uniform float waveTime;
-```
-
-* Update water mesh Y coordinates
-
-```C++
-    if (object == WATER)
-    {
-      coords = vec4(objCoords, 1.0f);
-      coords.y += 1.5f * (sin(coords.x + waveTime) + cos(coords.z + waveTime)) + 10.0f;
-      normalExport = objNormals;
-      texCoordsExport = objTexCoords;
-    }
-```
-
-
-* Compile and run
-
- ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%2010/Readme%20Pictures/Example.JPG)
 
 
 
