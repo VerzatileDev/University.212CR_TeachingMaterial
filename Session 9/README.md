@@ -80,7 +80,7 @@ uniform float waveTime;
     if (object == WATER)
     {
       coords = vec4(objCoords, 1.0f);
-      coords.y += 1.5f * (sin(coords.x + waveTime) + cos(coords.z + waveTime)) + 10.0f;
+      coords.y += 1.5f * (sin(coords.x + waveTime) + cos(coords.z + waveTime)) + 15.0f;
       normalExport = objNormals;
       texCoordsExport = objTexCoords;
     }
@@ -91,7 +91,29 @@ uniform float waveTime;
 
  ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/waterAnim.JPG)
 
+* Add transparency
 
+Add following codes to the end of setup function in WaterEx.cpp to enable Alpha blending
+
+```C++
+   //Enable blending
+   glEnable(GL_BLEND);
+   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+```
+
+Set Alpha value in fragment shader
+
+```C++
+   if (object == WATER) {
+    colorsOut = waterTexColor;
+    colorsOut.a = 0.4f;
+   } 
+```
+
+* Compile and run
+
+
+ ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/waterTrans.JPG)
 
 ## Home work
 
