@@ -2,7 +2,8 @@
 
 #### Table of Contents
 1. [Procedural generation introduction](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Procedural-generation-introduction)
-2. [Home work](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Home-work)
+2. [Third person camera](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Third-person-camera)
+3. [Home work](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/tree/master/Session%209#Home-work)
 
 Welcome to Week 9! 
 
@@ -114,6 +115,18 @@ Set Alpha value in fragment shader
 
 
  ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/waterTrans.JPG)
+
+## Third person camera
+
+A third-person camera is the camera following the player at a fixed distance or an adjustable distance. 
+The position (eyeX,eyeY,eyeZ) of OpenGL camera is set a position behind and above the player.
+The center position of OpenGL camera is set a position in the center of the player.
+
+ ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/Camera.JPG)
+
+* Create a terrain model in 3DS max and import into project (replace field).
+
+* Add animated water mesh 
 
 ## Home work
 
