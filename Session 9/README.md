@@ -202,7 +202,11 @@ Use similar method as Model class to change ModelView codes
 
  ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/Camera2.JPG)
  
- 
+* Animated third person camera (Optional)
+
+Add some animation to the third person camera. For example, base on the acceleration and deacceleration of the player, 
+increase or decrease the distance between camera and player.
+
 
 ## Home work
 
