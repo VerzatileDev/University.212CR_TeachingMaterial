@@ -119,14 +119,90 @@ Set Alpha value in fragment shader
 ## Third person camera
 
 A third-person camera is the camera following the player at a fixed distance or an adjustable distance. 
-The position (eyeX,eyeY,eyeZ) of OpenGL camera is set a position behind and above the player.
+The eye position of OpenGL camera is set a position behind and above the player.
 The center position of OpenGL camera is set a position in the center of the player.
 
  ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/Camera.JPG)
 
-* Create a terrain model in 3DS max and import into project (replace field).
+* Add eye and center vector definition of OpenGL camera.
 
-* Add animated water mesh 
+```C++
+static vec3 eye = vec3(0.0, 10.0, 15.0);
+static vec3 cen = vec3(0.0, 10.0, 0.0);
+```
+
+* Add eye and center vector updating in animation function
+
+```C++
+void animate() 
+{
+	zVal = zVal - 0.2;
+	xVal += 0.1;
+	if (zVal < -25.0) zVal = 0.0;
+	if (xVal > 12.0) xVal = -12.0;
+	testSphere.SetPosition(vec3(0, 0, zVal)); //modify sphere's position
+	Hover.SetPosition(vec3(xVal, 0, 0));
+
+	//set camera positions
+	cen = vec3(0, 0, zVal);
+	eye = vec3(0, 7.0, zVal+15.0);
+
+	// refresh screen 
+	glutPostRedisplay();
+}
+```
+
+* compile and take a look
+
+ ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/Camera1.JPG)
+ 
+ Notice that hovercraft, sphere and water all disappeared. That is because we have not set modelview (created by eye and center vectors) to those objects).
+ 
+ * Change modelview calculation inside Model class
+ 
+ Change updateModelMatrix definition in header file
+ 
+```C++
+void updateModelMatrix(unsigned int, vec3,vec3,float,float);
+```
+
+Change updateModelMatrix definition in C++ file 
+
+```C++
+void Model::updateModelMatrix(unsigned int modelViewMatLoc,vec3 eye, vec3 cen,float scale,float ZPos)
+{
+	ModelMatrix = mat4(1.0);
+	ModelMatrix = lookAt(eye, cen, vec3(0.0, 1.0, 0.0)); //camera matrix, apply first
+	ModelMatrix = glm::scale(ModelMatrix, vec3(scale, scale, scale));  //scale down the model
+	ModelMatrix = glm::translate(ModelMatrix, vec3(0.0f, 0.0f, ZPos));
+	ModelMatrix = glm::translate(ModelMatrix, GetPosition());
+	glUniformMatrix4fv(modelViewMatLoc, 1, GL_FALSE, value_ptr(ModelMatrix));  //send modelview matrix to the shader
+}
+```
+
+* Update codes used in DrawScene function WaterEx.cpp
+
+```C++
+   // Draw water
+   Water.updateModelMatrix(modelViewMatLoc, eye, cen, 0.2f,-60.0f);
+   glUniform1ui(objectLoc, WATER);  //if (object == WATER)
+   Water.Draw();
+   
+   // Draw Hover
+   Hover.updateModelMatrix(modelViewMatLoc, eye, cen, 1.5f, 0.0f);
+   glUniform1ui(objectLoc, HOVER);  //if (object == HOVER)
+   Hover.Draw();
+```
+
+* Change modelview calculation inside Sphere class 
+
+Use similar method as Model class to change ModelView codes
+
+* Finally, the camera should follow the moving sphere.
+
+ ![Tex1 picture](https://github.coventry.ac.uk/ac7020/212CR_TeachingMaterial/blob/master/Session%209/Readme%20Pictures/Camera2.JPG)
+ 
+ 
 
 ## Home work
 
