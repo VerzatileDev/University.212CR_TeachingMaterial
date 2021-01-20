@@ -255,7 +255,7 @@ This allows us to remove the files that would be open when Visual Studio is, mea
 * Can push without the above error
 * Stop unneeded files from being pulled/pushed saving on download time!
 
-Download the _.gitignore_ file from the module Moodle page and move it to where your README file is. 
+Download the _.gitignore_ file from the Aula Week 1 (Acitivies) page  and move it to where your README file is. 
 
 Go into your project files and delete the _".vs"_ and _"x64"_ folders from the project files. Now push this all to your repository.
 
